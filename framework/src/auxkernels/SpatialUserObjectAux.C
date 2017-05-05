@@ -32,7 +32,7 @@ SpatialUserObjectAux::SpatialUserObjectAux(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 SpatialUserObjectAux::computeValue()
 {
   if (isNodal())

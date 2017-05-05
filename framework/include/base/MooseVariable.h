@@ -300,7 +300,7 @@ public:
    * is computed based on the current variable
    * value at i, its size controlled by scale.
    */
-  void computePerturbedElemValues(unsigned i, Real scale, Real & h);
+  void computePerturbedElemValues(unsigned i, Real scale, Number & h);
 
   /**
    * Restore the values the variable had before a call to

@@ -29,7 +29,7 @@ ConstantAux::ConstantAux(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ConstantAux::computeValue()
 {
   return _value;

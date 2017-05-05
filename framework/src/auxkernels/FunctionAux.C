@@ -29,7 +29,7 @@ FunctionAux::FunctionAux(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 FunctionAux::computeValue()
 {
   if (isNodal())

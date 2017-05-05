@@ -37,7 +37,7 @@ public:
   VariableGradientComponent(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
 private:
   /// Reference to the gradient of the coupled variable

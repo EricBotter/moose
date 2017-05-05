@@ -32,7 +32,7 @@ public:
   FunctionScalarAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   std::vector<Function *> _functions;
 };

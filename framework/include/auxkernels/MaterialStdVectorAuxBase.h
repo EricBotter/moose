@@ -34,7 +34,7 @@ public:
   MaterialStdVectorAuxBase(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// index of the vecor element
   unsigned int _index;
@@ -53,7 +53,7 @@ MaterialStdVectorAuxBase<T>::MaterialStdVectorAuxBase(const InputParameters & pa
 }
 
 template <typename T>
-Real
+Number
 MaterialStdVectorAuxBase<T>::computeValue()
 {
   mooseAssert(_prop[_qp].size() > _index,

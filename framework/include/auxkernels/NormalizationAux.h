@@ -33,7 +33,7 @@ public:
   NormalizationAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   const VariableValue & _src;
   const Real & _pp_on_source;

@@ -39,7 +39,7 @@ public:
   MaterialAuxBase(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// Returns material property values at quadrature points
   virtual Real getRealValue() = 0;
@@ -65,7 +65,7 @@ MaterialAuxBase<T>::MaterialAuxBase(const InputParameters & parameters)
 }
 
 template <typename T>
-Real
+Number
 MaterialAuxBase<T>::computeValue()
 {
   return _factor * getRealValue() + _offset;

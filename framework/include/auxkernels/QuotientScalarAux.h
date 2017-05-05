@@ -33,7 +33,7 @@ public:
   QuotientScalarAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   VariableValue & _a;
   VariableValue & _b;

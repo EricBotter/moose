@@ -205,7 +205,7 @@ AuxKernel::compute()
     if (_var.isNodalDefined())
     {
       _qp = 0;
-      Real value = computeValue();
+      Number value = computeValue();
       // update variable data, which is referenced by other kernels, so the value is up-to-date
       _var.setNodalValue(value);
     }
@@ -216,7 +216,7 @@ AuxKernel::compute()
 
     if (_n_local_dofs == 1) /* p0 */
     {
-      Real value = 0;
+      Number value = 0;
       for (_qp = 0; _qp < _qrule->n_points(); _qp++)
         value += _JxW[_qp] * _coord[_qp] * computeValue();
       value /= (_bnd ? _current_side_volume : _current_elem_volume);
@@ -236,7 +236,7 @@ AuxKernel::compute()
       for (unsigned int i = 0; i < _test.size(); i++)
         for (_qp = 0; _qp < _qrule->n_points(); _qp++)
         {
-          Real t = _JxW[_qp] * _coord[_qp] * _test[i][_qp];
+          Number t = _JxW[_qp] * _coord[_qp] * _test[i][_qp];
           _local_re(i) += t * computeValue();
           for (unsigned int j = 0; j < _test.size(); j++)
             _local_ke(i, j) += t * _test[j][_qp];

@@ -38,7 +38,7 @@ protected:
    * every quadrature point.  For Nodal Auxiliary variables those quadrature
    * points coincide with the nodes.
    */
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// Will hold 0, 1, or 2 corresponding to x, y, or z.
   int _component;

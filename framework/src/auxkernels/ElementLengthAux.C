@@ -33,7 +33,7 @@ ElementLengthAux::ElementLengthAux(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ElementLengthAux::computeValue()
 {
   if (_use_min)

@@ -30,7 +30,7 @@ public:
   GapValueAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   PenetrationLocator & _penetration_locator;
 

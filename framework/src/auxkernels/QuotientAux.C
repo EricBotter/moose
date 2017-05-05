@@ -31,7 +31,7 @@ QuotientAux::QuotientAux(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 QuotientAux::computeValue()
 {
   return _numerator[_qp] / _denominator[_qp];

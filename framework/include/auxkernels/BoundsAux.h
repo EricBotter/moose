@@ -40,7 +40,7 @@ public:
   BoundsAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   NumericVector<Number> & _upper_vector;
   NumericVector<Number> & _lower_vector;

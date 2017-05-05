@@ -43,17 +43,17 @@ ElementLpNormAux::compute()
 
   // Sum up the squared-error values by calling computeValue(), then
   // return the sqrt of the result.
-  Real summed_value = 0;
+  Number summed_value = 0;
   for (_qp = 0; _qp < _qrule->n_points(); _qp++)
   {
-    Real val = computeValue();
+    Number val = computeValue();
     summed_value += _JxW[_qp] * _coord[_qp] * std::pow(std::abs(val), _p);
   }
 
   _var.setNodalValue(std::pow(summed_value, 1. / _p));
 }
 
-Real
+Number
 ElementLpNormAux::computeValue()
 {
   return _coupled_var[_qp];

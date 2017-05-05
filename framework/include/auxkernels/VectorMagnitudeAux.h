@@ -31,7 +31,7 @@ public:
   VectorMagnitudeAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   const VariableValue & _x;
   const VariableValue & _y;

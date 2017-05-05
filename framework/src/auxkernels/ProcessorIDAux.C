@@ -24,7 +24,7 @@ validParams<ProcessorIDAux>()
 
 ProcessorIDAux::ProcessorIDAux(const InputParameters & parameters) : AuxKernel(parameters) {}
 
-Real
+Number
 ProcessorIDAux::computeValue()
 {
   if (isNodal())

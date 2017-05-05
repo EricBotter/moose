@@ -37,7 +37,7 @@ public:
   NearestNodeDistanceAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   NearestNodeLocator & _nearest_node;
 };

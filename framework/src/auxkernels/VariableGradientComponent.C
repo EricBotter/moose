@@ -32,7 +32,7 @@ VariableGradientComponent::VariableGradientComponent(const InputParameters & par
 {
 }
 
-Real
+Number
 VariableGradientComponent::computeValue()
 {
   return _gradient[_qp](_component);

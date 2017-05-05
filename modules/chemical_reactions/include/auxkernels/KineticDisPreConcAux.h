@@ -27,7 +27,7 @@ public:
   virtual ~KineticDisPreConcAux() {}
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// Equilibrium constant at reference temperature
   const Real _log_k;

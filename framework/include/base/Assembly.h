@@ -44,6 +44,12 @@ typedef RealVectorValue RealGradient;
 
 typedef TensorValue<Real> RealTensorValue;
 typedef RealTensorValue RealTensor;
+
+typedef VectorValue<Number> NumberVectorValue;
+typedef NumberVectorValue NumberGradient;
+
+typedef TensorValue<Number> NumberTensorValue;
+typedef NumberTensorValue NumberTensor;
 }
 
 // MOOSE Forward Declares
@@ -612,7 +618,7 @@ protected:
                         DenseVector<Number> & res_block,
                         const std::vector<dof_id_type> & dof_indices,
                         Real scaling_factor);
-  void cacheResidualBlock(std::vector<Real> & cached_residual_values,
+  void cacheResidualBlock(std::vector<Number> & cached_residual_values,
                           std::vector<dof_id_type> & cached_residual_rows,
                           DenseVector<Number> & res_block,
                           std::vector<dof_id_type> & dof_indices,
@@ -875,7 +881,7 @@ protected:
   std::map<FEType, FEShapeData *> _fe_shape_data_face_neighbor;
 
   /// Values cached by calling cacheResidual() (the first vector is for TIME vs NONTIME)
-  std::vector<std::vector<Real>> _cached_residual_values;
+  std::vector<std::vector<Number>> _cached_residual_values;
 
   /// Where the cached values should go (the first vector is for TIME vs NONTIME)
   std::vector<std::vector<dof_id_type>> _cached_residual_rows;
@@ -883,7 +889,7 @@ protected:
   unsigned int _max_cached_residuals;
 
   /// Values cached by calling cacheJacobian()
-  std::vector<Real> _cached_jacobian_values;
+  std::vector<Number> _cached_jacobian_values;
   /// Row where the corresponding cached value should go
   std::vector<dof_id_type> _cached_jacobian_rows;
   /// Column where the corresponding cached value should go

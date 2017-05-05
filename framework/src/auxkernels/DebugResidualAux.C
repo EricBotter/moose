@@ -34,7 +34,7 @@ DebugResidualAux::DebugResidualAux(const InputParameters & parameters)
     mooseError("Cannot use DebugResidualAux on elemental variables");
 }
 
-Real
+Number
 DebugResidualAux::computeValue()
 {
   dof_id_type dof = _current_node->dof_number(_nl_sys.number(), _debug_var.number(), 0);

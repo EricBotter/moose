@@ -77,7 +77,7 @@ SolutionAux::initialSetup()
     _direct = true;
 }
 
-Real
+Number
 SolutionAux::computeValue()
 {
   // The value to output

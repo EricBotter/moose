@@ -31,7 +31,7 @@ public:
   DebugResidualAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   MooseVariable & _debug_var;
   NumericVector<Number> & _residual_copy;

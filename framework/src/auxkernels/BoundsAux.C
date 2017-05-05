@@ -42,7 +42,7 @@ BoundsAux::BoundsAux(const InputParameters & parameters)
     _lower = getParam<Real>("lower");
 }
 
-Real
+Number
 BoundsAux::computeValue()
 {
   if (_current_node->n_dofs(_nl_sys.number(), _bounded_variable_id) > 0)

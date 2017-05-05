@@ -129,7 +129,7 @@ protected:
   virtual const VariableValue & coupledDotDu(const std::string & var_name,
                                              unsigned int comp = 0) override;
 
-  virtual Real computeValue() = 0;
+  virtual Number computeValue() = 0;
 
   /// This callback is used for AuxKernels that need to perform a per-element calculation
   virtual void precalculateValue() {}

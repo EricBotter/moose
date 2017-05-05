@@ -36,7 +36,7 @@ public:
   ConstantAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// The value being set for the current node/element
   const Real & _value;

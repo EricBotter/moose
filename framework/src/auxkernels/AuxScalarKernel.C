@@ -78,7 +78,7 @@ AuxScalarKernel::compute()
 {
   for (_i = 0; _i < _var.order(); ++_i)
   {
-    Real value = computeValue();
+    Number value = computeValue();
     _var.setValue(_i, value); // update variable data, which is referenced by other kernels, so the
                               // value is up-to-date
   }

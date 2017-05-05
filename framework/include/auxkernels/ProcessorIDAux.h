@@ -37,7 +37,7 @@ public:
   ProcessorIDAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 };
 
 #endif // PROCESSORIDAUX_H

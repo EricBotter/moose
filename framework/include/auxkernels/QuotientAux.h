@@ -35,7 +35,7 @@ public:
   QuotientAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   const VariableValue & _numerator;
   const VariableValue & _denominator;

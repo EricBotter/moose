@@ -33,7 +33,7 @@ NormalizationAux::NormalizationAux(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 NormalizationAux::computeValue()
 {
   return _src[_qp] * _normal_factor / _pp_on_source;

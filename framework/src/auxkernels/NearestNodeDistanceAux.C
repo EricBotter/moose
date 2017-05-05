@@ -38,7 +38,7 @@ NearestNodeDistanceAux::NearestNodeDistanceAux(const InputParameters & parameter
     mooseError("NearestNodeDistanceAux can only be used with one boundary at a time!");
 }
 
-Real
+Number
 NearestNodeDistanceAux::computeValue()
 {
   if (_nodal)

@@ -84,7 +84,7 @@ GapValueAux::GapValueAux(const InputParameters & parameters)
                ")");
 }
 
-Real
+Number
 GapValueAux::computeValue()
 {
   const Node * current_node = NULL;

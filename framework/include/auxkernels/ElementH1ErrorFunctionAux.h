@@ -50,7 +50,7 @@ protected:
   /**
    * Computes the error at the current qp.
    */
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /**
    * The gradient of the computed solution.

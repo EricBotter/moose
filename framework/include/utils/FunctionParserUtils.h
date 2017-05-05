@@ -71,7 +71,7 @@ protected:
   static const char * _eval_error_msg[];
 
   /// Array to stage the parameters passed to the functions when calling Eval.
-  std::vector<Real> _func_params;
+  std::vector<Number> _func_params;
 };
 
 #endif // FUNCTIONPARSERUTILS_H

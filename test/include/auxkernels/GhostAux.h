@@ -35,7 +35,7 @@ public:
   GhostAux(const InputParameters & params);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   const GhostUserObject & _ghost_uo;
 };

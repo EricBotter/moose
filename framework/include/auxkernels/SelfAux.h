@@ -36,7 +36,7 @@ public:
   SelfAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 };
 
 #endif // SELFAUX_H

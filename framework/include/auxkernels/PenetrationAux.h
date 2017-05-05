@@ -72,7 +72,7 @@ protected:
 
   PA_ENUM _quantity;
 
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   PenetrationLocator & _penetration_locator;
 

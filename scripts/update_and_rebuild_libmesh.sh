@@ -89,6 +89,7 @@ if [ -z "$go_fast" ]; then
                --with-methods="${METHODS}" \
                --prefix=$LIBMESH_DIR \
                --enable-silent-rules \
+               --enable-complex \
                --enable-unique-id \
                --disable-warnings \
                --enable-unique-ptr \

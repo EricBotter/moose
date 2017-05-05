@@ -59,6 +59,11 @@ FlagElementsThread::FlagElementsThread(FlagElementsThread & x, Threads::split sp
 {
 }
 
+template <typename T, class = std::enable_if<std::is_same<std::complex<double>, T>::value, T>>
+inline double round(T x) {
+    return round(x.real());
+}
+
 void
 FlagElementsThread::onElement(const Elem * elem)
 {
@@ -74,7 +79,7 @@ FlagElementsThread::onElement(const Elem * elem)
     marker_value = static_cast<Marker::MarkerValue>(round(_serialized_solution[dof_number]));
 
     // Make sure we aren't masking an issue in the Marker system by rounding its values.
-    if (std::abs(marker_value - _serialized_solution[dof_number]) > TOLERANCE * TOLERANCE)
+    if (std::abs((Real)marker_value - _serialized_solution[dof_number]) > TOLERANCE * TOLERANCE)
       mooseError("Invalid Marker value detected: ", _serialized_solution[dof_number]);
   }
 

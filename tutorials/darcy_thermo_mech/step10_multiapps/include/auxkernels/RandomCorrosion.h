@@ -54,7 +54,7 @@ protected:
    * Computes the "corrosion" for the supplied phase variable.
    * @return The compute "phase" variable
    */
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /**
    * A helper method for getting random points in the domiain.

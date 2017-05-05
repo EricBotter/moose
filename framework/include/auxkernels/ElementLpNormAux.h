@@ -49,7 +49,7 @@ protected:
    * Called by compute() to get the value of the integrand at the
    * current qp.
    */
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   // The exponent used in the norm
   Real _p;

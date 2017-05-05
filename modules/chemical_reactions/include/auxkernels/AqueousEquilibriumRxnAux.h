@@ -27,7 +27,7 @@ public:
   virtual ~AqueousEquilibriumRxnAux() {}
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// Equilibrium constant
   const Real _log_k;

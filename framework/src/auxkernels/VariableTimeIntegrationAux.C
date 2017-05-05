@@ -56,10 +56,10 @@ VariableTimeIntegrationAux::VariableTimeIntegrationAux(const InputParameters & p
   }
 }
 
-Real
+Number
 VariableTimeIntegrationAux::computeValue()
 {
-  Real integral = getIntegralValue();
+  Number integral = getIntegralValue();
 
   if (_order == 3)
     return _u_older[_qp] + _coef * integral;
@@ -67,10 +67,10 @@ VariableTimeIntegrationAux::computeValue()
   return _u_old[_qp] + _coef * integral;
 }
 
-Real
+Number
 VariableTimeIntegrationAux::getIntegralValue()
 {
-  Real integral_value = 0.0;
+  Number integral_value = 0.0;
 
   for (unsigned int i = 0; i < _order; ++i)
     integral_value += _integration_coef[i] * (*_coupled_vars[i])[_qp] * _dt;
@@ -84,15 +84,15 @@ VariableTimeIntegrationAux::getIntegralValue()
    */
   if (_order == 3 && _dt != _dt_old)
   {
-    Real x0 = 0.0;
-    Real x1 = _dt_old;
-    Real x2 = _dt + _dt_old;
-    Real y0 = (*_coupled_vars[2])[_qp];
-    Real y1 = (*_coupled_vars[1])[_qp];
-    Real y2 = (*_coupled_vars[0])[_qp];
-    Real term1 = (x2 - x0) * (y0 + (x2 - x0) * (y1 - y0) / (2.0 * (x1 - x0)));
-    Real term2 = (2.0 * x2 * x2 - x0 * x2 - x0 * x0 + 3.0 * x0 * x1 - 3.0 * x1 * x2) / 6.0;
-    Real term3 = (y2 - y1) / (x2 - x1) - (y1 - y0) / (x1 - x0);
+    Number x0 = 0.0;
+    Number x1 = _dt_old;
+    Number x2 = _dt + _dt_old;
+    Number y0 = (*_coupled_vars[2])[_qp];
+    Number y1 = (*_coupled_vars[1])[_qp];
+    Number y2 = (*_coupled_vars[0])[_qp];
+    Number term1 = (x2 - x0) * (y0 + (x2 - x0) * (y1 - y0) / (2.0 * (x1 - x0)));
+    Number term2 = (2.0 * x2 * x2 - x0 * x2 - x0 * x0 + 3.0 * x0 * x1 - 3.0 * x1 * x2) / 6.0;
+    Number term3 = (y2 - y1) / (x2 - x1) - (y1 - y0) / (x1 - x0);
     integral_value = term1 + term2 * term3;
   }
 

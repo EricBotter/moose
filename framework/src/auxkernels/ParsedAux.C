@@ -76,7 +76,7 @@ ParsedAux::ParsedAux(const InputParameters & parameters)
   _func_params.resize(_nargs);
 }
 
-Real
+Number
 ParsedAux::computeValue()
 {
   for (unsigned int j = 0; j < _nargs; ++j)

@@ -35,7 +35,7 @@ protected:
   /**
    * Returns the min/max of the current element.
    */
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// The type of calculation to perform min or max
   const bool _use_min;

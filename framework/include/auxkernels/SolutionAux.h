@@ -49,7 +49,7 @@ protected:
    * flag is set to true.
    * @ return The desired value of the solution for the current node or element
    */
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// Reference to the SolutionUserObject storing the solution
   const SolutionUserObject & _solution_object;

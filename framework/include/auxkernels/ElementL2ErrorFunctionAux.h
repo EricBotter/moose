@@ -46,7 +46,7 @@ protected:
    * Returns the difference between the solution variable and the
    * exact solution Function.
    */
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// Function representing the exact solution.
   Function & _func;

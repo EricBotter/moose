@@ -28,6 +28,12 @@ namespace libMesh
 {
 class DofMap;
 class Variable;
+
+typedef VectorValue<Number> NumberVectorValue;
+typedef NumberVectorValue NumberGradient;
+
+typedef TensorValue<Number> NumberTensorValue;
+typedef NumberTensorValue NumberTensor;
 }
 
 typedef MooseArray<Real> VariableValue;

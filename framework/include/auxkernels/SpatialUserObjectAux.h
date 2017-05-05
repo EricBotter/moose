@@ -37,7 +37,7 @@ public:
   SpatialUserObjectAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// UserObject to be queried for a value
   const UserObject & _user_object;

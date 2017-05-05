@@ -31,7 +31,7 @@ public:
   ConstantScalarAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   const Real & _value;
 };

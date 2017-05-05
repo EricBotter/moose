@@ -24,7 +24,7 @@ validParams<SelfAux>()
 
 SelfAux::SelfAux(const InputParameters & parameters) : AuxKernel(parameters) {}
 
-Real
+Number
 SelfAux::computeValue()
 {
   return _u[_qp];

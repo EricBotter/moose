@@ -131,7 +131,7 @@ MooseEigenSystem::combineSystemSolution(SYSTEMTAG tag, const std::vector<Real> &
       {
         for (const auto & dof : _eigen_var_indices)
         {
-          Real t = solution()(dof) * coefficients[0];
+          Number t = solution()(dof) * coefficients[0];
           t += solutionOld()(dof) * coefficients[1];
           t += solutionOlder()(dof) * coefficients[2];
           solution().set(dof, t);
@@ -141,7 +141,7 @@ MooseEigenSystem::combineSystemSolution(SYSTEMTAG tag, const std::vector<Real> &
       {
         for (const auto & dof : _eigen_var_indices)
         {
-          Real t = solution()(dof) * coefficients[0];
+          Number t = solution()(dof) * coefficients[0];
           t += solutionOld()(dof) * coefficients[1];
           solution().set(dof, t);
         }
@@ -150,7 +150,7 @@ MooseEigenSystem::combineSystemSolution(SYSTEMTAG tag, const std::vector<Real> &
       {
         for (const auto & dof : _eigen_var_indices)
         {
-          Real t = solution()(dof) * coefficients[0];
+          Number t = solution()(dof) * coefficients[0];
           solution().set(dof, t);
         }
       }

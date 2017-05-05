@@ -102,7 +102,7 @@ protected:
    * Each kernel must implement this.
    * @return The computed value
    */
-  virtual Real computeValue() = 0;
+  virtual Number computeValue() = 0;
 };
 
 #endif /* AUXSCALARKERNEL_H */

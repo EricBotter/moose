@@ -33,7 +33,7 @@ public:
   ParsedAux(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue() override;
+  virtual Number computeValue() override;
 
   /// function expression
   std::string _function;

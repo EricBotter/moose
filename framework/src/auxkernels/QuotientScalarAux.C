@@ -32,7 +32,7 @@ QuotientScalarAux::QuotientScalarAux(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 QuotientScalarAux::computeValue()
 {
   return _a[0] / _b[0];

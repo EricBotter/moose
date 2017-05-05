@@ -88,7 +88,7 @@ PenetrationAux::PenetrationAux(const InputParameters & parameters)
         parameters.get<std::string>("normal_smoothing_method"));
 }
 
-Real
+Number
 PenetrationAux::computeValue()
 {
   const Node * current_node = NULL;

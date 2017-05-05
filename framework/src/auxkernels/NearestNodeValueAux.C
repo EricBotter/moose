@@ -40,7 +40,7 @@ NearestNodeValueAux::NearestNodeValueAux(const InputParameters & parameters)
     mooseError("NearestNodeValueAux can only be used with one boundary at a time!");
 }
 
-Real
+Number
 NearestNodeValueAux::computeValue()
 {
   // Assumes the variable you are coupling to is from the nonlinear system for now.

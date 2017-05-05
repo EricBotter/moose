@@ -30,7 +30,7 @@ ElementL2ErrorFunctionAux::ElementL2ErrorFunctionAux(const InputParameters & par
 {
 }
 
-Real
+Number
 ElementL2ErrorFunctionAux::computeValue()
 {
   return _func.value(_t, _q_point[_qp]) - _coupled_var[_qp];

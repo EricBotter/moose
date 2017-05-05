@@ -484,7 +484,7 @@ protected:
   std::vector<std::string> _vars_to_be_zeroed_on_residual;
   std::vector<std::string> _vars_to_be_zeroed_on_jacobian;
 
-  Real _du_dot_du;
+  Number _du_dot_du;
 
   NumericVector<Number> * _dummy_vec; // to satisfy the interface
 

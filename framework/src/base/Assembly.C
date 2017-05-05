@@ -1280,7 +1280,7 @@ Assembly::addResidualBlock(NumericVector<Number> & residual,
 }
 
 void
-Assembly::cacheResidualBlock(std::vector<Real> & cached_residual_values,
+Assembly::cacheResidualBlock(std::vector<Number> & cached_residual_values,
                              std::vector<dof_id_type> & cached_residual_rows,
                              DenseVector<Number> & res_block,
                              std::vector<dof_id_type> & dof_indices,
@@ -1396,7 +1396,7 @@ Assembly::cacheResidualNodes(DenseVector<Number> & res, std::vector<dof_id_type>
 void
 Assembly::addCachedResidual(NumericVector<Number> & residual, Moose::KernelType type)
 {
-  std::vector<Real> & cached_residual_values = _cached_residual_values[type];
+  std::vector<Number> & cached_residual_values = _cached_residual_values[type];
   std::vector<dof_id_type> & cached_residual_rows = _cached_residual_rows[type];
 
   mooseAssert(cached_residual_values.size() == cached_residual_rows.size(),

@@ -603,12 +603,17 @@ MooseVariable::nodalValueDotNeighbor()
                "' is not nodal.");
 }
 
+template <typename T, class = std::enable_if<std::is_same<std::complex<double>, T>::value, T>>
+inline double fabs(T x) {
+    return fabs(x.real());
+}
+
 // FIXME: this and computeElemeValues() could be refactored to reuse most of
 //        the common code, instead of duplicating it.
 void
 MooseVariable::computePerturbedElemValues(unsigned int perturbation_idx,
                                           Real perturbation_scale,
-                                          Real & perturbation)
+                                          Number & perturbation)
 {
 
   bool is_transient = _subproblem.isTransient();
@@ -690,31 +695,31 @@ MooseVariable::computePerturbedElemValues(unsigned int perturbation_idx,
 
   unsigned int num_dofs = _dof_indices.size();
 
-  const NumericVector<Real> & current_solution = *_sys.currentSolution();
-  const NumericVector<Real> & solution_old = _sys.solutionOld();
-  const NumericVector<Real> & solution_older = _sys.solutionOlder();
-  const NumericVector<Real> & u_dot = _sys.solutionUDot();
-  const Real & du_dot_du = _sys.duDotDu();
+  const NumericVector<Number> & current_solution = *_sys.currentSolution();
+  const NumericVector<Number> & solution_old = _sys.solutionOld();
+  const NumericVector<Number> & solution_older = _sys.solutionOlder();
+  const NumericVector<Number> & u_dot = _sys.solutionUDot();
+  const Number & du_dot_du = _sys.duDotDu();
 
   dof_id_type idx = 0;
-  Real soln_local = 0;
-  Real soln_old_local = 0;
-  Real soln_older_local = 0;
-  Real u_dot_local = 0;
+  Number soln_local = 0;
+  Number soln_old_local = 0;
+  Number soln_older_local = 0;
+  Number u_dot_local = 0;
 
-  Real phi_local = 0;
-  const RealGradient * dphi_qp = NULL;
-  const RealTensor * d2phi_local = NULL;
+  Number phi_local = 0;
+  const NumberGradient * dphi_qp = NULL;
+  const NumberTensor * d2phi_local = NULL;
 
-  RealGradient * grad_u_qp = NULL;
+  NumberGradient * grad_u_qp = NULL;
 
-  RealGradient * grad_u_old_qp = NULL;
-  RealGradient * grad_u_older_qp = NULL;
+  NumberGradient * grad_u_old_qp = NULL;
+  NumberGradient * grad_u_older_qp = NULL;
 
-  RealTensor * second_u_qp = NULL;
+  NumberTensor * second_u_qp = NULL;
 
-  RealTensor * second_u_old_qp = NULL;
-  RealTensor * second_u_older_qp = NULL;
+  NumberTensor * second_u_old_qp = NULL;
+  NumberTensor * second_u_older_qp = NULL;
 
   for (unsigned int i = 0; i < num_dofs; i++)
   {
@@ -730,7 +735,7 @@ MooseVariable::computePerturbedElemValues(unsigned int perturbation_idx,
       // HACK: the use of fabs() and < assume Real is double or similar. Otherwise need to use
       // PetscAbsScalar, PetscRealPart, etc.
       if (fabs(perturbation) < 1.0e-16)
-        perturbation = (perturbation < 0. ? -1.0 : 1.0) * 0.1;
+        perturbation = (perturbation < Number(0.) ? -1.0 : 1.0) * 0.1;
       perturbation *= perturbation_scale;
       soln_local += perturbation;
     }
@@ -951,35 +956,35 @@ MooseVariable::computeElemValues()
       _nodal_u_dot.resize(num_dofs);
   }
 
-  const NumericVector<Real> & current_solution = *_sys.currentSolution();
-  const NumericVector<Real> & solution_old = _sys.solutionOld();
-  const NumericVector<Real> & solution_older = _sys.solutionOlder();
-  const NumericVector<Real> * solution_prev_nl = _sys.solutionPreviousNewton();
-  const NumericVector<Real> & u_dot = _sys.solutionUDot();
-  const Real & du_dot_du = _sys.duDotDu();
+  const NumericVector<Number> & current_solution = *_sys.currentSolution();
+  const NumericVector<Number> & solution_old = _sys.solutionOld();
+  const NumericVector<Number> & solution_older = _sys.solutionOlder();
+  const NumericVector<Number> * solution_prev_nl = _sys.solutionPreviousNewton();
+  const NumericVector<Number> & u_dot = _sys.solutionUDot();
+  const Number & du_dot_du = _sys.duDotDu();
 
   dof_id_type idx = 0;
-  Real soln_local = 0;
-  Real soln_old_local = 0;
-  Real soln_older_local = 0;
-  Real soln_previous_nl_local = 0;
-  Real u_dot_local = 0;
+  Number soln_local = 0;
+  Number soln_old_local = 0;
+  Number soln_older_local = 0;
+  Number soln_previous_nl_local = 0;
+  Number u_dot_local = 0;
 
-  Real phi_local = 0;
-  const RealGradient * dphi_qp = NULL;
-  const RealTensor * d2phi_local = NULL;
+  Number phi_local = 0;
+  const NumberGradient * dphi_qp = NULL;
+  const NumberTensor * d2phi_local = NULL;
 
-  RealGradient * grad_u_qp = NULL;
+  NumberGradient * grad_u_qp = NULL;
 
-  RealGradient * grad_u_old_qp = NULL;
-  RealGradient * grad_u_older_qp = NULL;
-  RealGradient * grad_u_previous_nl_qp = NULL;
+  NumberGradient * grad_u_old_qp = NULL;
+  NumberGradient * grad_u_older_qp = NULL;
+  NumberGradient * grad_u_previous_nl_qp = NULL;
 
-  RealTensor * second_u_qp = NULL;
+  NumberTensor * second_u_qp = NULL;
 
-  RealTensor * second_u_old_qp = NULL;
-  RealTensor * second_u_older_qp = NULL;
-  RealTensor * second_u_previous_nl_qp = NULL;
+  NumberTensor * second_u_old_qp = NULL;
+  NumberTensor * second_u_older_qp = NULL;
+  NumberTensor * second_u_previous_nl_qp = NULL;
 
   for (unsigned int i = 0; i < num_dofs; i++)
   {
@@ -1197,12 +1202,12 @@ MooseVariable::computeElemValuesFace()
       _nodal_u_dot.resize(num_dofs);
   }
 
-  const NumericVector<Real> & current_solution = *_sys.currentSolution();
-  const NumericVector<Real> & solution_old = _sys.solutionOld();
-  const NumericVector<Real> & solution_older = _sys.solutionOlder();
-  const NumericVector<Real> * solution_prev_nl = _sys.solutionPreviousNewton();
-  const NumericVector<Real> & u_dot = _sys.solutionUDot();
-  const Real & du_dot_du = _sys.duDotDu();
+  const NumericVector<Number> & current_solution = *_sys.currentSolution();
+  const NumericVector<Number> & solution_old = _sys.solutionOld();
+  const NumericVector<Number> & solution_older = _sys.solutionOlder();
+  const NumericVector<Number> * solution_prev_nl = _sys.solutionPreviousNewton();
+  const NumericVector<Number> & u_dot = _sys.solutionUDot();
+  const Number & du_dot_du = _sys.duDotDu();
 
   dof_id_type idx;
   Real soln_local;

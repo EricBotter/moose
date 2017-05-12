@@ -37,7 +37,7 @@ protected:
   virtual Number computeValue() override;
   Number getIntegralValue();
 
-  std::vector<const VariableValue *> _coupled_vars;
+  std::vector<const VariableNumber *> _coupled_vars;
   Real _coef;
   unsigned int _order;
   std::vector<Real> _integration_coef;

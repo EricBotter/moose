@@ -108,8 +108,8 @@ NonlinearSystem::NonlinearSystem(FEProblemBase & fe_problem, const std::string &
   nonlinearSolver()->nearnullspace = Moose::compute_nearnullspace;
 
 #ifdef LIBMESH_HAVE_PETSC
-  PetscNonlinearSolver<Real> * petsc_solver =
-      static_cast<PetscNonlinearSolver<Real> *>(_transient_sys.nonlinear_solver.get());
+  PetscNonlinearSolver<Number> * petsc_solver =
+      static_cast<PetscNonlinearSolver<Number> *>(_transient_sys.nonlinear_solver.get());
   if (petsc_solver)
   {
     petsc_solver->set_residual_zero_out(false);
@@ -168,7 +168,7 @@ NonlinearSystem::solve()
   _final_residual = _transient_sys.final_nonlinear_residual();
 
 #ifdef LIBMESH_HAVE_PETSC
-  _n_linear_iters = static_cast<PetscNonlinearSolver<Real> &>(*_transient_sys.nonlinear_solver)
+  _n_linear_iters = static_cast<PetscNonlinearSolver<Number> &>(*_transient_sys.nonlinear_solver)
                         .get_total_linear_iterations();
 #endif
 
@@ -188,8 +188,8 @@ NonlinearSystem::stopSolve()
 #ifdef LIBMESH_HAVE_PETSC
 #if PETSC_VERSION_LESS_THAN(3, 0, 0)
 #else
-  PetscNonlinearSolver<Real> & solver =
-      static_cast<PetscNonlinearSolver<Real> &>(*sys().nonlinear_solver);
+  PetscNonlinearSolver<Number> & solver =
+      static_cast<PetscNonlinearSolver<Number> &>(*sys().nonlinear_solver);
   SNESSetFunctionDomainError(solver.snes());
 #endif
 #endif

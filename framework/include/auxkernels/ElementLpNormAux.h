@@ -55,7 +55,7 @@ protected:
   Real _p;
 
   /// A reference to the variable to compute the norm of.
-  const VariableValue & _coupled_var;
+  const VariableNumber & _coupled_var;
 };
 
 #endif // ELEMENTLPNORMAUX_H

@@ -387,19 +387,19 @@ MooseVariable::add(NumericVector<Number> & residual)
     residual.add_vector(&_nodal_u_neighbor[0], _dof_indices_neighbor);
 }
 
-const VariablePhiValue &
+const VariablePhiNumber &
 MooseVariable::phi()
 {
   return _phi;
 }
 
-const VariablePhiGradient &
+const VariablePhiNumberGradient &
 MooseVariable::gradPhi()
 {
   return _grad_phi;
 }
 
-const VariablePhiSecond &
+const VariablePhiNumberSecond &
 MooseVariable::secondPhi()
 {
   _second_phi = &_assembly.feSecondPhi(_fe_type);
@@ -463,7 +463,7 @@ MooseVariable::secondPhiFaceNeighbor()
   return *_second_phi_face_neighbor;
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValue()
 {
   if (isNodal())
@@ -477,7 +477,7 @@ MooseVariable::nodalValue()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValueOld()
 {
   if (isNodal())
@@ -491,7 +491,7 @@ MooseVariable::nodalValueOld()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValueOlder()
 {
   if (isNodal())
@@ -505,7 +505,7 @@ MooseVariable::nodalValueOlder()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValuePreviousNL()
 {
   if (isNodal())
@@ -533,7 +533,7 @@ MooseVariable::nodalValueDot()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValueNeighbor()
 {
   if (isNodal())
@@ -547,7 +547,7 @@ MooseVariable::nodalValueNeighbor()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValueOldNeighbor()
 {
   if (isNodal())
@@ -561,7 +561,7 @@ MooseVariable::nodalValueOldNeighbor()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValueOlderNeighbor()
 {
   if (isNodal())
@@ -575,7 +575,7 @@ MooseVariable::nodalValueOlderNeighbor()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValuePreviousNLNeighbor()
 {
   if (isNodal())
@@ -607,6 +607,12 @@ template <typename T, class = std::enable_if<std::is_same<std::complex<double>, 
 inline double fabs(T x) {
     return fabs(x.real());
 }
+
+// FIXME Maybe this is not needed
+// template <typename T, class = std::enable_if<std::is_same<Real, T>::value, T>>
+// inline double real(T x) {
+//     return x;
+// }
 
 // FIXME: this and computeElemeValues() could be refactored to reuse most of
 //        the common code, instead of duplicating it.
@@ -735,7 +741,7 @@ MooseVariable::computePerturbedElemValues(unsigned int perturbation_idx,
       // HACK: the use of fabs() and < assume Real is double or similar. Otherwise need to use
       // PetscAbsScalar, PetscRealPart, etc.
       if (fabs(perturbation) < 1.0e-16)
-        perturbation = (perturbation < Number(0.) ? -1.0 : 1.0) * 0.1;
+        perturbation = (real(perturbation) < 0. ? -1.0 : 1.0) * 0.1;
       perturbation *= perturbation_scale;
       soln_local += perturbation;
     }
@@ -1210,15 +1216,15 @@ MooseVariable::computeElemValuesFace()
   const Number & du_dot_du = _sys.duDotDu();
 
   dof_id_type idx;
-  Real soln_local;
-  Real soln_old_local = 0;
-  Real soln_older_local = 0;
-  Real soln_previous_nl_local = 0;
-  Real u_dot_local = 0;
+  Number soln_local;
+  Number soln_old_local = 0;
+  Number soln_older_local = 0;
+  Number soln_previous_nl_local = 0;
+  Number u_dot_local = 0;
 
-  Real phi_local;
-  RealGradient dphi_local;
-  RealTensor d2phi_local;
+  Number phi_local;
+  NumberGradient dphi_local;
+  NumberTensor d2phi_local;
 
   for (unsigned int i = 0; i < num_dofs; ++i)
   {
@@ -1385,21 +1391,21 @@ MooseVariable::computeNeighborValuesFace()
       _nodal_u_dot_neighbor.resize(num_dofs);
   }
 
-  const NumericVector<Real> & current_solution = *_sys.currentSolution();
-  const NumericVector<Real> & solution_old = _sys.solutionOld();
-  const NumericVector<Real> & solution_older = _sys.solutionOlder();
-  const NumericVector<Real> & u_dot = _sys.solutionUDot();
-  const Real & du_dot_du = _sys.duDotDu();
+  const NumericVector<Number> & current_solution = *_sys.currentSolution();
+  const NumericVector<Number> & solution_old = _sys.solutionOld();
+  const NumericVector<Number> & solution_older = _sys.solutionOlder();
+  const NumericVector<Number> & u_dot = _sys.solutionUDot();
+  const Number & du_dot_du = _sys.duDotDu();
 
   dof_id_type idx;
-  Real soln_local;
-  Real soln_old_local = 0;
-  Real soln_older_local = 0;
-  Real u_dot_local = 0;
+  Number soln_local;
+  Number soln_old_local = 0;
+  Number soln_older_local = 0;
+  Number u_dot_local = 0;
 
-  Real phi_local;
-  RealGradient dphi_local;
-  RealTensor d2phi_local;
+  Number phi_local;
+  NumberGradient dphi_local;
+  NumberTensor d2phi_local;
 
   for (unsigned int i = 0; i < num_dofs; ++i)
   {
@@ -1542,20 +1548,20 @@ MooseVariable::computeNeighborValues()
       _nodal_u_dot_neighbor.resize(num_dofs);
   }
 
-  const NumericVector<Real> & current_solution = *_sys.currentSolution();
-  const NumericVector<Real> & solution_old = _sys.solutionOld();
-  const NumericVector<Real> & solution_older = _sys.solutionOlder();
-  const NumericVector<Real> & u_dot = _sys.solutionUDot();
+  const NumericVector<Number> & current_solution = *_sys.currentSolution();
+  const NumericVector<Number> & solution_old = _sys.solutionOld();
+  const NumericVector<Number> & solution_older = _sys.solutionOlder();
+  const NumericVector<Number> & u_dot = _sys.solutionUDot();
 
   dof_id_type idx;
-  Real soln_local;
-  Real soln_old_local = 0;
-  Real soln_older_local = 0;
-  Real u_dot_local = 0;
+  Number soln_local;
+  Number soln_old_local = 0;
+  Number soln_older_local = 0;
+  Number u_dot_local = 0;
 
-  Real phi_local;
-  RealGradient dphi_local;
-  RealTensor d2phi_local;
+  Number phi_local;
+  NumberGradient dphi_local;
+  NumberTensor d2phi_local;
 
   for (unsigned int i = 0; i < num_dofs; ++i)
   {
@@ -1848,12 +1854,12 @@ MooseVariable::getNodalValueOlder(const Node & node)
 }
 
 Real
-MooseVariable::getValue(const Elem * elem, const std::vector<std::vector<Real>> & phi) const
+MooseVariable::getValue(const Elem * elem, const std::vector<std::vector<Number>> & phi) const
 {
   std::vector<dof_id_type> dof_indices;
   _dof_map.dof_indices(elem, dof_indices, _var_num);
 
-  Real value = 0;
+  Number value = 0;
   if (isNodal())
   {
     for (unsigned int i = 0; i < dof_indices.size(); ++i)

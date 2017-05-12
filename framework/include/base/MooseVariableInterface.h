@@ -54,28 +54,28 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & value();
+  virtual const VariableNumber & value();
 
   /**
    * The old value of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & valueOld();
+  virtual const VariableNumber & valueOld();
 
   /**
    * The older value of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & valueOlder();
+  virtual const VariableNumber & valueOlder();
 
   /**
    * The time derivative of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & dot();
+  virtual const VariableNumber & dot();
 
   /**
    * The derivative of the time derivative of the variable this object is operating on
@@ -85,7 +85,7 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & dotDu();
+  virtual const VariableNumber & dotDu();
 
   /**
    * The gradient of the variable this object is operating on.
@@ -94,42 +94,42 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableGradient & gradient();
+  virtual const VariableNumberGradient & gradient();
 
   /**
    * The old gradient of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableGradient & gradientOld();
+  virtual const VariableNumberGradient & gradientOld();
 
   /**
    * The older gradient of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableGradient & gradientOlder();
+  virtual const VariableNumberGradient & gradientOlder();
 
   /**
    * The second derivative of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableSecond & second();
+  virtual const VariableNumberSecond & second();
 
   /**
    * The old second derivative of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableSecond & secondOld();
+  virtual const VariableNumberSecond & secondOld();
 
   /**
    * The older second derivative of the variable this object is operating on.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableSecond & secondOlder();
+  virtual const VariableNumberSecond & secondOlder();
 
   /**
    * The second derivative of the test function.

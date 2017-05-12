@@ -36,6 +36,18 @@ typedef TensorValue<Number> NumberTensorValue;
 typedef NumberTensorValue NumberTensor;
 }
 
+typedef MooseArray<Number> VariableNumber;
+typedef MooseArray<NumberGradient> VariableNumberGradient;
+typedef MooseArray<NumberTensor> VariableNumberSecond;
+
+typedef MooseArray<std::vector<Number>> VariableTestNumber;
+typedef MooseArray<std::vector<NumberGradient>> VariableTestNumberGradient;
+typedef MooseArray<std::vector<NumberTensor>> VariableTestNumberSecond;
+
+typedef MooseArray<std::vector<Number>> VariablePhiNumber;
+typedef MooseArray<std::vector<NumberGradient>> VariablePhiNumberGradient;
+typedef MooseArray<std::vector<NumberTensor>> VariablePhiNumberSecond;
+
 typedef MooseArray<Real> VariableValue;
 typedef MooseArray<RealGradient> VariableGradient;
 typedef MooseArray<RealTensor> VariableSecond;

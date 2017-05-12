@@ -37,8 +37,8 @@ public:
 protected:
   virtual Number computeValue() override;
 
-  const VariableValue & _numerator;
-  const VariableValue & _denominator;
+  const VariableNumber & _numerator;
+  const VariableNumber & _denominator;
 };
 
 #endif // QUOTIENTAUX_H

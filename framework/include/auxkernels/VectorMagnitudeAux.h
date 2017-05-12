@@ -33,9 +33,9 @@ public:
 protected:
   virtual Number computeValue() override;
 
-  const VariableValue & _x;
-  const VariableValue & _y;
-  const VariableValue & _z;
+  const VariableNumber & _x;
+  const VariableNumber & _y;
+  const VariableNumber & _z;
 };
 
 #endif /* VECTORMAGNITUDEAUX_H */

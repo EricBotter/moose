@@ -29,7 +29,7 @@ NeighborCoupleable::NeighborCoupleable(const MooseObject * moose_object,
 
 NeighborCoupleable::~NeighborCoupleable() {}
 
-const VariableValue &
+const VariableNumber &
 NeighborCoupleable::coupledNeighborValue(const std::string & var_name, unsigned int comp)
 {
   MooseVariable * var = getVar(var_name, comp);
@@ -39,7 +39,7 @@ NeighborCoupleable::coupledNeighborValue(const std::string & var_name, unsigned 
     return (_c_is_implicit) ? var->slnNeighbor() : var->slnOldNeighbor();
 }
 
-const VariableValue &
+const VariableNumber &
 NeighborCoupleable::coupledNeighborValueOld(const std::string & var_name, unsigned int comp)
 {
   validateExecutionerType(var_name);
@@ -51,7 +51,7 @@ NeighborCoupleable::coupledNeighborValueOld(const std::string & var_name, unsign
     return (_c_is_implicit) ? var->slnOldNeighbor() : var->slnOlderNeighbor();
 }
 
-const VariableValue &
+const VariableNumber &
 NeighborCoupleable::coupledNeighborValueOlder(const std::string & var_name, unsigned int comp)
 {
   validateExecutionerType(var_name);
@@ -73,7 +73,7 @@ NeighborCoupleable::coupledNeighborValueOlder(const std::string & var_name, unsi
   }
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 NeighborCoupleable::coupledNeighborGradient(const std::string & var_name, unsigned int comp)
 {
   if (_neighbor_nodal)
@@ -83,7 +83,7 @@ NeighborCoupleable::coupledNeighborGradient(const std::string & var_name, unsign
   return (_c_is_implicit) ? var->gradSlnNeighbor() : var->gradSlnOldNeighbor();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 NeighborCoupleable::coupledNeighborGradientOld(const std::string & var_name, unsigned int comp)
 {
   if (_neighbor_nodal)
@@ -94,7 +94,7 @@ NeighborCoupleable::coupledNeighborGradientOld(const std::string & var_name, uns
   return (_c_is_implicit) ? var->gradSlnOldNeighbor() : var->gradSlnOlderNeighbor();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 NeighborCoupleable::coupledNeighborGradientOlder(const std::string & var_name, unsigned int comp)
 {
   if (_neighbor_nodal)
@@ -108,7 +108,7 @@ NeighborCoupleable::coupledNeighborGradientOlder(const std::string & var_name, u
     mooseError("Older values not available for explicit schemes");
 }
 
-const VariableSecond &
+const VariableNumberSecond &
 NeighborCoupleable::coupledNeighborSecond(const std::string & var_name, unsigned int comp)
 {
   if (_neighbor_nodal)

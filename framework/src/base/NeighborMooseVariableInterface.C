@@ -29,7 +29,7 @@ NeighborMooseVariableInterface::NeighborMooseVariableInterface(const MooseObject
 
 NeighborMooseVariableInterface::~NeighborMooseVariableInterface() {}
 
-const VariableValue &
+const VariableNumber &
 NeighborMooseVariableInterface::neighborValue()
 {
   if (_nodal)
@@ -38,7 +38,7 @@ NeighborMooseVariableInterface::neighborValue()
     return _variable->slnNeighbor();
 }
 
-const VariableValue &
+const VariableNumber &
 NeighborMooseVariableInterface::neighborValueOld()
 {
   if (_nodal)
@@ -47,7 +47,7 @@ NeighborMooseVariableInterface::neighborValueOld()
     return _variable->slnOldNeighbor();
 }
 
-const VariableValue &
+const VariableNumber &
 NeighborMooseVariableInterface::neighborValueOlder()
 {
   if (_nodal)
@@ -56,7 +56,7 @@ NeighborMooseVariableInterface::neighborValueOlder()
     return _variable->slnOlderNeighbor();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 NeighborMooseVariableInterface::neighborGradient()
 {
   if (_nodal)
@@ -65,7 +65,7 @@ NeighborMooseVariableInterface::neighborGradient()
   return _variable->gradSlnNeighbor();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 NeighborMooseVariableInterface::neighborGradientOld()
 {
   if (_nodal)
@@ -74,7 +74,7 @@ NeighborMooseVariableInterface::neighborGradientOld()
   return _variable->gradSlnOldNeighbor();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 NeighborMooseVariableInterface::neighborGradientOlder()
 {
   if (_nodal)
@@ -83,7 +83,7 @@ NeighborMooseVariableInterface::neighborGradientOlder()
   return _variable->gradSlnOlderNeighbor();
 }
 
-const VariableSecond &
+const VariableNumberSecond &
 NeighborMooseVariableInterface::neighborSecond()
 {
   if (_nodal)
@@ -92,7 +92,7 @@ NeighborMooseVariableInterface::neighborSecond()
   return _variable->secondSlnNeighbor();
 }
 
-const VariableSecond &
+const VariableNumberSecond &
 NeighborMooseVariableInterface::neighborSecondOld()
 {
   if (_nodal)
@@ -101,7 +101,7 @@ NeighborMooseVariableInterface::neighborSecondOld()
   return _variable->secondSlnOldNeighbor();
 }
 
-const VariableSecond &
+const VariableNumberSecond &
 NeighborMooseVariableInterface::neighborSecondOlder()
 {
   if (_nodal)

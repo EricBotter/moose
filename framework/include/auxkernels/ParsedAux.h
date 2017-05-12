@@ -40,7 +40,7 @@ protected:
 
   /// coupled variables
   unsigned int _nargs;
-  std::vector<const VariableValue *> _args;
+  std::vector<const VariableNumber *> _args;
 
   /// function parser object for the resudual and on-diagonal Jacobian
   ADFunctionPtr _func_F;

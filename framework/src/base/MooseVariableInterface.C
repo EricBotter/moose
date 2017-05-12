@@ -52,7 +52,7 @@ MooseVariableInterface::mooseVariable()
   return _variable;
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariableInterface::value()
 {
   if (_nodal)
@@ -61,7 +61,7 @@ MooseVariableInterface::value()
     return _variable->sln();
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariableInterface::valueOld()
 {
   if (_nodal)
@@ -70,7 +70,7 @@ MooseVariableInterface::valueOld()
     return _variable->slnOld();
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariableInterface::valueOlder()
 {
   if (_nodal)
@@ -79,7 +79,7 @@ MooseVariableInterface::valueOlder()
     return _variable->slnOlder();
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariableInterface::dot()
 {
   if (_nodal)
@@ -88,7 +88,7 @@ MooseVariableInterface::dot()
     return _variable->uDot();
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariableInterface::dotDu()
 {
   if (_nodal)
@@ -97,7 +97,7 @@ MooseVariableInterface::dotDu()
     return _variable->duDotDu();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 MooseVariableInterface::gradient()
 {
   if (_nodal)
@@ -106,7 +106,7 @@ MooseVariableInterface::gradient()
   return _variable->gradSln();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 MooseVariableInterface::gradientOld()
 {
   if (_nodal)
@@ -115,7 +115,7 @@ MooseVariableInterface::gradientOld()
   return _variable->gradSlnOld();
 }
 
-const VariableGradient &
+const VariableNumberGradient &
 MooseVariableInterface::gradientOlder()
 {
   if (_nodal)
@@ -124,7 +124,7 @@ MooseVariableInterface::gradientOlder()
   return _variable->gradSlnOlder();
 }
 
-const VariableSecond &
+const VariableNumberSecond &
 MooseVariableInterface::second()
 {
   if (_nodal)
@@ -133,7 +133,7 @@ MooseVariableInterface::second()
   return _variable->secondSln();
 }
 
-const VariableSecond &
+const VariableNumberSecond &
 MooseVariableInterface::secondOld()
 {
   if (_nodal)
@@ -142,7 +142,7 @@ MooseVariableInterface::secondOld()
   return _variable->secondSlnOld();
 }
 
-const VariableSecond &
+const VariableNumberSecond &
 MooseVariableInterface::secondOlder()
 {
   if (_nodal)

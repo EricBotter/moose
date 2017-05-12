@@ -89,8 +89,8 @@ protected:
 
   unsigned int _i;
 
-  VariableValue & _u;
-  VariableValue & _u_old;
+  VariableNumber & _u;
+  VariableNumber & _u_old;
 
   /// Depend AuxKernels
   std::set<std::string> _depend_vars;

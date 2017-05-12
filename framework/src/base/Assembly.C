@@ -260,21 +260,21 @@ Assembly::getFEFaceNeighbor(FEType type, unsigned int dim)
   return _fe_neighbor[dim][type];
 }
 
-const VariablePhiValue &
+const VariablePhiNumber &
 Assembly::fePhi(FEType type)
 {
   buildFE(type);
   return _fe_shape_data[type]->_phi;
 }
 
-const VariablePhiGradient &
+const VariablePhiNumberGradient &
 Assembly::feGradPhi(FEType type)
 {
   buildFE(type);
   return _fe_shape_data[type]->_grad_phi;
 }
 
-const VariablePhiSecond &
+const VariablePhiNumberSecond &
 Assembly::feSecondPhi(FEType type)
 {
   _need_second_derivative[type] = true;
@@ -282,21 +282,21 @@ Assembly::feSecondPhi(FEType type)
   return _fe_shape_data[type]->_second_phi;
 }
 
-const VariablePhiValue &
+const VariablePhiNumber &
 Assembly::fePhiFace(FEType type)
 {
   buildFaceFE(type);
   return _fe_shape_data_face[type]->_phi;
 }
 
-const VariablePhiGradient &
+const VariablePhiNumberGradient &
 Assembly::feGradPhiFace(FEType type)
 {
   buildFaceFE(type);
   return _fe_shape_data_face[type]->_grad_phi;
 }
 
-const VariablePhiSecond &
+const VariablePhiNumberSecond &
 Assembly::feSecondPhiFace(FEType type)
 {
   _need_second_derivative[type] = true;
@@ -304,21 +304,21 @@ Assembly::feSecondPhiFace(FEType type)
   return _fe_shape_data_face[type]->_second_phi;
 }
 
-const VariablePhiValue &
+const VariablePhiNumber &
 Assembly::fePhiNeighbor(FEType type)
 {
   buildNeighborFE(type);
   return _fe_shape_data_neighbor[type]->_phi;
 }
 
-const VariablePhiGradient &
+const VariablePhiNumberGradient &
 Assembly::feGradPhiNeighbor(FEType type)
 {
   buildNeighborFE(type);
   return _fe_shape_data_neighbor[type]->_grad_phi;
 }
 
-const VariablePhiSecond &
+const VariablePhiNumberSecond &
 Assembly::feSecondPhiNeighbor(FEType type)
 {
   _need_second_derivative[type] = true;
@@ -326,21 +326,21 @@ Assembly::feSecondPhiNeighbor(FEType type)
   return _fe_shape_data_neighbor[type]->_second_phi;
 }
 
-const VariablePhiValue &
+const VariablePhiNumber &
 Assembly::fePhiFaceNeighbor(FEType type)
 {
   buildFaceNeighborFE(type);
   return _fe_shape_data_face_neighbor[type]->_phi;
 }
 
-const VariablePhiGradient &
+const VariablePhiNumberGradient &
 Assembly::feGradPhiFaceNeighbor(FEType type)
 {
   buildFaceNeighborFE(type);
   return _fe_shape_data_face_neighbor[type]->_grad_phi;
 }
 
-const VariablePhiSecond &
+const VariablePhiNumberSecond &
 Assembly::feSecondPhiFaceNeighbor(FEType type)
 {
   _need_second_derivative[type] = true;
@@ -450,12 +450,12 @@ Assembly::reinitFE(const Elem * elem)
     {
       fe->reinit(elem);
 
-      fesd->_phi.shallowCopy(const_cast<std::vector<std::vector<Real>> &>(fe->get_phi()));
+      fesd->_phi.shallowCopy(const_cast<std::vector<std::vector<Number>> &>(fe->get_phi()));
       fesd->_grad_phi.shallowCopy(
-          const_cast<std::vector<std::vector<RealGradient>> &>(fe->get_dphi()));
+          const_cast<std::vector<std::vector<NumberGradient>> &>(fe->get_dphi()));
       if (_need_second_derivative.find(fe_type) != _need_second_derivative.end())
         fesd->_second_phi.shallowCopy(
-            const_cast<std::vector<std::vector<RealTensor>> &>(fe->get_d2phi()));
+            const_cast<std::vector<std::vector<NumberTensor>> &>(fe->get_d2phi()));
 
       if (do_caching)
       {
@@ -517,12 +517,12 @@ Assembly::reinitFEFace(const Elem * elem, unsigned int side)
     fe_face->reinit(elem, side);
     _current_fe_face[fe_type] = fe_face;
 
-    fesd->_phi.shallowCopy(const_cast<std::vector<std::vector<Real>> &>(fe_face->get_phi()));
+    fesd->_phi.shallowCopy(const_cast<std::vector<std::vector<Number>> &>(fe_face->get_phi()));
     fesd->_grad_phi.shallowCopy(
-        const_cast<std::vector<std::vector<RealGradient>> &>(fe_face->get_dphi()));
+        const_cast<std::vector<std::vector<NumberGradient>> &>(fe_face->get_dphi()));
     if (_need_second_derivative.find(fe_type) != _need_second_derivative.end())
       fesd->_second_phi.shallowCopy(
-          const_cast<std::vector<std::vector<RealTensor>> &>(fe_face->get_d2phi()));
+          const_cast<std::vector<std::vector<NumberTensor>> &>(fe_face->get_d2phi()));
   }
 
   // During that last loop the helper objects will have been reinitialized as well
@@ -552,12 +552,12 @@ Assembly::reinitFEFaceNeighbor(const Elem * neighbor, const std::vector<Point> &
     _current_fe_face_neighbor[fe_type] = fe_face_neighbor;
 
     fesd->_phi.shallowCopy(
-        const_cast<std::vector<std::vector<Real>> &>(fe_face_neighbor->get_phi()));
+        const_cast<std::vector<std::vector<Number>> &>(fe_face_neighbor->get_phi()));
     fesd->_grad_phi.shallowCopy(
-        const_cast<std::vector<std::vector<RealGradient>> &>(fe_face_neighbor->get_dphi()));
+        const_cast<std::vector<std::vector<NumberGradient>> &>(fe_face_neighbor->get_dphi()));
     if (_need_second_derivative.find(fe_type) != _need_second_derivative.end())
       fesd->_second_phi.shallowCopy(
-          const_cast<std::vector<std::vector<RealTensor>> &>(fe_face_neighbor->get_d2phi()));
+          const_cast<std::vector<std::vector<NumberTensor>> &>(fe_face_neighbor->get_d2phi()));
   }
 }
 
@@ -577,12 +577,12 @@ Assembly::reinitFENeighbor(const Elem * neighbor, const std::vector<Point> & ref
 
     _current_fe_neighbor[fe_type] = fe_neighbor;
 
-    fesd->_phi.shallowCopy(const_cast<std::vector<std::vector<Real>> &>(fe_neighbor->get_phi()));
+    fesd->_phi.shallowCopy(const_cast<std::vector<std::vector<Number>> &>(fe_neighbor->get_phi()));
     fesd->_grad_phi.shallowCopy(
-        const_cast<std::vector<std::vector<RealGradient>> &>(fe_neighbor->get_dphi()));
+        const_cast<std::vector<std::vector<NumberGradient>> &>(fe_neighbor->get_dphi()));
     if (_need_second_derivative.find(fe_type) != _need_second_derivative.end())
       fesd->_second_phi.shallowCopy(
-          const_cast<std::vector<std::vector<RealTensor>> &>(fe_neighbor->get_d2phi()));
+          const_cast<std::vector<std::vector<NumberTensor>> &>(fe_neighbor->get_d2phi()));
   }
 }
 

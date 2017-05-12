@@ -62,6 +62,10 @@ typedef MooseArray<std::vector<Real>> VariablePhiValue;
 typedef MooseArray<std::vector<RealGradient>> VariablePhiGradient;
 typedef MooseArray<std::vector<RealTensor>> VariablePhiSecond;
 
+typedef MooseArray<std::vector<Number>> VariablePhiNumber;
+typedef MooseArray<std::vector<NumberGradient>> VariablePhiNumberGradient;
+typedef MooseArray<std::vector<NumberTensor>> VariablePhiNumberSecond;
+
 /**
  * Keeps track of stuff related to assembling
  *
@@ -531,21 +535,21 @@ public:
   const VariablePhiGradient & gradPhiFaceNeighbor() { return _grad_phi_face_neighbor; }
   const VariablePhiSecond & secondPhiFaceNeighbor() { return _second_phi_face_neighbor; }
 
-  const VariablePhiValue & fePhi(FEType type);
-  const VariablePhiGradient & feGradPhi(FEType type);
-  const VariablePhiSecond & feSecondPhi(FEType type);
+  const VariablePhiNumber & fePhi(FEType type);
+  const VariablePhiNumberGradient & feGradPhi(FEType type);
+  const VariablePhiNumberSecond & feSecondPhi(FEType type);
 
-  const VariablePhiValue & fePhiFace(FEType type);
-  const VariablePhiGradient & feGradPhiFace(FEType type);
-  const VariablePhiSecond & feSecondPhiFace(FEType type);
+  const VariablePhiNumber & fePhiFace(FEType type);
+  const VariablePhiNumberGradient & feGradPhiFace(FEType type);
+  const VariablePhiNumberSecond & feSecondPhiFace(FEType type);
 
-  const VariablePhiValue & fePhiNeighbor(FEType type);
+  const VariablePhiNumber & fePhiNeighbor(FEType type);
   const VariablePhiGradient & feGradPhiNeighbor(FEType type);
   const VariablePhiSecond & feSecondPhiNeighbor(FEType type);
 
-  const VariablePhiValue & fePhiFaceNeighbor(FEType type);
-  const VariablePhiGradient & feGradPhiFaceNeighbor(FEType type);
-  const VariablePhiSecond & feSecondPhiFaceNeighbor(FEType type);
+  const VariablePhiNumber & fePhiFaceNeighbor(FEType type);
+  const VariablePhiNumberGradient & feGradPhiFaceNeighbor(FEType type);
+  const VariablePhiNumberSecond & feSecondPhiFaceNeighbor(FEType type);
 
   /**
    * Invalidate any currently cached data.  In particular this will cause FE data to get recached.
@@ -833,9 +837,9 @@ protected:
   class FEShapeData
   {
   public:
-    MooseArray<std::vector<Real>> _phi;
-    MooseArray<std::vector<RealGradient>> _grad_phi;
-    MooseArray<std::vector<RealTensor>> _second_phi;
+    MooseArray<std::vector<Number>> _phi;
+    MooseArray<std::vector<NumberGradient>> _grad_phi;
+    MooseArray<std::vector<NumberTensor>> _second_phi;
   };
 
   /**

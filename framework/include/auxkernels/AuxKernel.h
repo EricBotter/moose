@@ -123,10 +123,10 @@ public:
                                     const std::string & vector_name) override;
 
 protected:
-  virtual const VariableValue & coupledDot(const std::string & var_name,
+  virtual const VariableNumber & coupledDot(const std::string & var_name,
                                            unsigned int comp = 0) override;
 
-  virtual const VariableValue & coupledDotDu(const std::string & var_name,
+  virtual const VariableNumber & coupledDotDu(const std::string & var_name,
                                              unsigned int comp = 0) override;
 
   virtual Number computeValue() = 0;
@@ -164,11 +164,11 @@ protected:
   const MooseArray<Real> & _coord;
 
   /// Holds the solution at current quadrature points
-  const VariableValue & _u;
+  const VariableNumber & _u;
   /// Holds the previous solution at the current quadrature point.
-  const VariableValue & _u_old;
+  const VariableNumber & _u_old;
   /// Holds the t-2 solution at the current quadrature point.
-  const VariableValue & _u_older;
+  const VariableNumber & _u_older;
   /// holds the the test functions
   const VariableTestValue & _test;
 

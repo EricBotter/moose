@@ -35,21 +35,21 @@ public:
   virtual ~NeighborCoupleable();
 
   // neighbor
-  virtual const VariableValue & coupledNeighborValue(const std::string & var_name,
+  virtual const VariableNumber & coupledNeighborValue(const std::string & var_name,
                                                      unsigned int comp = 0);
-  virtual const VariableValue & coupledNeighborValueOld(const std::string & var_name,
+  virtual const VariableNumber & coupledNeighborValueOld(const std::string & var_name,
                                                         unsigned int comp = 0);
-  virtual const VariableValue & coupledNeighborValueOlder(const std::string & var_name,
+  virtual const VariableNumber & coupledNeighborValueOlder(const std::string & var_name,
                                                           unsigned int comp = 0);
 
-  virtual const VariableGradient & coupledNeighborGradient(const std::string & var_name,
+  virtual const VariableNumberGradient & coupledNeighborGradient(const std::string & var_name,
                                                            unsigned int comp = 0);
-  virtual const VariableGradient & coupledNeighborGradientOld(const std::string & var_name,
+  virtual const VariableNumberGradient & coupledNeighborGradientOld(const std::string & var_name,
                                                               unsigned int comp = 0);
-  virtual const VariableGradient & coupledNeighborGradientOlder(const std::string & var_name,
+  virtual const VariableNumberGradient & coupledNeighborGradientOlder(const std::string & var_name,
                                                                 unsigned int comp = 0);
 
-  virtual const VariableSecond & coupledNeighborSecond(const std::string & var_name,
+  virtual const VariableNumberSecond & coupledNeighborSecond(const std::string & var_name,
                                                        unsigned int i = 0);
 
 protected:

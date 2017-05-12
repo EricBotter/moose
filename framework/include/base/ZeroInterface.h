@@ -42,6 +42,7 @@ protected:
   THREAD_ID _zi_tid;
   const Real & _real_zero;
   const VariableValue & _zero;
+  const VariableNumber & _zero_num;
   const VariableGradient & _grad_zero;
   const VariableSecond & _second_zero;
   const VariablePhiSecond & _second_phi_zero;

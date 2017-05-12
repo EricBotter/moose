@@ -35,7 +35,7 @@ public:
 protected:
   virtual Number computeValue() override;
 
-  const VariableValue & _src;
+  const VariableNumber & _src;
   const Real & _pp_on_source;
   Real _normal_factor;
 };

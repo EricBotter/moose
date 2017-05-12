@@ -41,7 +41,7 @@ protected:
 
 private:
   /// Reference to the gradient of the coupled variable
-  const VariableGradient & _gradient;
+  const VariableNumberGradient & _gradient;
 
   /// Desired component
   int _component;

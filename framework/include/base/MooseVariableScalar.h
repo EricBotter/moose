@@ -42,12 +42,12 @@ public:
   virtual bool isNodal() const override;
 
   //
-  VariableValue & sln() { return _u; }
-  VariableValue & slnOld() { return _u_old; }
-  VariableValue & slnOlder() { return _u_older; }
+  VariableNumber & sln() { return _u; }
+  VariableNumber & slnOld() { return _u_old; }
+  VariableNumber & slnOlder() { return _u_older; }
 
-  VariableValue & uDot() { return _u_dot; }
-  VariableValue & duDotDu() { return _du_dot_du; }
+  VariableNumber & uDot() { return _u_dot; }
+  VariableNumber & duDotDu() { return _du_dot_du; }
 
   /**
    * Set the nodal value for this variable (to keep everything up to date
@@ -63,14 +63,14 @@ public:
 
 protected:
   /// The value of scalar variable
-  VariableValue _u;
+  VariableNumber _u;
   /// The old value of scalar variable
-  VariableValue _u_old;
+  VariableNumber _u_old;
   /// The older value of scalar variable
-  VariableValue _u_older;
+  VariableNumber _u_older;
 
-  VariableValue _u_dot;
-  VariableValue _du_dot_du;
+  VariableNumber _u_dot;
+  VariableNumber _du_dot_du;
 };
 
 #endif /* MOOSEVARIABLESCALAR_H */

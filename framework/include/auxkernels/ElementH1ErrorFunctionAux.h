@@ -55,7 +55,7 @@ protected:
   /**
    * The gradient of the computed solution.
    */
-  const VariableGradient & _grad_coupled_var;
+  const VariableNumberGradient & _grad_coupled_var;
 };
 
 #endif // ELEMENTH1ERRORFUNCTIONAUX_H

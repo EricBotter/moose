@@ -40,14 +40,14 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & neighborValue();
+  virtual const VariableNumber & neighborValue();
 
   /**
    * The old value of the variable this object is operating on evaluated on the "neighbor" element.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & neighborValueOld();
+  virtual const VariableNumber & neighborValueOld();
 
   /**
    * The older value of the variable this object is operating on evaluated on the "neighbor"
@@ -55,14 +55,14 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableValue & neighborValueOlder();
+  virtual const VariableNumber & neighborValueOlder();
 
   /**
    * The gradient of the variable this object is operating on evaluated on the "neighbor" element.
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableGradient & neighborGradient();
+  virtual const VariableNumberGradient & neighborGradient();
 
   /**
    * The old gradient of the variable this object is operating on evaluated on the "neighbor"
@@ -70,7 +70,7 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableGradient & neighborGradientOld();
+  virtual const VariableNumberGradient & neighborGradientOld();
 
   /**
    * The older gradient of the variable this object is operating on evaluated on the "neighbor"
@@ -78,7 +78,7 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableGradient & neighborGradientOlder();
+  virtual const VariableNumberGradient & neighborGradientOlder();
 
   /**
    * The second derivative of the variable this object is operating on evaluated on the "neighbor"
@@ -86,7 +86,7 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableSecond & neighborSecond();
+  virtual const VariableNumberSecond & neighborSecond();
 
   /**
    * The old second derivative of the variable this object is operating on evaluated on the
@@ -94,7 +94,7 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableSecond & neighborSecondOld();
+  virtual const VariableNumberSecond & neighborSecondOld();
 
   /**
    * The older second derivative of the variable this object is operating on evaluated on the
@@ -102,7 +102,7 @@ protected:
    *
    * @return The reference to be stored off and used later.
    */
-  virtual const VariableSecond & neighborSecondOlder();
+  virtual const VariableNumberSecond & neighborSecondOlder();
 
   /**
    * The second derivative of the neighbor's test function.

@@ -71,13 +71,13 @@ public:
    * Evaluate the gradient of the function which libMesh provides through
    * automatic differentiation
    */
-  RealGradient evaluateGradient(Real t, const Point & p);
+  Gradient evaluateGradient(Real t, const Point & p);
 
   /**
    * Evaluate the time derivative of the function which libMesh provides through
    * automatic differentiation
    */
-  Real evaluateDot(Real t, const Point & p);
+  Number evaluateDot(Real t, const Point & p);
 
 private:
   /// Reference to the FEProblemBase object
@@ -93,10 +93,10 @@ private:
   const std::vector<std::string> & _vals_input;
 
   /// Storage for the values
-  std::vector<Real> _vals;
+  std::vector<Number> _vals;
 
   /// Pointer to the libMesh::ParsedFunction object
-  std::unique_ptr<ParsedFunction<Real>> _function_ptr;
+  std::unique_ptr<ParsedFunction<>> _function_ptr;
 
   /// Stores the relative location of variables (in _vars) that are connected to Postprocessors
   std::vector<unsigned int> _pp_index;
@@ -108,10 +108,10 @@ private:
   std::vector<unsigned int> _scalar_index;
 
   /// Vector of pointers to PP values
-  std::vector<Real *> _scalar_vals;
+  std::vector<Number *> _scalar_vals;
 
   /// Vector of pointers to the variables in libMesh::ParsedFunction
-  std::vector<Real *> _addr;
+  std::vector<Number *> _addr;
 
   /// The thread id passed from owning Function object
   const THREAD_ID _tid;

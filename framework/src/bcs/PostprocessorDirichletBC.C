@@ -29,7 +29,7 @@ PostprocessorDirichletBC::PostprocessorDirichletBC(const InputParameters & param
 {
 }
 
-Real
+Number
 PostprocessorDirichletBC::computeQpResidual()
 {
   return _u[_qp] - _postprocessor_value;

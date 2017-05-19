@@ -53,7 +53,7 @@ protected:
   /// Quadrature point index
   unsigned int _qp;
   /// Value of the unknown variable this BC is acting on
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// The aux variables to save the residual contributions to
   bool _has_save_in;
@@ -65,7 +65,7 @@ protected:
   std::vector<MooseVariable *> _diag_save_in;
   std::vector<AuxVariableName> _diag_save_in_strings;
 
-  virtual Real computeQpResidual() = 0;
+  virtual Number computeQpResidual() = 0;
 
   /**
    * The user can override this function to compute the "on-diagonal"

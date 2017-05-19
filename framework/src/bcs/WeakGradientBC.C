@@ -24,7 +24,7 @@ validParams<WeakGradientBC>()
 
 WeakGradientBC::WeakGradientBC(const InputParameters & parameters) : IntegratedBC(parameters) {}
 
-Real
+Number
 WeakGradientBC::computeQpResidual()
 {
   return (_grad_u[_qp] * _normals[_qp]) * _test[_i][_qp];

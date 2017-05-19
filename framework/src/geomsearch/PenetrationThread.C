@@ -1295,9 +1295,9 @@ PenetrationThread::smoothNormal(PenetrationInfo * info, std::vector<PenetrationI
     {
       // params.addParam<VariableName>("var_name","description");
       // getParam<VariableName>("var_name")
-      info->_normal(0) = _nodal_normal_x->getValue(info->_side, info->_side_phi);
-      info->_normal(1) = _nodal_normal_y->getValue(info->_side, info->_side_phi);
-      info->_normal(2) = _nodal_normal_z->getValue(info->_side, info->_side_phi);
+      info->_normal(0) = _nodal_normal_x->getValue(info->_side, info->_side_phi).real();
+      info->_normal(1) = _nodal_normal_y->getValue(info->_side, info->_side_phi).real();
+      info->_normal(2) = _nodal_normal_z->getValue(info->_side, info->_side_phi).real();
       const Real len(info->_normal.norm());
       if (len > 0)
         info->_normal /= len;

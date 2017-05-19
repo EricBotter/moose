@@ -75,9 +75,9 @@ NodalConstraint::computeResidual(NumericVector<Number> & residual)
           break;
         case Moose::Kinematic:
           // Transfer the current residual of the slave node to the master nodes
-          Real res = residual(slavedof[_i]);
+          Number res = residual(slavedof[_i]);
           re(_j) += res * _weights[_j];
-          neighbor_re(_i) += -res / _master_node_vector.size() + computeQpResidual(Moose::Slave);
+          neighbor_re(_i) += -res / (Real)_master_node_vector.size() + computeQpResidual(Moose::Slave);
           break;
       }
     }
@@ -121,9 +121,9 @@ NodalConstraint::computeJacobian(SparseMatrix<Number> & jacobian)
         case Moose::Kinematic:
           Kee(_j, _j) = 0.;
           Ken(_j, _i) += jacobian(slavedof[_i], masterdof[_j]) * _weights[_j];
-          Kne(_i, _j) += -jacobian(slavedof[_i], masterdof[_j]) / masterdof.size() +
+          Kne(_i, _j) += -jacobian(slavedof[_i], masterdof[_j]) / (Real)masterdof.size() +
                          computeQpJacobian(Moose::SlaveMaster);
-          Knn(_i, _i) += -jacobian(slavedof[_i], slavedof[_i]) / masterdof.size() +
+          Knn(_i, _i) += -jacobian(slavedof[_i], slavedof[_i]) / (Real)masterdof.size() +
                          computeQpJacobian(Moose::SlaveSlave);
           break;
       }

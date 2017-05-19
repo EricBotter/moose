@@ -29,7 +29,7 @@ VectorNeumannBC::VectorNeumannBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 VectorNeumannBC::computeQpResidual()
 {
   return -_test[_i][_qp] * (_value * _normals[_qp]);

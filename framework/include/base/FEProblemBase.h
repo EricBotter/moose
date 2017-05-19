@@ -1252,6 +1252,7 @@ public:
    */
   std::vector<Real> _real_zero;
   std::vector<VariableValue> _zero;
+  std::vector<VariableNumber> _zero_num;
   std::vector<VariableGradient> _grad_zero;
   std::vector<VariableSecond> _second_zero;
   std::vector<VariablePhiSecond> _second_phi_zero;

@@ -28,7 +28,7 @@ MatchedValueBC::MatchedValueBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 MatchedValueBC::computeQpResidual()
 {
   return _u[_qp] - _v[_qp];

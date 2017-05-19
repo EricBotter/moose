@@ -45,7 +45,7 @@ public:
   virtual void computeNeighborOffDiagJacobian(unsigned int jvar);
 
 protected:
-  virtual Real computeQpResidual(Moose::DGResidualType type) = 0;
+  virtual Number computeQpResidual(Moose::DGResidualType type) = 0;
   virtual Real computeQpJacobian(Moose::DGJacobianType type) = 0;
   virtual Real computeQpOffDiagJacobian(Moose::DGJacobianType type, unsigned int jvar);
 

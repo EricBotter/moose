@@ -64,7 +64,7 @@ UpdateErrorVectorsThread::onElement(const Elem * elem)
     ErrorVector & ev = *(it.second);
 
     dof_id_type dof_number = elem->dof_number(_system_number, var_num, 0);
-    Real value = _solution(dof_number);
+    Real value = _solution(dof_number).real();
     ev[elem->id()] = value;
   }
 }

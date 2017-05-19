@@ -81,7 +81,7 @@ LinearNodalConstraint::LinearNodalConstraint(const InputParameters & parameters)
   }
 }
 
-Real
+Number
 LinearNodalConstraint::computeQpResidual(Moose::ConstraintType type)
 {
   /**
@@ -93,7 +93,7 @@ LinearNodalConstraint::computeQpResidual(Moose::ConstraintType type)
   *above expression.
   **/
 
-  unsigned int master_size = _master_node_ids.size();
+  Real master_size = _master_node_ids.size();
 
   switch (type)
   {
@@ -105,7 +105,7 @@ LinearNodalConstraint::computeQpResidual(Moose::ConstraintType type)
   return 0.;
 }
 
-Real
+Number
 LinearNodalConstraint::computeQpJacobian(Moose::ConstraintJacobianType type)
 {
   unsigned int master_size = _master_node_ids.size();

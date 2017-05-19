@@ -150,10 +150,10 @@ protected:
   BoundaryID _boundary_id;
 
   /// Holds the current solution at the current quadrature point on the face.
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// Holds the current solution gradient at the current quadrature point on the face.
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
   // shape functions
   const VariablePhiValue & _phi;
   const VariablePhiGradient & _grad_phi;
@@ -177,15 +177,15 @@ protected:
   const VariableTestGradient & _grad_test_neighbor;
 
   /// Holds the current solution at the current quadrature point
-  const VariableValue & _u_neighbor;
+  const VariableNumber & _u_neighbor;
   /// Holds the current solution gradient at the current quadrature point
-  const VariableGradient & _grad_u_neighbor;
+  const VariableNumberGradient & _grad_u_neighbor;
 
   /**
    * This is the virtual that derived classes should override for computing the residual on
    * neighboring element.
    */
-  virtual Real computeQpResidual(Moose::DGResidualType type) = 0;
+  virtual Number computeQpResidual(Moose::DGResidualType type) = 0;
 
   /**
    * This is the virtual that derived classes should override for computing the Jacobian on

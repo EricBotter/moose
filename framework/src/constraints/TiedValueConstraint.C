@@ -38,18 +38,18 @@ TiedValueConstraint::TiedValueConstraint(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 TiedValueConstraint::computeQpSlaveValue()
 {
   return _u_master[_qp];
 }
 
-Real
+Number
 TiedValueConstraint::computeQpResidual(Moose::ConstraintType type)
 {
   Real scaling_factor = _var.scalingFactor();
-  Real slave_resid = 0;
-  Real retVal = 0;
+  Number slave_resid = 0;
+  Number retVal = 0;
   switch (type)
   {
     case Moose::Slave:
@@ -65,12 +65,12 @@ TiedValueConstraint::computeQpResidual(Moose::ConstraintType type)
   return retVal;
 }
 
-Real
+Number
 TiedValueConstraint::computeQpJacobian(Moose::ConstraintJacobianType type)
 {
   Real scaling_factor = _var.scalingFactor();
-  Real slave_jac = 0;
-  Real retVal = 0;
+  Number slave_jac = 0;
+  Number retVal = 0;
   switch (type)
   {
     case Moose::SlaveSlave:

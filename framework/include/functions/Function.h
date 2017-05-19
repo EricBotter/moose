@@ -89,7 +89,7 @@ public:
    * \param p The Point in space (x,y,z)
    * \return A gradient of the function evaluated at the time and location
    */
-  virtual RealGradient gradient(Real t, const Point & p);
+  virtual Gradient gradient(Real t, const Point & p);
 
   /**
    * Get the time derivative of the function

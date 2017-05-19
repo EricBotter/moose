@@ -34,11 +34,11 @@ public:
   OneDEqualValueConstraintBC(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
   virtual Real computeQpJacobian() override;
   virtual Real computeQpOffDiagJacobian(unsigned jvar) override;
 
-  VariableValue & _lambda;
+  VariableNumber & _lambda;
   unsigned int _lambda_var_number;
   unsigned int _component;
   Real _vg;

@@ -74,9 +74,9 @@ protected:
   unsigned int _qp;
 
   /// The current Newton increment
-  VariableValue & _u_increment;
+  VariableNumber & _u_increment;
   /// Holds the current solution at the current node
-  const VariableValue & _u;
+  const VariableNumber & _u;
 };
 
 #endif // NODALDAMPER_H

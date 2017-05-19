@@ -39,6 +39,6 @@ void
 NodalNormalBC::computeResidual(NumericVector<Number> & residual)
 {
   _qp = 0;
-  _normal = Point(_nx[_qp], _ny[_qp], _nz[_qp]);
+  _normal = Point(_nx[_qp].real(), _ny[_qp].real(), _nz[_qp].real());
   NodalBC::computeResidual(residual);
 }

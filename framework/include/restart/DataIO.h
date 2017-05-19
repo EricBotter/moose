@@ -323,6 +323,8 @@ void dataStore(std::ostream & stream, std::string & v, void * /*context*/);
 template <>
 void dataStore(std::ostream & stream, NumericVector<Real> & v, void * /*context*/);
 template <>
+void dataStore(std::ostream & stream, NumericVector<Number> & v, void * /*context*/);
+template <>
 void dataStore(std::ostream & stream, DenseVector<Real> & v, void * /*context*/);
 template <>
 void dataStore(std::ostream & stream, DenseMatrix<Real> & v, void * /*context*/);
@@ -500,6 +502,8 @@ template <>
 void dataLoad(std::istream & stream, std::string & v, void * /*context*/);
 template <>
 void dataLoad(std::istream & stream, NumericVector<Real> & v, void * /*context*/);
+template <>
+void dataLoad(std::istream & stream, NumericVector<Number> & v, void * /*context*/);
 template <>
 void dataLoad(std::istream & stream, DenseVector<Real> & v, void * /*context*/);
 template <>

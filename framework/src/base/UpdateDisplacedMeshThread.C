@@ -105,7 +105,7 @@ UpdateDisplacedMeshThread::onNode(SemiLocalNodeRange::const_iterator & nd)
     if (reference_node.n_dofs(_nonlinear_system_number, _var_nums[i]) > 0)
       displaced_node(direction) =
           reference_node(direction) +
-          _nl_soln(reference_node.dof_number(_nonlinear_system_number, _var_nums[i], 0));
+          _nl_soln(reference_node.dof_number(_nonlinear_system_number, _var_nums[i], 0)).real();
   }
 
   for (unsigned int i = 0; i < _num_aux_var_nums; i++)
@@ -114,7 +114,7 @@ UpdateDisplacedMeshThread::onNode(SemiLocalNodeRange::const_iterator & nd)
     if (reference_node.n_dofs(_aux_system_number, _aux_var_nums[i]) > 0)
       displaced_node(direction) =
           reference_node(direction) +
-          _aux_soln(reference_node.dof_number(_aux_system_number, _aux_var_nums[i], 0));
+          _aux_soln(reference_node.dof_number(_aux_system_number, _aux_var_nums[i], 0)).real();
   }
 }
 

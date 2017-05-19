@@ -57,6 +57,21 @@ dataStore(std::ostream & stream, NumericVector<Real> & v, void * /*context*/)
 
 template <>
 void
+dataStore(std::ostream & stream, NumericVector<Number> & v, void * /*context*/)
+{
+  v.close();
+
+  numeric_index_type size = v.local_size();
+
+  for (numeric_index_type i = v.first_local_index(); i < v.first_local_index() + size; i++)
+  {
+    Number r = v(i);
+    stream.write((char *)&r, sizeof(r));
+  }
+}
+
+template <>
+void
 dataStore(std::ostream & stream, DenseVector<Real> & v, void * /*context*/)
 {
   unsigned int m = v.size();
@@ -235,6 +250,22 @@ dataLoad(std::istream & stream, NumericVector<Real> & v, void * /*context*/)
   for (numeric_index_type i = v.first_local_index(); i < v.first_local_index() + size; i++)
   {
     Real r = 0;
+    stream.read((char *)&r, sizeof(r));
+    v.set(i, r);
+  }
+
+  v.close();
+}
+
+template <>
+void
+dataLoad(std::istream & stream, NumericVector<Number> & v, void * /*context*/)
+{
+  numeric_index_type size = v.local_size();
+
+  for (numeric_index_type i = v.first_local_index(); i < v.first_local_index() + size; i++)
+  {
+    Number r = 0;
     stream.read((char *)&r, sizeof(r));
     v.set(i, r);
   }

@@ -29,7 +29,7 @@ NeumannBC::NeumannBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 NeumannBC::computeQpResidual()
 {
   return -_test[_i][_qp] * _value;

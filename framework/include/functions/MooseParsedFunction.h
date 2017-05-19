@@ -55,7 +55,7 @@ public:
    * Evaluate the gradient of the function. This is computed in libMesh
    * through automatic symbolic differentiation.
    */
-  virtual RealGradient gradient(Real t, const Point & p) override;
+  virtual Gradient gradient(Real t, const Point & p) override;
 
   /**
    * Evaluate the time derivative of the function. This is computed in libMesh

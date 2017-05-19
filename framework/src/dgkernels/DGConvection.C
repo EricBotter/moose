@@ -29,10 +29,10 @@ DGConvection::DGConvection(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 DGConvection::computeQpResidual(Moose::DGResidualType type)
 {
-  Real r = 0;
+  Number r = 0;
 
   Real vdotn = _velocity * _normals[_qp];
 

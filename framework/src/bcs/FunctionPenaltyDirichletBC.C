@@ -30,7 +30,7 @@ FunctionPenaltyDirichletBC::FunctionPenaltyDirichletBC(const InputParameters & p
 {
 }
 
-Real
+Number
 FunctionPenaltyDirichletBC::computeQpResidual()
 {
   return _p * _test[_i][_qp] * (-_func.value(_t, _q_point[_qp]) + _u[_qp]);

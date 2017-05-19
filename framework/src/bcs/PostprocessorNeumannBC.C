@@ -29,7 +29,7 @@ PostprocessorNeumannBC::PostprocessorNeumannBC(const InputParameters & parameter
 {
 }
 
-Real
+Number
 PostprocessorNeumannBC::computeQpResidual()
 {
   return -_test[_i][_qp] * _value;

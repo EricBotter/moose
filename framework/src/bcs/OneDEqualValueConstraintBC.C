@@ -36,7 +36,7 @@ OneDEqualValueConstraintBC::OneDEqualValueConstraintBC(const InputParameters & p
 {
 }
 
-Real
+Number
 OneDEqualValueConstraintBC::computeQpResidual()
 {
   return _lambda[_component] * _vg * _test[_i][_qp];

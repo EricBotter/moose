@@ -51,8 +51,8 @@ protected:
 
   MooseVariable & _neighbor_var;
 
-  const VariableValue & _neighbor_value;
-  const VariableGradient & _grad_neighbor_value;
+  const VariableNumber & _neighbor_value;
+  const VariableNumberGradient & _grad_neighbor_value;
 };
 
 #endif

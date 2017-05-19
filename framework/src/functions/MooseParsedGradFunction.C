@@ -47,11 +47,10 @@ MooseParsedGradFunction::value(Real t, const Point & p)
   return _function_ptr->evaluate<Real>(t, p);
 }
 
-RealGradient
+Gradient
 MooseParsedGradFunction::gradient(Real t, const Point & p)
 {
-  // Return gradient (RealGradient = RealVectorValue)
-  return _grad_function_ptr->evaluate<RealVectorValue>(t, p);
+  return _grad_function_ptr->evaluate<Gradient>(t, p);
 }
 
 RealVectorValue

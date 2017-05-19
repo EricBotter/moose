@@ -26,13 +26,13 @@ ODETimeDerivative::ODETimeDerivative(const InputParameters & parameters) : ODETi
 {
 }
 
-Real
+Number
 ODETimeDerivative::computeQpResidual()
 {
   return _u_dot[_i];
 }
 
-Real
+Number
 ODETimeDerivative::computeQpJacobian()
 {
   if (_i == _j)

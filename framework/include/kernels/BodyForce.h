@@ -38,7 +38,7 @@ public:
   BodyForce(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
   const Real & _value;
   Function & _function;

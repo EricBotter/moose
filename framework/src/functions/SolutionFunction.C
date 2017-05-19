@@ -92,7 +92,7 @@ SolutionFunction::value(Real t, const Point & p)
          _add_factor;
 }
 
-RealGradient
+Gradient
 SolutionFunction::gradient(Real t, const Point & p)
 {
   return _scale_factor *

@@ -73,7 +73,7 @@ ODEKernel::computeOffDiagJacobian(unsigned int jvar)
   }
 }
 
-Real
+Number
 ODEKernel::computeQpJacobian()
 {
   return 0.;

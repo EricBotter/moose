@@ -83,7 +83,7 @@ public:
    * This is optional.  Note that if you are using C1 continuous elements you will
    * want to use an initial condition that defines this!
    */
-  virtual RealGradient gradient(const Point & /*p*/) { return RealGradient(); };
+  virtual Gradient gradient(const Point & /*p*/) { return Gradient(); };
 
   /**
    * Gets called at the beginning of the simulation before this object is asked to do its job.

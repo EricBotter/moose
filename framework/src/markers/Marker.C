@@ -89,7 +89,7 @@ Marker::getErrorVector(std::string indicator)
   return _adaptivity.getErrorVector(indicator);
 }
 
-const VariableValue &
+const VariableNumber &
 Marker::getMarkerValue(std::string name)
 {
   _depend.insert(name);

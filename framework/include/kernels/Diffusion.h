@@ -32,9 +32,9 @@ public:
   Diffusion(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpJacobian() override;
 };
 
 #endif /* DIFFUSION_H */

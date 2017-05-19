@@ -58,7 +58,7 @@ protected:
    */
   virtual RealGradient precomputeQpJacobian();
 
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 };
 
 #endif // KERNELGRAD_H

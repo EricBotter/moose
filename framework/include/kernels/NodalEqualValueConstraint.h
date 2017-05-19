@@ -40,7 +40,7 @@ public:
 
 protected:
   std::vector<unsigned int> _val_number;
-  std::vector<const VariableValue *> _value;
+  std::vector<const VariableNumber *> _value;
 };
 
 #endif /* NODALEQUALVALUECONSTRAINT_H */

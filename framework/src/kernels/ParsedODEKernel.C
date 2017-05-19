@@ -133,14 +133,14 @@ ParsedODEKernel::updateParams()
     _func_params[j + 1] = (*_args[j])[_i];
 }
 
-Real
+Number
 ParsedODEKernel::computeQpResidual()
 {
   updateParams();
   return evaluate(_func_F);
 }
 
-Real
+Number
 ParsedODEKernel::computeQpJacobian()
 {
   updateParams();

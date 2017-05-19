@@ -32,13 +32,13 @@ NullKernel::NullKernel(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 NullKernel::computeQpResidual()
 {
   return 0.0;
 }
 
-Real
+Number
 NullKernel::computeQpJacobian()
 {
   return _jacobian_fill;

@@ -27,13 +27,13 @@ ConservativeAdvection::ConservativeAdvection(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ConservativeAdvection::computeQpResidual()
 {
   return -_u[_qp] * (_velocity * _grad_test[_i][_qp]);
 }
 
-Real
+Number
 ConservativeAdvection::computeQpJacobian()
 {
   return -_phi[_j][_qp] * (_velocity * _grad_test[_i][_qp]);

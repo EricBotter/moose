@@ -35,7 +35,7 @@ UserForcingFunction::f()
   return _func.value(_t, _q_point[_qp]);
 }
 
-Real
+Number
 UserForcingFunction::computeQpResidual()
 {
   return -_test[_i][_qp] * f();

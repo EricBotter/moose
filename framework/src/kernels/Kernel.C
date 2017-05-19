@@ -123,13 +123,13 @@ Kernel::computeOffDiagJacobianScalar(unsigned int jvar)
         ke(_i, _j) += _JxW[_qp] * _coord[_qp] * computeQpOffDiagJacobian(jvar);
 }
 
-Real
+Number
 Kernel::computeQpJacobian()
 {
   return 0;
 }
 
-Real
+Number
 Kernel::computeQpOffDiagJacobian(unsigned int /*jvar*/)
 {
   return 0;

@@ -35,8 +35,8 @@ public:
 protected:
   void updateParams();
 
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpJacobian() override;
   virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
 
   /// function expression
@@ -44,7 +44,7 @@ protected:
 
   /// coupled variables
   unsigned int _nargs;
-  std::vector<VariableValue *> _args;
+  std::vector<VariableNumber *> _args;
   std::vector<std::string> _arg_names;
 
   /// function parser object for the residual and on-diagonal Jacobian

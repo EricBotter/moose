@@ -32,15 +32,15 @@ public:
   CoupledForce(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpJacobian() override;
 
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
+  virtual Number computeQpOffDiagJacobian(unsigned int jvar) override;
 
 private:
   unsigned int _v_var;
-  const VariableValue & _v;
+  const VariableNumber & _v;
 };
 
 #endif // COUPLEDFORCE_H

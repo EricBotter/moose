@@ -43,15 +43,15 @@ public:
   virtual bool enabled() override;
 
 protected:
-  virtual Real computeQpResidual() = 0;
-  virtual Real computeQpJacobian() { return 0; }
-  virtual Real computeQpOffDiagJacobian(unsigned int /*jvar*/) { return 0; }
+  virtual Number computeQpResidual() = 0;
+  virtual Number computeQpJacobian() { return 0; }
+  virtual Number computeQpOffDiagJacobian(unsigned int /*jvar*/) { return 0; }
 
   /// Holds the solution at current quadrature points
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// Holds the solution gradient at the current quadrature points
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
 
   /// flag for as an eigen kernel or a normal kernel
   bool _eigen;

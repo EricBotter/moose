@@ -28,10 +28,10 @@ public:
   LaplacianJumpIndicator(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 
-  const VariableSecond & _second_u;
-  const VariableSecond & _second_u_neighbor;
+  const VariableNumberSecond & _second_u;
+  const VariableNumberSecond & _second_u_neighbor;
 };
 
 #endif /* LAPLACIANJUMPINDICATOR_H */

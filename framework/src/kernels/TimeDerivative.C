@@ -35,13 +35,13 @@ TimeDerivative::TimeDerivative(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 TimeDerivative::computeQpResidual()
 {
   return _test[_i][_qp] * _u_dot[_qp];
 }
 
-Real
+Number
 TimeDerivative::computeQpJacobian()
 {
   return _test[_i][_qp] * _phi[_j][_qp] * _du_dot_du[_qp];

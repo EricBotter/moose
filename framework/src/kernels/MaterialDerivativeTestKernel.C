@@ -39,19 +39,19 @@ MaterialDerivativeTestKernel::MaterialDerivativeTestKernel(const InputParameters
         &getMaterialPropertyDerivative<Real>("material_property", _coupled_moose_vars[m]->name());
 }
 
-Real
+Number
 MaterialDerivativeTestKernel::computeQpResidual()
 {
   return _p[_qp] * _test[_i][_qp];
 }
 
-Real
+Number
 MaterialDerivativeTestKernel::computeQpJacobian()
 {
   return _p_diag_derivative[_qp] * _phi[_j][_qp] * _test[_i][_qp];
 }
 
-Real
+Number
 MaterialDerivativeTestKernel::computeQpOffDiagJacobian(unsigned int jvar)
 {
   // get the coupled variable number corresponding to jvar

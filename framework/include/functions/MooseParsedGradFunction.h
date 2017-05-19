@@ -59,7 +59,7 @@ public:
    * @param p The current point (x,y,z)
    * @return Gradient of the function
    */
-  virtual RealGradient gradient(Real t, const Point & p) override;
+  virtual Gradient gradient(Real t, const Point & p) override;
 
   /**
    * Method invalid for ParsedGradFunction

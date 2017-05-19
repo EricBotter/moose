@@ -40,7 +40,7 @@ public:
 
   virtual RealVectorValue vectorValue(Real t, const Point & p) override;
 
-  virtual RealGradient gradient(Real t, const Point & p) override;
+  virtual Gradient gradient(Real t, const Point & p) override;
 
   virtual void initialSetup() override;
 

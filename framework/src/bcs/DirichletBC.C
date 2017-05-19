@@ -28,7 +28,7 @@ DirichletBC::DirichletBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 DirichletBC::computeQpResidual()
 {
   return _u[_qp] - _value;

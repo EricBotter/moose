@@ -109,9 +109,9 @@ protected:
   // unknown
 
   /// the values of the unknown variable this BC is acting on
-  const VariableValue & _u;
+  const VariableNumber & _u;
   /// the gradient of the unknown variable this BC is acting on
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
 
   /// Holds residual entries as their accumulated by this Kernel
   DenseVector<Number> _local_re;
@@ -129,7 +129,7 @@ protected:
   std::vector<MooseVariable *> _diag_save_in;
   std::vector<AuxVariableName> _diag_save_in_strings;
 
-  virtual Real computeQpResidual() = 0;
+  virtual Number computeQpResidual() = 0;
   virtual Real computeQpJacobian();
   /**
    * This is the virtual that derived classes should override for computing an off-diagonal jacobian

@@ -38,12 +38,12 @@ protected:
   /**
    * Computes the residual for the current slave node
    */
-  virtual Real computeQpResidual(Moose::ConstraintType type) override;
+  virtual Number computeQpResidual(Moose::ConstraintType type) override;
 
   /**
    * Computes the jacobian for the constraint
    */
-  virtual Real computeQpJacobian(Moose::ConstraintJacobianType type) override;
+  virtual Number computeQpJacobian(Moose::ConstraintJacobianType type) override;
 
   // Holds the master node ids
   std::vector<unsigned int> _master_node_ids;

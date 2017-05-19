@@ -39,7 +39,7 @@ public:
   DGDiffusion(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual(Moose::DGResidualType type) override;
+  virtual Number computeQpResidual(Moose::DGResidualType type) override;
   virtual Real computeQpJacobian(Moose::DGJacobianType type) override;
 
   Real _epsilon;

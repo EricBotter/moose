@@ -36,7 +36,7 @@ public:
   NeumannBC(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
   /// Value of grad(u) on the boundary.
   const Real & _value;

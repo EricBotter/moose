@@ -24,7 +24,7 @@ validParams<FluxBC>()
 
 FluxBC::FluxBC(const InputParameters & params) : IntegratedBC(params) {}
 
-Real
+Number
 FluxBC::computeQpResidual()
 {
   return -computeQpFluxResidual() * _normals[_qp] * _test[_i][_qp];

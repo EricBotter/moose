@@ -34,10 +34,10 @@ SinDirichletBC::SinDirichletBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 SinDirichletBC::computeQpResidual()
 {
-  Real value;
+  Number value;
 
   if (_t < _duration)
     value = _initial + (_final - _initial) * std::sin((0.5 / _duration) * libMesh::pi * _t);

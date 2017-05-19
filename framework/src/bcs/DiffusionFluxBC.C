@@ -25,7 +25,7 @@ validParams<DiffusionFluxBC>()
 
 DiffusionFluxBC::DiffusionFluxBC(const InputParameters & parameters) : FluxBC(parameters) {}
 
-RealGradient
+Gradient
 DiffusionFluxBC::computeQpFluxResidual()
 {
   return _grad_u[_qp];

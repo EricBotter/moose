@@ -196,7 +196,7 @@ EqualValueBoundaryConstraint::updateConstrainedNodes()
   _subproblem.addGhostedElem(elems[0]);
 }
 
-Real
+Number
 EqualValueBoundaryConstraint::computeQpResidual(Moose::ConstraintType type)
 {
   switch (type)
@@ -209,7 +209,7 @@ EqualValueBoundaryConstraint::computeQpResidual(Moose::ConstraintType type)
   return 0.;
 }
 
-Real
+Number
 EqualValueBoundaryConstraint::computeQpJacobian(Moose::ConstraintJacobianType type)
 {
   switch (type)

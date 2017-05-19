@@ -28,7 +28,7 @@ public:
   DGConvection(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual(Moose::DGResidualType type);
+  virtual Number computeQpResidual(Moose::DGResidualType type);
   virtual Real computeQpJacobian(Moose::DGJacobianType type);
 
   RealVectorValue _velocity;

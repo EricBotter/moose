@@ -38,7 +38,7 @@ PresetNodalBC::computeValue(NumericVector<Number> & current_solution)
   current_solution.set(dof_idx, computeQpValue());
 }
 
-Real
+Number
 PresetNodalBC::computeQpResidual()
 {
   return _u[_qp] - computeQpValue();

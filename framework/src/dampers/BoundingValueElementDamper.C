@@ -41,10 +41,10 @@ Real
 BoundingValueElementDamper::computeQpDamping()
 {
   // Note that _u_increment contains the negative of the increment
-  if (_u[_qp] < _min_value)
-    return 1.0 - (_u[_qp] - _min_value) / -_u_increment[_qp];
-  else if (_u[_qp] > _max_value)
-    return 1.0 - (_u[_qp] - _max_value) / -_u_increment[_qp];
+  if (_u[_qp].real() < _min_value)
+    return 1.0 - (_u[_qp].real() - _min_value) / -_u_increment[_qp].real();
+  else if (_u[_qp].real() > _max_value)
+    return 1.0 - (_u[_qp].real() - _max_value) / -_u_increment[_qp].real();
 
   return 1.0;
 }

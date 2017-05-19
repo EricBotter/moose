@@ -35,9 +35,9 @@ public:
   virtual void computeResidual(NumericVector<Number> & residual) override;
 
 protected:
-  const VariableValue & _nx;
-  const VariableValue & _ny;
-  const VariableValue & _nz;
+  const VariableNumber & _nx;
+  const VariableNumber & _ny;
+  const VariableNumber & _nz;
   /// Normal at the node (it is pre-computed by user object subsystem)
   Point _normal;
 };

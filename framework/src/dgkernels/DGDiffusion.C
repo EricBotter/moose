@@ -42,10 +42,10 @@ DGDiffusion::DGDiffusion(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 DGDiffusion::computeQpResidual(Moose::DGResidualType type)
 {
-  Real r = 0;
+  Number r = 0;
 
   const unsigned int elem_b_order = _var.order();
   const double h_elem =

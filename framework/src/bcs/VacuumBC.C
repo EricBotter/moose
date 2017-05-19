@@ -28,7 +28,7 @@ VacuumBC::VacuumBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 VacuumBC::computeQpResidual()
 {
   return _test[_i][_qp] * _alpha * _u[_qp] / 2.;

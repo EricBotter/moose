@@ -33,10 +33,10 @@ public:
   DirichletBC(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
   /// The value for this BC
-  const Real & _value;
+  const Number & _value;
 };
 
 #endif /* DIRICHLETBC_H */

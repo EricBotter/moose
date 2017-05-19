@@ -34,11 +34,11 @@ public:
   CoupledTiedValueConstraint(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpSlaveValue() override;
+  virtual Number computeQpSlaveValue() override;
 
-  virtual Real computeQpResidual(Moose::ConstraintType type) override;
+  virtual Number computeQpResidual(Moose::ConstraintType type) override;
 
-  virtual Real computeQpJacobian(Moose::ConstraintJacobianType type) override;
+  virtual Number computeQpJacobian(Moose::ConstraintJacobianType type) override;
 
   virtual Real computeQpOffDiagJacobian(Moose::ConstraintJacobianType type,
                                         unsigned int jvar) override;

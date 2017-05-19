@@ -32,10 +32,10 @@ public:
   MatchedValueBC(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
   virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
 
-  const VariableValue & _v;
+  const VariableNumber & _v;
 
   /// The id of the coupled variable
   unsigned int _v_num;

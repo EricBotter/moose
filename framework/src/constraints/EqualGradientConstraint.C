@@ -30,13 +30,13 @@ EqualGradientConstraint::EqualGradientConstraint(const InputParameters & paramet
 {
 }
 
-Real
+Number
 EqualGradientConstraint::computeQpResidual()
 {
   return (_grad_u_master[_qp](_component) - _grad_u_slave[_qp](_component)) * _test[_i][_qp];
 }
 
-Real
+Number
 EqualGradientConstraint::computeQpResidualSide(Moose::ConstraintType res_type)
 {
   switch (res_type)

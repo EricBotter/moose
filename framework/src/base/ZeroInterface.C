@@ -20,6 +20,7 @@ ZeroInterface::ZeroInterface(const InputParameters & parameters)
     _zi_tid(parameters.get<THREAD_ID>("_tid")),
     _real_zero(_zi_feproblem._real_zero[_zi_tid]),
     _zero(_zi_feproblem._zero[_zi_tid]),
+	_zero_num(_zi_feproblem._zero_num[_zi_tid]),
     _grad_zero(_zi_feproblem._grad_zero[_zi_tid]),
     _second_zero(_zi_feproblem._second_zero[_zi_tid]),
     _second_phi_zero(_zi_feproblem._second_phi_zero[_zi_tid])

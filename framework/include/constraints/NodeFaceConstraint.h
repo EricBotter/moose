@@ -109,19 +109,19 @@ protected:
   /**
    * Compute the value the slave node should have at the beginning of a timestep.
    */
-  virtual Real computeQpSlaveValue() = 0;
+  virtual Number computeQpSlaveValue() = 0;
 
   /**
    * This is the virtual that derived classes should override for computing the residual on
    * neighboring element.
    */
-  virtual Real computeQpResidual(Moose::ConstraintType type) = 0;
+  virtual Number computeQpResidual(Moose::ConstraintType type) = 0;
 
   /**
    * This is the virtual that derived classes should override for computing the Jacobian on
    * neighboring element.
    */
-  virtual Real computeQpJacobian(Moose::ConstraintJacobianType type) = 0;
+  virtual Number computeQpJacobian(Moose::ConstraintJacobianType type) = 0;
 
   /**
    * This is the virtual that derived classes should override for computing the off-diag Jacobian.
@@ -226,7 +226,7 @@ protected:
   const Elem *& _current_master;
 
   /// Value of the unknown variable this BC is action on
-  const VariableValue & _u_slave;
+  const VariableNumber & _u_slave;
   /// Shape function on the slave side.  This will always
   VariablePhiValue _phi_slave;
   /// Shape function on the slave side.  This will always only have one entry and that entry will always be "1"
@@ -249,9 +249,9 @@ protected:
   const VariableTestGradient & _grad_test_master;
 
   /// Holds the current solution at the current quadrature point
-  const VariableValue & _u_master;
+  const VariableNumber & _u_master;
   /// Holds the current solution gradient at the current quadrature point
-  const VariableGradient & _grad_u_master;
+  const VariableNumberGradient & _grad_u_master;
 
   /// DOF map
   const DofMap & _dof_map;

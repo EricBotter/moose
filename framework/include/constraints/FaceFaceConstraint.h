@@ -75,8 +75,8 @@ public:
   virtual void computeJacobianSide(Moose::ConstraintType side);
 
 protected:
-  virtual Real computeQpResidual() = 0;
-  virtual Real computeQpResidualSide(Moose::ConstraintType res_type) = 0;
+  virtual Number computeQpResidual() = 0;
+  virtual Number computeQpResidualSide(Moose::ConstraintType res_type) = 0;
   virtual Real computeQpJacobian();
   virtual Real computeQpJacobianSide(Moose::ConstraintJacobianType jac_type);
 
@@ -109,7 +109,7 @@ protected:
   /**
    * The values of Lagrange multipliers in quadrature points
    */
-  const VariableValue & _lambda;
+  const VariableNumber & _lambda;
 
   MooseMesh::MortarInterface & _iface;
   PenetrationLocator & _master_penetration_locator;
@@ -118,8 +118,8 @@ protected:
   /**
    * Values of the constrained variable on the master side
    */
-  std::vector<Real> _u_master;
-  std::vector<RealGradient> _grad_u_master;
+  std::vector<Number> _u_master;
+  std::vector<NumberGradient> _grad_u_master;
 
   /**
    * Physical points on the master side
@@ -143,8 +143,8 @@ protected:
   /**
    * Values of the constrained variable on the slave side
    */
-  std::vector<Real> _u_slave;
-  std::vector<RealGradient> _grad_u_slave;
+  std::vector<Number> _u_slave;
+  std::vector<NumberGradient> _grad_u_slave;
 
   /**
    * Physical points on the slave side

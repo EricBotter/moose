@@ -40,7 +40,7 @@ public:
   VectorNeumannBC(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
   /// Vector to dot with the normal.
   const RealVectorValue & _value;

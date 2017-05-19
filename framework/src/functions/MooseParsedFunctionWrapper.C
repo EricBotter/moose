@@ -29,7 +29,7 @@ MooseParsedFunctionWrapper::MooseParsedFunctionWrapper(FEProblemBase & feproblem
 
   // Create the libMesh::ParsedFunction
   _function_ptr =
-      libmesh_make_unique<ParsedFunction<Real, RealGradient>>(_function_str, &_vars, &_vals);
+      libmesh_make_unique<ParsedFunction<>>(_function_str, &_vars, &_vals);
 
   // Loop through the Postprocessor and Scalar variables and point the libMesh::ParsedFunction to
   // the PostprocessorValue
@@ -43,7 +43,7 @@ MooseParsedFunctionWrapper::MooseParsedFunctionWrapper(FEProblemBase & feproblem
 MooseParsedFunctionWrapper::~MooseParsedFunctionWrapper() {}
 
 template <>
-Real
+Number
 MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
 {
   // Update the postprocessor / libMesh::ParsedFunction references for the desired function
@@ -54,11 +54,11 @@ MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
 }
 
 template <>
-DenseVector<Real>
+DenseVector<Number>
 MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
 {
   update();
-  DenseVector<Real> output(LIBMESH_DIM);
+  DenseVector<Number> output(LIBMESH_DIM);
   (*_function_ptr)(p, t, output);
   return output;
 }
@@ -81,7 +81,7 @@ MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
                              );
 }
 
-RealGradient
+Gradient
 MooseParsedFunctionWrapper::evaluateGradient(Real t, const Point & p)
 {
   // Update the postprocessor / libMesh::ParsedFunction references for the desired function
@@ -91,7 +91,7 @@ MooseParsedFunctionWrapper::evaluateGradient(Real t, const Point & p)
   return _function_ptr->gradient(p, t);
 }
 
-Real
+Number
 MooseParsedFunctionWrapper::evaluateDot(Real t, const Point & p)
 {
   // Update the postprocessor / libMesh::ParsedFunction references for the desired function
@@ -131,7 +131,7 @@ MooseParsedFunctionWrapper::initialize()
     else if (_feproblem.hasScalarVariable(_vals_input[i]))
     {
       // The scalar variable
-      Real & scalar_val = _feproblem.getScalarVariable(_tid, _vals_input[i]).sln()[0];
+      Number & scalar_val = _feproblem.getScalarVariable(_tid, _vals_input[i]).sln()[0];
 
       // Store a pointer to the scalar value
       _scalar_vals.push_back(&scalar_val);

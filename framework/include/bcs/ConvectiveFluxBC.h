@@ -33,7 +33,7 @@ public:
   ConvectiveFluxBC(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
   virtual Real computeQpJacobian() override;
 
 private:

@@ -81,10 +81,10 @@ protected:
   unsigned int _i, _j;
 
   /// Holds the current solution at the current quadrature point
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// Holds the current solution gradient at the current quadrature point
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
   /// Shape function
   const VariablePhiValue & _phi;
   /// Shape function gradient
@@ -106,9 +106,9 @@ protected:
   const VariableTestGradient & _grad_test_neighbor;
 
   /// Holds the current solution at the current quadrature point on the neighbor element
-  const VariableValue & _u_neighbor;
+  const VariableNumber & _u_neighbor;
   /// Holds the current solution gradient at the current quadrature point on the neighbor element
-  const VariableGradient & _grad_u_neighbor;
+  const VariableNumberGradient & _grad_u_neighbor;
 
   /**
    *  Compute the residual for one of the constraint quadrature points.  Must be overwritten by

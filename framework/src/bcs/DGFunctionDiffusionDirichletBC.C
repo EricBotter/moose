@@ -49,15 +49,15 @@ DGFunctionDiffusionDirichletBC::DGFunctionDiffusionDirichletBC(const InputParame
 {
 }
 
-Real
+Number
 DGFunctionDiffusionDirichletBC::computeQpResidual()
 {
   const unsigned int elem_b_order = _var.order();
   const double h_elem =
       _current_elem->volume() / _current_side_elem->volume() * 1. / Utility::pow<2>(elem_b_order);
 
-  Real fn = _func.value(_t, _q_point[_qp]);
-  Real r = 0;
+  Number fn = _func.value(_t, _q_point[_qp]);
+  Number r = 0;
   r -= (_diff[_qp] * _grad_u[_qp] * _normals[_qp] * _test[_i][_qp]);
   r += _epsilon * (_u[_qp] - fn) * _diff[_qp] * _grad_test[_i][_qp] * _normals[_qp];
   r += _sigma / h_elem * (_u[_qp] - fn) * _test[_i][_qp];

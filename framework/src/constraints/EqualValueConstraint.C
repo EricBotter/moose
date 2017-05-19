@@ -29,13 +29,13 @@ EqualValueConstraint::EqualValueConstraint(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 EqualValueConstraint::computeQpResidual()
 {
   return (_u_master[_qp] - _u_slave[_qp]) * _test[_i][_qp];
 }
 
-Real
+Number
 EqualValueConstraint::computeQpResidualSide(Moose::ConstraintType res_type)
 {
   switch (res_type)

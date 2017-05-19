@@ -35,7 +35,7 @@ FunctionDirichletBC::f()
   return _func.value(_t, *_current_node);
 }
 
-Real
+Number
 FunctionDirichletBC::computeQpResidual()
 {
   return _u[_qp] - f();

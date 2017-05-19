@@ -32,8 +32,8 @@ public:
   EqualGradientConstraint(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpResidualSide(Moose::ConstraintType res_type) override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpResidualSide(Moose::ConstraintType res_type) override;
   virtual Real computeQpJacobianSide(Moose::ConstraintJacobianType jac_type) override;
 
   const unsigned int _component;

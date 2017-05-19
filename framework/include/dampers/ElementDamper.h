@@ -80,11 +80,11 @@ protected:
   const MooseArray<Real> & _JxW;
 
   /// The current Newton increment
-  VariableValue & _u_increment;
+  VariableNumber & _u_increment;
   /// Holds the current solution at the current quadrature point
-  const VariableValue & _u;
+  const VariableNumber & _u;
   /// Holds the current solution gradient at the current quadrature point
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
 };
 
 #endif // ELEMENTDAMPER_H

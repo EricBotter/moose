@@ -33,7 +33,7 @@ SinNeumannBC::SinNeumannBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 SinNeumannBC::computeQpResidual()
 {
   Real value;

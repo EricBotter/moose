@@ -100,7 +100,7 @@ PenetrationAux::computeValue()
 
   PenetrationInfo * pinfo = _penetration_locator._penetration_info[current_node->id()];
 
-  Real retVal(NotPenetrated);
+  Number retVal(NotPenetrated);
 
   if (pinfo)
     switch (_quantity)

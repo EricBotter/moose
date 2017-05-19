@@ -39,7 +39,7 @@ protected:
    */
   Real f();
 
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
   /// The function being used for evaluation
   Function & _func;

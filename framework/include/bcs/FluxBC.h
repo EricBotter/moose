@@ -33,10 +33,10 @@ public:
   FluxBC(const InputParameters & params);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
   virtual Real computeQpJacobian() override;
 
-  virtual RealGradient computeQpFluxResidual() = 0;
+  virtual Gradient computeQpFluxResidual() = 0;
   virtual RealGradient computeQpFluxJacobian() = 0;
 };
 

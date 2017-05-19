@@ -110,13 +110,13 @@ ScalarCoupleable::coupledScalarOrder(const std::string & var_name, unsigned int 
   return getScalarVar(var_name, comp)->order();
 }
 
-VariableValue *
+VariableNumber *
 ScalarCoupleable::getDefaultValue(const std::string & var_name)
 {
-  std::map<std::string, VariableValue *>::iterator default_value_it = _default_value.find(var_name);
+  std::map<std::string, VariableNumber *>::iterator default_value_it = _default_value.find(var_name);
   if (default_value_it == _default_value.end())
   {
-    VariableValue * value = new VariableValue(_sc_fe_problem.getMaxScalarOrder(),
+	  VariableNumber * value = new VariableNumber(_sc_fe_problem.getMaxScalarOrder(),
                                               _coupleable_params.defaultCoupledValue(var_name));
     default_value_it = _default_value.insert(std::make_pair(var_name, value)).first;
   }
@@ -124,7 +124,7 @@ ScalarCoupleable::getDefaultValue(const std::string & var_name)
   return default_value_it->second;
 }
 
-VariableValue &
+VariableNumber &
 ScalarCoupleable::coupledScalarValue(const std::string & var_name, unsigned int comp)
 {
   if (!isCoupledScalar(var_name, comp))
@@ -134,7 +134,7 @@ ScalarCoupleable::coupledScalarValue(const std::string & var_name, unsigned int 
   return (_sc_is_implicit) ? var->sln() : var->slnOld();
 }
 
-VariableValue &
+VariableNumber &
 ScalarCoupleable::coupledScalarValueOld(const std::string & var_name, unsigned int comp)
 {
   if (!isCoupledScalar(var_name, comp))
@@ -144,14 +144,14 @@ ScalarCoupleable::coupledScalarValueOld(const std::string & var_name, unsigned i
   return (_sc_is_implicit) ? var->slnOld() : var->slnOlder();
 }
 
-VariableValue &
+VariableNumber &
 ScalarCoupleable::coupledScalarDot(const std::string & var_name, unsigned int comp)
 {
   MooseVariableScalar * var = getScalarVar(var_name, comp);
   return var->uDot();
 }
 
-VariableValue &
+VariableNumber &
 ScalarCoupleable::coupledScalarDotDu(const std::string & var_name, unsigned int comp)
 {
   MooseVariableScalar * var = getScalarVar(var_name, comp);

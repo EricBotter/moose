@@ -211,13 +211,13 @@ public:
   const VariableNumber & nodalValueOld();
   const VariableNumber & nodalValueOlder();
   const VariableNumber & nodalValuePreviousNL();
-  const VariableValue & nodalValueDot();
+  const VariableNumber & nodalValueDot();
 
   const VariableNumber & nodalValueNeighbor();
   const VariableNumber & nodalValueOldNeighbor();
   const VariableNumber & nodalValueOlderNeighbor();
   const VariableNumber & nodalValuePreviousNLNeighbor();
-  const VariableValue & nodalValueDotNeighbor();
+  const VariableNumber & nodalValueDotNeighbor();
 
   const VariableNumber & slnNeighbor() { return _u_neighbor; }
   const VariableNumber & slnOldNeighbor()
@@ -390,8 +390,8 @@ public:
    * @param phi Evaluated shape functions at a point
    * @return The variable value
    */
-  Real getValue(const Elem * elem, const std::vector<std::vector<Real>> & phi) const;
-  RealGradient getGradient(const Elem * elem,
+  Number getValue(const Elem * elem, const std::vector<std::vector<Real>> & phi) const;
+  NumberGradient getGradient(const Elem * elem,
                            const std::vector<std::vector<RealGradient>> & phi) const;
 
   /**
@@ -489,9 +489,9 @@ protected:
   bool _need_nodal_u_dot_neighbor;
 
   // Shape function values, gradients. second derivatives
-  const VariablePhiNumber & _phi;
-  const VariablePhiNumberGradient & _grad_phi;
-  const VariablePhiNumberSecond * _second_phi;
+  const VariablePhiValue & _phi; // don't change to Number
+  const VariablePhiGradient & _grad_phi;
+  const VariablePhiSecond * _second_phi;
 
   // Values, gradients and second derivatives of shape function on faces
   const VariablePhiValue & _phi_face;

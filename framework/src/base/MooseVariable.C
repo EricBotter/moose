@@ -387,19 +387,19 @@ MooseVariable::add(NumericVector<Number> & residual)
     residual.add_vector(&_nodal_u_neighbor[0], _dof_indices_neighbor);
 }
 
-const VariablePhiNumber &
+const VariablePhiValue &
 MooseVariable::phi()
 {
   return _phi;
 }
 
-const VariablePhiNumberGradient &
+const VariablePhiGradient &
 MooseVariable::gradPhi()
 {
   return _grad_phi;
 }
 
-const VariablePhiNumberSecond &
+const VariablePhiSecond &
 MooseVariable::secondPhi()
 {
   _second_phi = &_assembly.feSecondPhi(_fe_type);
@@ -519,7 +519,7 @@ MooseVariable::nodalValuePreviousNL()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValueDot()
 {
   if (isNodal())
@@ -589,7 +589,7 @@ MooseVariable::nodalValuePreviousNLNeighbor()
                "' is not nodal.");
 }
 
-const VariableValue &
+const VariableNumber &
 MooseVariable::nodalValueDotNeighbor()
 {
   if (isNodal())
@@ -714,8 +714,8 @@ MooseVariable::computePerturbedElemValues(unsigned int perturbation_idx,
   Number u_dot_local = 0;
 
   Number phi_local = 0;
-  const NumberGradient * dphi_qp = NULL;
-  const NumberTensor * d2phi_local = NULL;
+  const RealGradient * dphi_qp = NULL;
+  const RealTensor * d2phi_local = NULL;
 
   NumberGradient * grad_u_qp = NULL;
 
@@ -977,8 +977,8 @@ MooseVariable::computeElemValues()
   Number u_dot_local = 0;
 
   Number phi_local = 0;
-  const NumberGradient * dphi_qp = NULL;
-  const NumberTensor * d2phi_local = NULL;
+  const RealGradient * dphi_qp = NULL;
+  const RealTensor * d2phi_local = NULL;
 
   NumberGradient * grad_u_qp = NULL;
 
@@ -1853,8 +1853,8 @@ MooseVariable::getNodalValueOlder(const Node & node)
   return _sys.solutionOlder()(dof);
 }
 
-Real
-MooseVariable::getValue(const Elem * elem, const std::vector<std::vector<Number>> & phi) const
+Number
+MooseVariable::getValue(const Elem * elem, const std::vector<std::vector<Real>> & phi) const
 {
   std::vector<dof_id_type> dof_indices;
   _dof_map.dof_indices(elem, dof_indices, _var_num);
@@ -1865,7 +1865,7 @@ MooseVariable::getValue(const Elem * elem, const std::vector<std::vector<Number>
     for (unsigned int i = 0; i < dof_indices.size(); ++i)
     {
       // The zero index is because we only have one point that the phis are evaluated at
-      value += phi[i][0] * (*_sys.currentSolution())(dof_indices[i]);
+      value += Number(phi[i][0]) * (*_sys.currentSolution())(dof_indices[i]);
     }
   }
   else
@@ -1877,14 +1877,14 @@ MooseVariable::getValue(const Elem * elem, const std::vector<std::vector<Number>
   return value;
 }
 
-RealGradient
+NumberGradient
 MooseVariable::getGradient(const Elem * elem,
                            const std::vector<std::vector<RealGradient>> & grad_phi) const
 {
   std::vector<dof_id_type> dof_indices;
   _dof_map.dof_indices(elem, dof_indices, _var_num);
 
-  RealGradient value;
+  NumberGradient value;
   if (isNodal())
   {
     for (unsigned int i = 0; i < dof_indices.size(); ++i)
@@ -1902,7 +1902,7 @@ MooseVariable::getGradient(const Elem * elem,
   return value;
 }
 
-Real
+Number
 MooseVariable::getElementalValue(const Elem * elem, unsigned int idx) const
 {
   std::vector<dof_id_type> dof_indices;

@@ -27,10 +27,10 @@ GradientJumpIndicator::GradientJumpIndicator(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 GradientJumpIndicator::computeQpIntegral()
 {
-  Real jump = (_grad_u[_qp] - _grad_u_neighbor[_qp]) * _normals[_qp];
+  Number jump = (_grad_u[_qp] - _grad_u_neighbor[_qp]) * _normals[_qp];
 
   return jump * jump;
 }

@@ -53,7 +53,7 @@ protected:
   /**
    * The value of the gradient at a point.
    */
-  virtual RealGradient gradient(const Point & p) override;
+  virtual Gradient gradient(const Point & p) override;
 
   Function & _func;
 };

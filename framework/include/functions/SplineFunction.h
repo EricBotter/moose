@@ -32,7 +32,7 @@ public:
   SplineFunction(const InputParameters & parameters);
 
   virtual Real value(Real t, const Point & p) override;
-  virtual RealGradient gradient(Real t, const Point & p) override;
+  virtual Gradient gradient(Real t, const Point & p) override;
 
   virtual Real derivative(const Point & p);
   virtual Real secondDerivative(const Point & p);

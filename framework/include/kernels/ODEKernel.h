@@ -37,8 +37,8 @@ public:
   virtual void computeOffDiagJacobian(unsigned int jvar) override;
 
 protected:
-  virtual Real computeQpResidual() = 0;
-  virtual Real computeQpJacobian();
+  virtual Number computeQpResidual() = 0;
+  virtual Number computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 };
 

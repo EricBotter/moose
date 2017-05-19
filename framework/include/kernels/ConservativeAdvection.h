@@ -15,8 +15,8 @@ public:
   ConservativeAdvection(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
+  virtual Number computeQpResidual();
+  virtual Number computeQpJacobian();
 
   RealVectorValue _velocity;
 };

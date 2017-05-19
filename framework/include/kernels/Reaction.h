@@ -29,7 +29,7 @@ public:
   Reaction(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpJacobian() override;
 };
 #endif // REACTION_H

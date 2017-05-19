@@ -29,19 +29,19 @@ CoupledTimeDerivative::CoupledTimeDerivative(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 CoupledTimeDerivative::computeQpResidual()
 {
   return _test[_i][_qp] * _v_dot[_qp];
 }
 
-Real
+Number
 CoupledTimeDerivative::computeQpJacobian()
 {
   return 0.0;
 }
 
-Real
+Number
 CoupledTimeDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _v_var)

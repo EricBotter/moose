@@ -45,10 +45,10 @@ Function::value(Real /*t*/, const Point & /*p*/)
   return 0.0;
 }
 
-RealGradient
+Gradient
 Function::gradient(Real /*t*/, const Point & /*p*/)
 {
-  return RealGradient(0, 0, 0);
+  return Gradient(0, 0, 0);
 }
 
 Real

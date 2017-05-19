@@ -31,10 +31,10 @@ public:
   virtual void computeJacobian() override;
 
 protected:
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpJacobian() override;
 
-  const VariableValue & _u_dot_nodal;
+  const VariableNumber & _u_dot_nodal;
 };
 
 #endif // MASSLUMPEDTIMEDERIVATIVE_H

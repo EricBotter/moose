@@ -31,8 +31,8 @@ public:
   NullKernel(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpJacobian() override;
 
   /// filler value to put on the on-diagonal Jacobian
   const Real _jacobian_fill;

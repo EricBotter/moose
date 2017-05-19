@@ -43,7 +43,7 @@ DenseVector<Number>
 FDKernel::perturbedResidual(unsigned int varnum,
                             unsigned int perturbationj,
                             Real perturbation_scale,
-                            Real & perturbation)
+							Number & perturbation)
 {
   DenseVector<Number> re;
   re.resize(_var.dofIndices().size());
@@ -75,7 +75,7 @@ FDKernel::computeOffDiagJacobian(unsigned int jvar_index)
   local_ke.zero();
 
   // FIXME: pull out the already computed element residual instead of recomputing it
-  Real h;
+  Number h;
   DenseVector<Number> re = perturbedResidual(_var.number(), 0, 0.0, h);
   for (_j = 0; _j < _phi.size(); _j++)
   {

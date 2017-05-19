@@ -84,11 +84,11 @@ protected:
   unsigned int _i, _j;
 
   /// Value(s) of the scalar variable
-  VariableValue & _u;
+  VariableNumber & _u;
   /// Old value(s) of the scalar variable
-  VariableValue & _u_old;
-  VariableValue & _u_dot;
-  VariableValue & _du_dot_du;
+  VariableNumber & _u_old;
+  VariableNumber & _u_dot;
+  VariableNumber & _du_dot_du;
 };
 
 #endif /* SCALARKERNEL_H */

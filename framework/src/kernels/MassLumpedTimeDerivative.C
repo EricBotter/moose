@@ -34,13 +34,13 @@ MassLumpedTimeDerivative::MassLumpedTimeDerivative(const InputParameters & param
 {
 }
 
-Real
+Number
 MassLumpedTimeDerivative::computeQpResidual()
 {
   return _test[_i][_qp] * _u_dot_nodal[_i];
 }
 
-Real
+Number
 MassLumpedTimeDerivative::computeQpJacobian()
 {
   return _test[_i][_qp] * _du_dot_du[_qp];

@@ -51,7 +51,7 @@ public:
    * @param p Spatial location of desired data
    * @return The value at t and p
    */
-  virtual RealGradient gradient(Real t, const Point & p) override;
+  virtual Gradient gradient(Real t, const Point & p) override;
 
   /**
    * Setup the function for use

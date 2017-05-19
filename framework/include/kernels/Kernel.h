@@ -34,13 +34,13 @@ public:
 
 protected:
   /// Compute this Kernel's contribution to the residual at the current quadrature point
-  virtual Real computeQpResidual() = 0;
+  virtual Number computeQpResidual() = 0;
 
   /// Compute this Kernel's contribution to the Jacobian at the current quadrature point
-  virtual Real computeQpJacobian();
+  virtual Number computeQpJacobian();
 
   /// This is the virtual that derived classes should override for computing an off-diagonal Jacobian component.
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  virtual Number computeQpOffDiagJacobian(unsigned int jvar);
 
   /// Following methods are used for Kernels that need to perform a per-element calculation
   virtual void precalculateResidual();
@@ -48,16 +48,16 @@ protected:
   virtual void precalculateOffDiagJacobian(unsigned int /* jvar */) {}
 
   /// Holds the solution at current quadrature points
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// Holds the solution gradient at the current quadrature points
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
 
   /// Time derivative of u
-  const VariableValue & _u_dot;
+  const VariableNumber & _u_dot;
 
   /// Derivative of u_dot with respect to u
-  const VariableValue & _du_dot_du;
+  const VariableNumber & _du_dot_du;
 };
 
 #endif /* KERNEL_H */

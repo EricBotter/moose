@@ -36,7 +36,7 @@ ElementIntegralIndicator::ElementIntegralIndicator(const InputParameters & param
 void
 ElementIntegralIndicator::computeIndicator()
 {
-  Real sum = 0;
+	Number sum = 0;
   for (_qp = 0; _qp < _qrule->n_points(); _qp++)
     sum += _JxW[_qp] * _coord[_qp] * computeQpIntegral();
 
@@ -45,7 +45,7 @@ ElementIntegralIndicator::computeIndicator()
   _field_var.setNodalValue(sum);
 }
 
-Real
+Number
 ElementIntegralIndicator::computeQpIntegral()
 {
   return _u[_qp];

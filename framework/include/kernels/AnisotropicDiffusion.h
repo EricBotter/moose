@@ -34,11 +34,11 @@ public:
   AnisotropicDiffusion(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpJacobian() override;
 
-  RealTensorValue _k;
+  NumberTensorValue _k;
 };
 
 #endif /* ANISOTROPICDIFFUSION_H */

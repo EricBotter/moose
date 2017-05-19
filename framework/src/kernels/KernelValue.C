@@ -105,7 +105,7 @@ KernelValue::computeOffDiagJacobian(unsigned int jvar)
   }
 }
 
-Real
+Number
 KernelValue::computeQpResidual()
 {
   return 0.0;

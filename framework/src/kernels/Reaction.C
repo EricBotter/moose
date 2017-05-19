@@ -24,13 +24,13 @@ validParams<Reaction>()
 
 Reaction::Reaction(const InputParameters & parameters) : Kernel(parameters) {}
 
-Real
+Number
 Reaction::computeQpResidual()
 {
   return _test[_i][_qp] * _u[_qp];
 }
 
-Real
+Number
 Reaction::computeQpJacobian()
 {
   return _test[_i][_qp] * _phi[_j][_qp];

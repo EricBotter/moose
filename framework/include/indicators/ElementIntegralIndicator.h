@@ -30,7 +30,7 @@ public:
   virtual void computeIndicator() override;
 
 protected:
-  virtual Real computeQpIntegral();
+  virtual Number computeQpIntegral();
 };
 
 #endif /* ELEMENTINTEGRALINDICATOR_H */

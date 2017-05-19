@@ -30,19 +30,19 @@ CoupledForce::CoupledForce(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 CoupledForce::computeQpResidual()
 {
   return -_v[_qp] * _test[_i][_qp];
 }
 
-Real
+Number
 CoupledForce::computeQpJacobian()
 {
   return 0;
 }
 
-Real
+Number
 CoupledForce::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _v_var)

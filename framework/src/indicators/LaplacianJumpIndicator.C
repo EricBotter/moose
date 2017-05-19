@@ -27,10 +27,10 @@ LaplacianJumpIndicator::LaplacianJumpIndicator(const InputParameters & parameter
 {
 }
 
-Real
+Number
 LaplacianJumpIndicator::computeQpIntegral()
 {
-  Real jump = (_second_u[_qp].tr() - _second_u_neighbor[_qp].tr());
+  Number jump = (_second_u[_qp].tr() - _second_u_neighbor[_qp].tr());
 
   return jump * jump;
 }

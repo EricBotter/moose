@@ -24,13 +24,13 @@ validParams<MassEigenKernel>()
 
 MassEigenKernel::MassEigenKernel(const InputParameters & parameters) : EigenKernel(parameters) {}
 
-Real
+Number
 MassEigenKernel::computeQpResidual()
 {
   return -_u[_qp] * _test[_i][_qp];
 }
 
-Real
+Number
 MassEigenKernel::computeQpJacobian()
 {
   return -_phi[_j][_qp] * _test[_i][_qp];

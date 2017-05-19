@@ -34,11 +34,11 @@ public:
   MaterialDerivativeTestKernel(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpJacobian() override;
 
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
+  virtual Number computeQpOffDiagJacobian(unsigned int jvar) override;
 
   /// number of nonlinear variables
   const unsigned int _n_vars;

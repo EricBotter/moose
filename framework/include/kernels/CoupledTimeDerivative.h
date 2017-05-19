@@ -32,12 +32,12 @@ public:
   CoupledTimeDerivative(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpJacobian() override;
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpJacobian() override;
+  virtual Number computeQpOffDiagJacobian(unsigned int jvar) override;
 
-  const VariableValue & _v_dot;
-  const VariableValue & _dv_dot;
+  const VariableNumber & _v_dot;
+  const VariableNumber & _dv_dot;
   const unsigned int _v_var;
 };
 

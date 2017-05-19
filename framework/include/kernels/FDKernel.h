@@ -47,7 +47,7 @@ protected:
   virtual DenseVector<Number> perturbedResidual(unsigned int ivar,
                                                 unsigned int i,
                                                 Real perturbation_scale,
-                                                Real & perturbation);
+												Number & perturbation);
 
   Real _scale;
 };

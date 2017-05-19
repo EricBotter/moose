@@ -92,7 +92,7 @@ InternalSideIndicator::InternalSideIndicator(const InputParameters & parameters)
 void
 InternalSideIndicator::computeIndicator()
 {
-  Real sum = 0;
+  Number sum = 0;
 
   for (_qp = 0; _qp < _qrule->n_points(); _qp++)
     sum += _JxW[_qp] * _coord[_qp] * computeQpIntegral();
@@ -122,7 +122,7 @@ InternalSideIndicator::finalize()
     n_flux_faces = 1;
 
   // The 0 is because CONSTANT MONOMIALS only have one coefficient per element...
-  Real value = _field_var.nodalSln()[0];
+  Number value = _field_var.nodalSln()[0];
 
   {
     Threads::spin_mutex::scoped_lock lock(Threads::spin_mtx);

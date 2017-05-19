@@ -31,8 +31,8 @@ public:
   virtual void computeJacobian() override;
 
 protected:
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpJacobian() override;
 
   bool _lumping;
 };

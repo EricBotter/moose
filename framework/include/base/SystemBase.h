@@ -489,8 +489,8 @@ protected:
   NumericVector<Number> * _dummy_vec; // to satisfy the interface
 
   // Used for saving old solutions so that they wont be accidentally changed
-  NumericVector<Real> * _saved_old;
-  NumericVector<Real> * _saved_older;
+  NumericVector<Number> * _saved_old;
+  NumericVector<Number> * _saved_older;
 
   /// default kind of variables in this system
   Moose::VarKindType _var_kind;

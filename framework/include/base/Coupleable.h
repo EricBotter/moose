@@ -275,7 +275,7 @@ protected:
    * @return Reference to a VariableValue containing the nodal values of time derivative of the
    * coupled variable
    */
-  virtual const VariableValue & coupledNodalDot(const std::string & var_name,
+  virtual const VariableNumber & coupledNodalDot(const std::string & var_name,
                                                 unsigned int comp = 0);
 
 protected:

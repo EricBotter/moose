@@ -52,7 +52,7 @@ dataStore(std::ostream & stream, SystemBase & system_base, void * context)
 {
   System & libmesh_system = system_base.system();
 
-  NumericVector<Real> & solution = *(libmesh_system.solution.get());
+  NumericVector<Number> & solution = *(libmesh_system.solution.get());
 
   dataStore(stream, solution, context);
 
@@ -68,7 +68,7 @@ dataLoad(std::istream & stream, SystemBase & system_base, void * context)
 {
   System & libmesh_system = system_base.system();
 
-  NumericVector<Real> & solution = *(libmesh_system.solution.get());
+  NumericVector<Number> & solution = *(libmesh_system.solution.get());
 
   dataLoad(stream, solution, context);
 

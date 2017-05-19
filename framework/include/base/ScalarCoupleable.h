@@ -94,7 +94,7 @@ protected:
    * @param comp Component number for vector of coupled variables
    * @return Reference to a VariableValue for the coupled variable
    */
-  virtual VariableValue & coupledScalarValue(const std::string & var_name, unsigned int comp = 0);
+  virtual VariableNumber & coupledScalarValue(const std::string & var_name, unsigned int comp = 0);
 
   /**
    * Returns the old (previous time step) value of a scalar coupled variable
@@ -102,7 +102,7 @@ protected:
    * @param comp Component number for vector of coupled variables
    * @return Reference to a old VariableValue for the coupled variable
    */
-  virtual VariableValue & coupledScalarValueOld(const std::string & var_name,
+  virtual VariableNumber & coupledScalarValueOld(const std::string & var_name,
                                                 unsigned int comp = 0);
 
   /**
@@ -111,7 +111,7 @@ protected:
    * @param comp Component number for vector of coupled variables
    * @return Reference to a older VariableValue for the coupled variable
    */
-  virtual VariableValue & coupledScalarDot(const std::string & var_name, unsigned int comp = 0);
+  virtual VariableNumber & coupledScalarDot(const std::string & var_name, unsigned int comp = 0);
 
   /**
    * Time derivative of a scalar coupled variable with respect to the coefficients
@@ -120,7 +120,7 @@ protected:
    * @return Reference to a VariableValue containing the time derivative of the coupled variable
    * with respect to the coefficients
    */
-  virtual VariableValue & coupledScalarDotDu(const std::string & var_name, unsigned int comp = 0);
+  virtual VariableNumber & coupledScalarDotDu(const std::string & var_name, unsigned int comp = 0);
 
 protected:
   // Reference to FEProblemBase
@@ -130,7 +130,7 @@ protected:
   std::map<std::string, std::vector<MooseVariableScalar *>> _coupled_scalar_vars;
 
   /// Will hold the default value for optional coupled scalar variables.
-  std::map<std::string, VariableValue *> _default_value;
+  std::map<std::string, VariableNumber *> _default_value;
 
   /// Vector of coupled variables
   std::vector<MooseVariableScalar *> _coupled_moose_scalar_vars;
@@ -147,7 +147,7 @@ protected:
    * @param var_name the name of the variable for which to retrieve a default value
    * @return VariableValue * a pointer to the associated VarirableValue.
    */
-  VariableValue * getDefaultValue(const std::string & var_name);
+  VariableNumber * getDefaultValue(const std::string & var_name);
 
   /**
    * Extract pointer to a scalar coupled variable

@@ -45,11 +45,11 @@ MooseVariableScalar::~MooseVariableScalar()
 void
 MooseVariableScalar::reinit()
 {
-  const NumericVector<Real> & current_solution = *_sys.currentSolution();
-  const NumericVector<Real> & solution_old = _sys.solutionOld();
-  const NumericVector<Real> & solution_older = _sys.solutionOlder();
-  const NumericVector<Real> & u_dot = _sys.solutionUDot();
-  const Real & du_dot_du = _sys.duDotDu();
+  const NumericVector<Number> & current_solution = *_sys.currentSolution();
+  const NumericVector<Number> & solution_old = _sys.solutionOld();
+  const NumericVector<Number> & solution_older = _sys.solutionOlder();
+  const NumericVector<Number> & u_dot = _sys.solutionUDot();
+  const Number & du_dot_du = _sys.duDotDu();
 
   _dof_map.SCALAR_dof_indices(_dof_indices, _var_num);
 

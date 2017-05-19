@@ -33,6 +33,7 @@ class Elem;
 template <typename T>
 class FEGenericBase;
 typedef FEGenericBase<Real> FEBase;
+typedef FEGenericBase<Number> FENBase;
 class Node;
 template <typename T>
 class NumericVector;
@@ -535,21 +536,21 @@ public:
   const VariablePhiGradient & gradPhiFaceNeighbor() { return _grad_phi_face_neighbor; }
   const VariablePhiSecond & secondPhiFaceNeighbor() { return _second_phi_face_neighbor; }
 
-  const VariablePhiNumber & fePhi(FEType type);
-  const VariablePhiNumberGradient & feGradPhi(FEType type);
-  const VariablePhiNumberSecond & feSecondPhi(FEType type);
+  const VariablePhiValue & fePhi(FEType type);
+  const VariablePhiGradient & feGradPhi(FEType type);
+  const VariablePhiSecond & feSecondPhi(FEType type);
 
-  const VariablePhiNumber & fePhiFace(FEType type);
-  const VariablePhiNumberGradient & feGradPhiFace(FEType type);
-  const VariablePhiNumberSecond & feSecondPhiFace(FEType type);
+  const VariablePhiValue & fePhiFace(FEType type);
+  const VariablePhiGradient & feGradPhiFace(FEType type);
+  const VariablePhiSecond & feSecondPhiFace(FEType type);
 
-  const VariablePhiNumber & fePhiNeighbor(FEType type);
+  const VariablePhiValue & fePhiNeighbor(FEType type);
   const VariablePhiGradient & feGradPhiNeighbor(FEType type);
   const VariablePhiSecond & feSecondPhiNeighbor(FEType type);
 
-  const VariablePhiNumber & fePhiFaceNeighbor(FEType type);
-  const VariablePhiNumberGradient & feGradPhiFaceNeighbor(FEType type);
-  const VariablePhiNumberSecond & feSecondPhiFaceNeighbor(FEType type);
+  const VariablePhiValue & fePhiFaceNeighbor(FEType type);
+  const VariablePhiGradient & feGradPhiFaceNeighbor(FEType type);
+  const VariablePhiSecond & feSecondPhiFaceNeighbor(FEType type);
 
   /**
    * Invalidate any currently cached data.  In particular this will cause FE data to get recached.
@@ -837,9 +838,9 @@ protected:
   class FEShapeData
   {
   public:
-    MooseArray<std::vector<Number>> _phi;
-    MooseArray<std::vector<NumberGradient>> _grad_phi;
-    MooseArray<std::vector<NumberTensor>> _second_phi;
+    MooseArray<std::vector<Real>> _phi;
+    MooseArray<std::vector<RealGradient>> _grad_phi;
+    MooseArray<std::vector<RealTensor>> _second_phi;
   };
 
   /**

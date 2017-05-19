@@ -35,8 +35,8 @@ public:
 protected:
   virtual Number computeValue() override;
 
-  VariableValue & _a;
-  VariableValue & _b;
+  VariableNumber & _a;
+  VariableNumber & _b;
 };
 
 #endif /* QUOTIENTSCALARAUX_H */

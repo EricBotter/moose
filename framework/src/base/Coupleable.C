@@ -564,11 +564,11 @@ Coupleable::coupledNodalValuePreviousNL(const std::string & var_name, unsigned i
     return var->nodalValuePreviousNLNeighbor();
 }
 
-const VariableValue &
+const VariableNumber &
 Coupleable::coupledNodalDot(const std::string & var_name, unsigned int comp)
 {
   if (!isCoupled(var_name)) // Return default 0
-    return _default_value_zero;
+    return _default_number_zero;
 
   coupledCallback(var_name, false);
   MooseVariable * var = getVar(var_name, comp);

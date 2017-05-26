@@ -120,7 +120,7 @@ protected:
    * @param execute_on When to execute the postprocessor that is created
    */
   virtual void addAttributeReporter(const std::string & name,
-                                    Real & attribute,
+		  	  	  	  	  	  	  	Number & attribute,
                                     const std::string execute_on = "");
 
   FEProblemBase & _fe_problem;

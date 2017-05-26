@@ -22,7 +22,7 @@ extern "C" void FORTRAN_CALL(dgetri)(...); // matrix inversion routine from LAPA
 namespace MatrixTools
 {
 void
-inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Real>> & m_inv)
+inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Number>> & m_inv)
 {
   unsigned int n = m.size();
 

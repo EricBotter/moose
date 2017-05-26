@@ -36,7 +36,7 @@ NumElems::NumElems(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 NumElems::getValue()
 {
   if (_filt == ElemFilter::ACTIVE)

@@ -43,7 +43,7 @@ public:
   /**
    * Get the numer of nonlinear iterations
    */
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   /// Pointer to the FEProblemBase

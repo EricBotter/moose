@@ -33,7 +33,7 @@ public:
   AxisymmetricCenterlineAverageValue(const InputParameters & parameters);
 
 protected:
-  virtual Real computeIntegral() override;
+  virtual Number computeIntegral() override;
   virtual Real volume() override;
   Real _volume;
 };

@@ -41,10 +41,10 @@ SideFluxAverage::execute()
   _volume += _current_side_volume;
 }
 
-Real
+Number
 SideFluxAverage::getValue()
 {
-  Real integral = SideIntegralVariablePostprocessor::getValue();
+  Number integral = SideIntegralVariablePostprocessor::getValue();
 
   gatherSum(_volume);
 

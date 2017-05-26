@@ -32,7 +32,7 @@ Receiver::Receiver(const InputParameters & params)
 {
 }
 
-Real
+Number
 Receiver::getValue()
 {
   // Return the stored value (references stored value in getPostprocessorData)

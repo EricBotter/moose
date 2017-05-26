@@ -191,8 +191,8 @@ Axisymmetric2D3DSolutionFunction::value(Real t, const Point & p)
   Real val;
   if (_has_component)
   {
-    Real val_x = _solution_object_ptr->pointValue(t, xypoint, _solution_object_var_indices[0]);
-    Real val_y = _solution_object_ptr->pointValue(t, xypoint, _solution_object_var_indices[1]);
+    Real val_x = _solution_object_ptr->pointValue(t, xypoint, _solution_object_var_indices[0]).real();
+    Real val_y = _solution_object_ptr->pointValue(t, xypoint, _solution_object_var_indices[1]).real();
 
     // val_vec_rz contains the value vector converted from x,y to r,z coordinates
     Point val_vec_rz;
@@ -205,7 +205,7 @@ Axisymmetric2D3DSolutionFunction::value(Real t, const Point & p)
     val = val_vec_3d(_component);
   }
   else
-    val = _solution_object_ptr->pointValue(t, xypoint, _solution_object_var_indices[0]);
+    val = _solution_object_ptr->pointValue(t, xypoint, _solution_object_var_indices[0]).real();
 
   return _scale_factor * val + _add_factor;
 }

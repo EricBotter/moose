@@ -32,7 +32,7 @@ LayeredSideFluxAverage::LayeredSideFluxAverage(const InputParameters & parameter
 {
 }
 
-Real
+Number
 LayeredSideFluxAverage::computeQpIntegral()
 {
   return -_diffusion_coef[_qp] * _grad_u[_qp] * _normals[_qp];

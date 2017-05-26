@@ -67,7 +67,7 @@ public:
    * @param var_name The variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  Real pointValueWrapper(Real t,
+  Number pointValueWrapper(Real t,
                          const Point & p,
                          const std::string & var_name,
                          const MooseEnum & weighting_type = weightingType()) const;
@@ -80,7 +80,7 @@ public:
    * @param local_var_index The local index of the variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  Real pointValue(Real t, const Point & p, const unsigned int local_var_index) const;
+  Number pointValue(Real t, const Point & p, const unsigned int local_var_index) const;
 
   /**
    * Returns a value at a specific location and variable (see SolutionFunction)
@@ -90,7 +90,7 @@ public:
    * @param var_name The variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  Real pointValue(Real t, const Point & p, const std::string & var_name) const;
+  Number pointValue(Real t, const Point & p, const std::string & var_name) const;
 
   /**
    * Returns a value at a specific location and variable for cases where the solution is
@@ -189,7 +189,7 @@ public:
    * @param var_name The variable from which to extract a value
    * @return The desired value for the given node and variable name
    */
-  Real directValue(const Node * node, const std::string & var_name) const;
+  Number directValue(const Node * node, const std::string & var_name) const;
 
   /**
    * Retrun a value from the centroid of an element
@@ -197,7 +197,7 @@ public:
    * @param var_name The variable from which to extract a value
    * @return The desired value for the given element and variable name
    */
-  Real directValue(const Elem * elem, const std::string & var_name) const;
+  Number directValue(const Elem * elem, const std::string & var_name) const;
 
   // Required pure virtual function (not used)
   virtual void initialize() override;
@@ -242,7 +242,7 @@ protected:
    * @param dof_index The DOF of the solution desired
    * @return The solution at the given DOF
    */
-  virtual Real directValue(dof_id_type dof_index) const;
+  virtual Number directValue(dof_id_type dof_index) const;
 
   /**
    * Get the type of file that was read
@@ -268,7 +268,7 @@ protected:
    * @param local_var_index The local index of the variable to extract data from
    * @param func_num The MeshFunction index to use (1 = _mesh_function; 2 = _mesh_function2)
    */
-  Real evalMeshFunction(const Point & p,
+  Number evalMeshFunction(const Point & p,
                         const unsigned int local_var_index,
                         unsigned int func_num) const;
 
@@ -289,7 +289,7 @@ protected:
    * @param local_var_index The local index of the variable to extract data from
    * @param func_num The MeshFunction index to use (1 = _mesh_function; 2 = _mesh_function2)
    */
-  RealGradient evalMeshFunctionGradient(const Point & p,
+  Gradient evalMeshFunctionGradient(const Point & p,
                                         const unsigned int local_var_index,
                                         unsigned int func_num) const;
 

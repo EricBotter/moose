@@ -37,7 +37,7 @@ NumVars::NumVars(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 NumVars::getValue()
 {
   switch (_system)

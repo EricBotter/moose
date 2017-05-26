@@ -74,7 +74,7 @@ MultiAppVariableValueSampleTransfer::execute()
 
       for (unsigned int i = 0; i < _multi_app->numGlobalApps(); i++)
       {
-        Real value = -std::numeric_limits<Real>::max();
+    	Real value = -std::numeric_limits<Real>::max();
 
         { // Get the value of the variable at the point where this multiapp is in the master domain
 
@@ -90,7 +90,7 @@ MultiAppVariableValueSampleTransfer::execute()
             from_sub_problem.reinitElemPhys(elem, point_vec, 0);
 
             mooseAssert(from_var.sln().size() == 1, "No values in u!");
-            value = from_var.sln()[0];
+            value = from_var.sln()[0].real();
           }
 
           _communicator.max(value);
@@ -109,7 +109,7 @@ MultiAppVariableValueSampleTransfer::execute()
           unsigned int sys_num = to_sys->number();
           unsigned int var_num = to_sys->variable_number(_to_var_name);
 
-          NumericVector<Real> & solution = _multi_app->appTransferVector(i, _to_var_name);
+          NumericVector<Number> & solution = _multi_app->appTransferVector(i, _to_var_name);
 
           MooseMesh & mesh = _multi_app->appProblemBase(i).mesh();
 

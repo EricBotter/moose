@@ -33,7 +33,7 @@ SideIntegralVariableUserObject::SideIntegralVariableUserObject(const InputParame
   addMooseVariableDependency(mooseVariable());
 }
 
-Real
+Number
 SideIntegralVariableUserObject::computeQpIntegral()
 {
   return _u[_qp];

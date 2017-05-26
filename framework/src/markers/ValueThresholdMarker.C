@@ -71,18 +71,18 @@ ValueThresholdMarker::computeQpMarker()
 {
   if (!_invert)
   {
-    if (_refine_set && _u[_qp] > _refine)
+    if (_refine_set && _u[_qp].real() > _refine)
       return REFINE;
 
-    if (_coarsen_set && _u[_qp] < _coarsen)
+    if (_coarsen_set && _u[_qp].real() < _coarsen)
       return COARSEN;
   }
   else
   {
-    if (_refine_set && _u[_qp] < _refine)
+    if (_refine_set && _u[_qp].real() < _refine)
       return REFINE;
 
-    if (_coarsen_set && _u[_qp] > _coarsen)
+    if (_coarsen_set && _u[_qp].real() > _coarsen)
       return COARSEN;
   }
 

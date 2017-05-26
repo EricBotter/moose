@@ -41,20 +41,20 @@ AverageElementSize::execute()
   _elems++;
 }
 
-Real
+Number
 AverageElementSize::computeIntegral()
 {
   return _current_elem->hmax();
 }
 
-Real
+Number
 AverageElementSize::getValue()
 {
-  Real integral = ElementIntegralPostprocessor::getValue();
+  Number integral = ElementIntegralPostprocessor::getValue();
 
   gatherSum(_elems);
 
-  return integral / _elems;
+  return integral / (double)_elems;
 }
 
 void

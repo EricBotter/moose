@@ -30,18 +30,18 @@ class ElementVectorL2Error : public ElementIntegralPostprocessor
 public:
   ElementVectorL2Error(const InputParameters & parameters);
 
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 
   Function & _funcx;
   Function & _funcy;
   Function & _funcz;
 
-  const VariableValue & _u; // FE solution in x
-  const VariableValue & _v; // FE solution in y
-  const VariableValue & _w; // FE solution in z
+  const VariableNumber & _u; // FE solution in x
+  const VariableNumber & _v; // FE solution in y
+  const VariableNumber & _w; // FE solution in z
 };
 
 #endif // ELEMENTVECTORL2ERROR_H

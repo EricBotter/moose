@@ -32,7 +32,7 @@ SideFluxIntegral::SideFluxIntegral(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 SideFluxIntegral::computeQpIntegral()
 {
   return -_diffusion_coef[_qp] * _grad_u[_qp] * _normals[_qp];

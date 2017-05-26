@@ -338,9 +338,9 @@ MultiAppProjectionTransfer::execute()
   // at those points, and send the values back.
   std::vector<Parallel::Request> send_evals(n_processors());
   std::vector<Parallel::Request> send_ids(n_processors());
-  std::vector<std::vector<Real>> outgoing_evals(n_processors());
+  std::vector<std::vector<Number>> outgoing_evals(n_processors());
   std::vector<std::vector<unsigned int>> outgoing_ids(n_processors());
-  std::vector<std::vector<Real>> incoming_evals(n_processors());
+  std::vector<std::vector<Number>> incoming_evals(n_processors());
   std::vector<std::vector<unsigned int>> incoming_app_ids(n_processors());
   for (processor_id_type i_proc = 0; i_proc < n_processors(); i_proc++)
   {
@@ -407,7 +407,7 @@ MultiAppProjectionTransfer::execute()
       _communicator.receive(i_proc, incoming_app_ids[i_proc]);
   }
 
-  std::vector<std::vector<Real>> final_evals(_to_problems.size());
+  std::vector<std::vector<Number>> final_evals(_to_problems.size());
   std::vector<std::map<dof_id_type, unsigned int>> trimmed_element_maps(_to_problems.size());
 
   for (unsigned int i_to = 0; i_to < _to_problems.size(); i_to++)
@@ -430,7 +430,7 @@ MultiAppProjectionTransfer::execute()
       fe->reinit(elem);
 
       bool element_is_evaled = false;
-      std::vector<Real> evals(qrule.n_points(), 0.);
+      std::vector<Number> evals(qrule.n_points(), 0.);
 
       for (unsigned int qp = 0; qp < qrule.n_points(); qp++)
       {
@@ -484,11 +484,11 @@ MultiAppProjectionTransfer::execute()
 
   for (unsigned int i_to = 0; i_to < _to_problems.size(); i_to++)
   {
-    _to_es[i_to]->parameters.set<std::vector<Real> *>("final_evals") = &final_evals[i_to];
+    _to_es[i_to]->parameters.set<std::vector<Number> *>("final_evals") = &final_evals[i_to];
     _to_es[i_to]->parameters.set<std::map<dof_id_type, unsigned int> *>("element_map") =
         &trimmed_element_maps[i_to];
     projectSolution(i_to);
-    _to_es[i_to]->parameters.set<std::vector<Real> *>("final_evals") = NULL;
+    _to_es[i_to]->parameters.set<std::vector<Number> *>("final_evals") = NULL;
     _to_es[i_to]->parameters.set<std::map<dof_id_type, unsigned int> *>("element_map") = NULL;
   }
 

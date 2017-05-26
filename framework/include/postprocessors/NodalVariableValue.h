@@ -40,7 +40,7 @@ public:
 
   virtual void initialize() override {}
   virtual void execute() override {}
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   MooseMesh & _mesh;

@@ -43,9 +43,9 @@ PercentChangePostprocessor::execute()
 {
 }
 
-Real
+Number
 PercentChangePostprocessor::getValue()
 {
-  return std::fabs((std::fabs(_postprocessor) - std::fabs(_postprocessor_old)) *
-                   std::pow(std::fabs(_postprocessor), -1));
+  return std::fabs((std::fabs(_postprocessor.real()) - std::fabs(_postprocessor_old.real())) *
+                   std::pow(std::fabs(_postprocessor.real()), -1));
 }

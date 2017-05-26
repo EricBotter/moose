@@ -34,7 +34,7 @@ public:
   virtual void threadJoin(const UserObject & y) override;
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 };
 
 #endif

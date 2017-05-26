@@ -66,11 +66,11 @@ Marker::MarkerValue
 ValueRangeMarker::computeQpMarker()
 {
   // Is the variable value inside the range?
-  if (_u[_qp] >= _lower_bound && _u[_qp] <= _upper_bound)
+  if (_u[_qp].real() >= _lower_bound && _u[_qp].real() <= _upper_bound)
     return _inside;
 
   // How about the buffer zone?
-  if (_u[_qp] >= _lower_bound - _buffer_size && _u[_qp] <= _upper_bound + _buffer_size)
+  if (_u[_qp].real() >= _lower_bound - _buffer_size && _u[_qp].real() <= _upper_bound + _buffer_size)
     return _third_state;
 
   // Must be outside the range

@@ -51,7 +51,7 @@ public:
   /**
    * Returns the value of the variable at the specified location
    */
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
   /**
    * Performs the necessary parallel communication as well as computes
@@ -64,7 +64,7 @@ protected:
   MooseVariable & _var;
 
   /// The value of the desired variable
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// A convenience reference to the Mesh this object operates on
   MooseMesh & _mesh;
@@ -73,7 +73,7 @@ protected:
   std::vector<Point> _point_vec;
 
   /// The value of the variable at the desired location
-  Real _value;
+  Number _value;
 
   /// The processor id that owns the element that the point is located
   processor_id_type _root_id;

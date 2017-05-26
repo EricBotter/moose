@@ -33,7 +33,7 @@ public:
 
   virtual void initialize() override;
   virtual void execute() override;
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   /// option to compute the magnitude of relative change instead of change

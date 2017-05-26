@@ -34,7 +34,7 @@ SideIntegralVariablePostprocessor::SideIntegralVariablePostprocessor(
   addMooseVariableDependency(mooseVariable());
 }
 
-Real
+Number
 SideIntegralVariablePostprocessor::computeQpIntegral()
 {
   return _u[_qp];

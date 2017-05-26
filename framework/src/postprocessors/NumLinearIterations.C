@@ -30,7 +30,7 @@ NumLinearIterations::NumLinearIterations(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 NumLinearIterations::getValue()
 {
   return _subproblem.nLinearIterations();

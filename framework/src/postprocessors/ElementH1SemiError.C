@@ -29,15 +29,15 @@ ElementH1SemiError::ElementH1SemiError(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ElementH1SemiError::getValue()
 {
   return std::sqrt(ElementIntegralVariablePostprocessor::getValue());
 }
 
-Real
+Number
 ElementH1SemiError::computeQpIntegral()
 {
-  RealGradient diff = _grad_u[_qp] - _func.gradient(_t, _q_point[_qp]);
+  Gradient diff = _grad_u[_qp] - _func.gradient(_t, _q_point[_qp]);
   return diff * diff;
 }

@@ -36,7 +36,7 @@ public:
   UserForcingFunctionNodalKernel(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
   Function & _func;
 };

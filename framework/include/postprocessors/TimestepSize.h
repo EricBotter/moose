@@ -34,7 +34,7 @@ public:
   /**
    * This will return the current time step size.
    */
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   FEProblemBase & _feproblem;

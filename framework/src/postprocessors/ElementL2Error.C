@@ -29,15 +29,15 @@ ElementL2Error::ElementL2Error(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ElementL2Error::getValue()
 {
   return std::sqrt(ElementIntegralPostprocessor::getValue());
 }
 
-Real
+Number
 ElementL2Error::computeQpIntegral()
 {
-  Real diff = _u[_qp] - _func.value(_t, _q_point[_qp]);
+  Number diff = _u[_qp] - _func.value(_t, _q_point[_qp]);
   return diff * diff;
 }

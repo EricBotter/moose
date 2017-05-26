@@ -40,16 +40,16 @@ ElementVectorL2Error::ElementVectorL2Error(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ElementVectorL2Error::getValue()
 {
   return std::sqrt(ElementIntegralPostprocessor::getValue());
 }
 
-Real
+Number
 ElementVectorL2Error::computeQpIntegral()
 {
-  RealVectorValue sol_val(0.0, 0.0, 0.0);
+  NumberVectorValue sol_val(0.0, 0.0, 0.0);
   RealVectorValue func_val(0.0, 0.0, 0.0);
 
   sol_val(0) = _u[_qp];                          // required variable

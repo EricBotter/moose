@@ -37,7 +37,7 @@ protected:
   /**
    * Evaluate the function at the current quadrature point and timestep.
    */
-  Real f();
+  Number f();
 
   virtual Number computeQpResidual() override;
 

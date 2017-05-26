@@ -33,12 +33,12 @@ public:
 
   virtual void initialize() override;
   virtual void execute() override;
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
   void threadJoin(const UserObject & y) override;
 
 protected:
-  Real _sum;
+  Number _sum;
 };
 
 #endif // NODALSUM_H

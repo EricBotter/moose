@@ -45,7 +45,7 @@ ScalarVariable::execute()
 {
 }
 
-Real
+Number
 ScalarVariable::getValue()
 {
   _var.reinit();

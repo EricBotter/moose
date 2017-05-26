@@ -81,14 +81,14 @@ FunctionParserUtils::evaluate(ADFunctionPtr & parser)
     return 0.0;
 
   // evaluate expression
-  Real result = parser->Eval(&_func_params[0]);
+  Number result = parser->Eval(&_func_params[0]);
 
   // fetch fparser evaluation error
   int error_code = parser->EvalError();
 
   // no error
   if (error_code == 0)
-    return result;
+    return result.real();
 
   // hard fail or return not a number
   if (_fail_on_evalerror)
@@ -130,7 +130,7 @@ FunctionParserUtils::addFParserConstants(ADFunctionPtr & parser,
                  "\n in parsed function object.\n",
                  expression->ErrorMsg());
 
-    constant_values[i] = expression->Eval(NULL);
+    constant_values[i] = expression->Eval(NULL).real();
 
     if (!parser->AddConstant(constant_names[i], constant_values[i]))
       mooseError("Invalid constant name in parsed function object");

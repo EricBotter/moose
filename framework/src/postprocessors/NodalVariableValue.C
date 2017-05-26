@@ -57,10 +57,10 @@ NodalVariableValue::NodalVariableValue(const InputParameters & parameters)
                "' not found in the mesh!");
 }
 
-Real
+Number
 NodalVariableValue::getValue()
 {
-  Real value = 0;
+  Number value = 0;
 
   if (_node_ptr && _node_ptr->processor_id() == processor_id())
     value = _subproblem.getVariable(_tid, _var_name).getNodalValue(*_node_ptr);

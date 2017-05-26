@@ -27,15 +27,15 @@ ElementL2Norm::ElementL2Norm(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ElementL2Norm::getValue()
 {
   return std::sqrt(ElementIntegralVariablePostprocessor::getValue());
 }
 
-Real
+Number
 ElementL2Norm::computeQpIntegral()
 {
-  Real val = _u[_qp];
+  Number val = _u[_qp];
   return val * val;
 }

@@ -37,7 +37,7 @@ NodalProxyMaxValue::initialize()
   _value = -std::numeric_limits<Real>::max();
 }
 
-Real
+Number
 NodalProxyMaxValue::computeValue()
 {
   return _u[_qp];
@@ -46,19 +46,20 @@ NodalProxyMaxValue::computeValue()
 void
 NodalProxyMaxValue::execute()
 {
-  Real val = computeValue();
+  Number val = computeValue();
 
-  if (val > _value)
+  if (val.real() > _value.real())
   {
     _value = val;
     _node_id = _current_node->id();
   }
 }
 
-Real
+Number
 NodalProxyMaxValue::getValue()
 {
-  gatherProxyValueMax(_value, _node_id);
+  Real r = _value.real(); //FIXME - this is NOT going to work
+  gatherProxyValueMax(r, _node_id);
   return _node_id;
 }
 
@@ -66,7 +67,7 @@ void
 NodalProxyMaxValue::threadJoin(const UserObject & y)
 {
   const NodalProxyMaxValue & pps = static_cast<const NodalProxyMaxValue &>(y);
-  if (pps._value > _value)
+  if (pps._value.real() > _value.real())
   {
     _value = pps._value;
     _node_id = pps._node_id;

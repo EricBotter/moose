@@ -71,7 +71,7 @@
 /**
  * MOOSE typedefs
  */
-typedef Real PostprocessorValue;
+typedef Number PostprocessorValue;
 typedef std::vector<Real> VectorPostprocessorValue;
 typedef boundary_id_type BoundaryID;
 typedef unsigned int InterfaceID;

@@ -39,7 +39,7 @@ public:
   FunctionParserUtils(const InputParameters & parameters);
 
   /// Shorthand for an autodiff function parser object.
-  typedef FunctionParserADBase<Real> ADFunction;
+  typedef FunctionParserADBase<Number> ADFunction;
 
   /// Shorthand for an smart pointer to an autodiff function parser object.
   typedef std::shared_ptr<ADFunction> ADFunctionPtr;

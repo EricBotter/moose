@@ -34,7 +34,7 @@ AreaPostprocessor::threadJoin(const UserObject & y)
   _integral_value += pps._integral_value;
 }
 
-Real
+Number
 AreaPostprocessor::computeQpIntegral()
 {
   return 1.0;

@@ -150,7 +150,7 @@ TableOutput::outputScalarVariables()
     // Make sure the value of the variable is in sync with the solution vector
     scalar_var.reinit();
 
-    VariableValue & value = scalar_var.sln();
+    VariableNumber & value = scalar_var.sln();
 
     unsigned int n = value.size();
 

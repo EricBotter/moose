@@ -98,6 +98,6 @@ PiecewiseLinearInterpolationMaterial::PiecewiseLinearInterpolationMaterial(
 void
 PiecewiseLinearInterpolationMaterial::computeQpProperties()
 {
-  (*_property)[_qp] = _scale_factor * _linear_interp->sample(_coupled_var[_qp]);
-  (*_dproperty)[_qp] = _scale_factor * _linear_interp->sampleDerivative(_coupled_var[_qp]);
+  (*_property)[_qp] = _scale_factor * _linear_interp->sample(_coupled_var[_qp].real());
+  (*_dproperty)[_qp] = _scale_factor * _linear_interp->sampleDerivative(_coupled_var[_qp].real());
 }

@@ -43,13 +43,13 @@ AverageNodalVariableValue::execute()
   _n++;
 }
 
-Real
+Number
 AverageNodalVariableValue::getValue()
 {
   gatherSum(_avg);
   gatherSum(_n);
 
-  return _avg / _n;
+  return _avg / (double)_n;
 }
 
 void

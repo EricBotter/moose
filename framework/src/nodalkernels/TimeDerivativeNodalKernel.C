@@ -27,13 +27,13 @@ TimeDerivativeNodalKernel::TimeDerivativeNodalKernel(const InputParameters & par
 {
 }
 
-Real
+Number
 TimeDerivativeNodalKernel::computeQpResidual()
 {
   return _u_dot[_qp];
 }
 
-Real
+Number
 TimeDerivativeNodalKernel::computeQpJacobian()
 {
   return _du_dot_du[_qp];

@@ -27,7 +27,7 @@ validParams<NumNodes>()
 
 NumNodes::NumNodes(const InputParameters & parameters) : GeneralPostprocessor(parameters) {}
 
-Real
+Number
 NumNodes::getValue()
 {
   return _subproblem.mesh().nNodes();

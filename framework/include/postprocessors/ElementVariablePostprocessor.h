@@ -36,13 +36,13 @@ protected:
   virtual void computeQpValue() = 0;
 
   /// Holds the solution at current quadrature points
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// Holds the solution gradient at the current quadrature points
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
 
   /// Holds the solution derivative at the current quadrature points
-  const VariableValue & _u_dot;
+  const VariableNumber & _u_dot;
 
   /// The current quadrature point
   unsigned int _qp;

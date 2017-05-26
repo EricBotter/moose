@@ -247,7 +247,7 @@ MultiAppNearestNodeTransfer::execute()
   // requested that point.
   ////////////////////
 
-  std::vector<std::vector<Real>> incoming_evals(n_processors());
+  std::vector<std::vector<Number>> incoming_evals(n_processors());
   std::vector<Parallel::Request> send_qps(n_processors());
   std::vector<Parallel::Request> send_evals(n_processors());
 
@@ -294,7 +294,7 @@ MultiAppNearestNodeTransfer::execute()
         _cached_dof_ids[i_proc].resize(incoming_qps.size());
       }
 
-      std::vector<Real> & outgoing_evals = processor_outgoing_evals[i_proc];
+      std::vector<Number> & outgoing_evals = processor_outgoing_evals[i_proc];
       outgoing_evals.resize(2 * incoming_qps.size());
 
       for (unsigned int qp = 0; qp < incoming_qps.size(); qp++)
@@ -313,7 +313,7 @@ MultiAppNearestNodeTransfer::execute()
           {
             Real current_distance =
                 (qpt - *(local_nodes[i_local_from][i_node]) - _from_positions[i_local_from]).norm();
-            if (current_distance < outgoing_evals[2 * qp])
+            if (current_distance < outgoing_evals[2 * qp].real())
             {
               // Assuming LAGRANGE!
               if (local_nodes[i_local_from][i_node]->n_dofs(from_sys_num, from_var_num) > 0)
@@ -347,7 +347,7 @@ MultiAppNearestNodeTransfer::execute()
   {
     for (processor_id_type i_proc = 0; i_proc < n_processors(); i_proc++)
     {
-      std::vector<Real> & outgoing_evals = processor_outgoing_evals[i_proc];
+      std::vector<Number> & outgoing_evals = processor_outgoing_evals[i_proc];
       outgoing_evals.resize(_cached_froms[i_proc].size());
 
       for (unsigned int qp = 0; qp < outgoing_evals.size(); qp++)
@@ -388,7 +388,7 @@ MultiAppNearestNodeTransfer::execute()
     unsigned int sys_num = to_sys->number();
     unsigned int var_num = to_sys->variable_number(_to_var_name);
 
-    NumericVector<Real> * solution = nullptr;
+    NumericVector<Number> * solution = nullptr;
     switch (_direction)
     {
       case TO_MULTIAPP:
@@ -435,17 +435,17 @@ MultiAppNearestNodeTransfer::execute()
         if (node->n_dofs(sys_num, var_num) < 1)
           continue;
 
-        Real best_val = 0;
+        Number best_val = 0;
         if (!_neighbors_cached)
         {
-          Real min_dist = std::numeric_limits<Real>::max();
+          Number min_dist = std::numeric_limits<Real>::max();
           for (unsigned int i_from = 0; i_from < incoming_evals.size(); i_from++)
           {
             std::pair<unsigned int, unsigned int> key(i_to, node->id());
             if (node_index_map[i_from].find(key) == node_index_map[i_from].end())
               continue;
             unsigned int qp_ind = node_index_map[i_from][key];
-            if (incoming_evals[i_from][2 * qp_ind] >= min_dist)
+            if (incoming_evals[i_from][2 * qp_ind].real() >= min_dist.real())
               continue;
             min_dist = incoming_evals[i_from][2 * qp_ind];
             best_val = incoming_evals[i_from][2 * qp_ind + 1];
@@ -481,17 +481,17 @@ MultiAppNearestNodeTransfer::execute()
         if (elem->n_dofs(sys_num, var_num) < 1)
           continue;
 
-        Real best_val = 0;
+        Number best_val = 0;
         if (!_neighbors_cached)
         {
-          Real min_dist = std::numeric_limits<Real>::max();
+          Number min_dist = std::numeric_limits<Real>::max();
           for (unsigned int i_from = 0; i_from < incoming_evals.size(); i_from++)
           {
             std::pair<unsigned int, unsigned int> key(i_to, elem->id());
             if (node_index_map[i_from].find(key) == node_index_map[i_from].end())
               continue;
             unsigned int qp_ind = node_index_map[i_from][key];
-            if (incoming_evals[i_from][2 * qp_ind] >= min_dist)
+            if (incoming_evals[i_from][2 * qp_ind].real() >= min_dist.real())
               continue;
             min_dist = incoming_evals[i_from][2 * qp_ind];
             best_val = incoming_evals[i_from][2 * qp_ind + 1];

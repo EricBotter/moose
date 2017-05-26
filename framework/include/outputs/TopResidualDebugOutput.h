@@ -35,14 +35,14 @@ struct TopResidualDebugOutputTopResidualData
 {
   unsigned int _var;
   dof_id_type _nd;
-  Real _residual;
+  Number _residual;
   bool _is_scalar;
 
   TopResidualDebugOutputTopResidualData() : _var(0), _nd(0), _residual(0.), _is_scalar(false) {}
 
   TopResidualDebugOutputTopResidualData(unsigned int var,
                                         dof_id_type nd,
-                                        Real residual,
+										Number residual,
                                         bool is_scalar = false)
     : _var(var), _nd(nd), _residual(residual), _is_scalar(is_scalar)
   {
@@ -83,7 +83,7 @@ protected:
   static bool sortTopResidualData(TopResidualDebugOutputTopResidualData i,
                                   TopResidualDebugOutputTopResidualData j)
   {
-    return (fabs(i._residual) > fabs(j._residual));
+    return (fabs(i._residual.real()) > fabs(j._residual.real()));
   }
 
   /// Number of residuals to display

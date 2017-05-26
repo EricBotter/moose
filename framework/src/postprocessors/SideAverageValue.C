@@ -41,10 +41,10 @@ SideAverageValue::execute()
   _volume += volume();
 }
 
-Real
+Number
 SideAverageValue::getValue()
 {
-  Real integral = SideIntegralVariablePostprocessor::getValue();
+  Number integral = SideIntegralVariablePostprocessor::getValue();
   gatherSum(_volume);
   return integral / _volume;
 }

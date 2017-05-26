@@ -36,16 +36,16 @@ public:
 
   virtual void initialize() override;
   virtual void execute() override;
-  virtual Real getValue() override;
+  virtual Number getValue() override;
   virtual void threadJoin(const UserObject & y) override;
 
 protected:
-  virtual Real computeQpIntegral() = 0;
-  virtual Real computeIntegral();
+  virtual Number computeQpIntegral() = 0;
+  virtual Number computeIntegral();
 
   unsigned int _qp;
 
-  Real _integral_value;
+  Number _integral_value;
 };
 
 #endif

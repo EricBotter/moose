@@ -29,7 +29,7 @@ NumAdaptivityCycles::NumAdaptivityCycles(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 NumAdaptivityCycles::getValue()
 {
   return _fe_problem.getNumCyclesCompleted();

@@ -30,7 +30,7 @@ UserForcingFunctionNodalKernel::UserForcingFunctionNodalKernel(const InputParame
 {
 }
 
-Real
+Number
 UserForcingFunctionNodalKernel::computeQpResidual()
 {
   return -_func.value(_t, (*_current_node));

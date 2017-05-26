@@ -44,8 +44,8 @@ public:
   virtual Real getValue();
 
 protected:
-  virtual Real computeQpIntegral() = 0;
-  virtual Real computeIntegral();
+  virtual Number computeQpIntegral() = 0;
+  virtual Number computeIntegral();
 
   unsigned int _qp;
 

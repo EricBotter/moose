@@ -32,7 +32,7 @@ public:
 
   virtual void execute() override {}
 
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   MooseEnum _system;

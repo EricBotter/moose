@@ -46,11 +46,11 @@ ScalarL2Error::execute()
 {
 }
 
-Real
+Number
 ScalarL2Error::getValue()
 {
   _var.reinit();
   Point p;
-  Real diff = (_var.sln()[0] - _func.value(_t, p));
+  Number diff = (_var.sln()[0] - _func.value(_t, p));
   return std::sqrt(diff * diff);
 }

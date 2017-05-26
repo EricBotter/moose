@@ -42,10 +42,10 @@ ElementAverageValue::execute()
   _volume += _current_elem_volume;
 }
 
-Real
+Number
 ElementAverageValue::getValue()
 {
-  Real integral = ElementIntegralVariablePostprocessor::getValue();
+  Number integral = ElementIntegralVariablePostprocessor::getValue();
 
   gatherSum(_volume);
 

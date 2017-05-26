@@ -39,11 +39,11 @@ NodalL2Error::initialize()
 void
 NodalL2Error::execute()
 {
-  Real diff = _u[0] - _func.value(_t, *_current_node);
+  Number diff = _u[0] - _func.value(_t, *_current_node);
   _integral_value += diff * diff;
 }
 
-Real
+Number
 NodalL2Error::getValue()
 {
   gatherSum(_integral_value);

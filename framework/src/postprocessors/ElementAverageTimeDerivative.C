@@ -27,7 +27,7 @@ ElementAverageTimeDerivative::ElementAverageTimeDerivative(const InputParameters
 {
 }
 
-Real
+Number
 ElementAverageTimeDerivative::computeQpIntegral()
 {
   return _u_dot[_qp];

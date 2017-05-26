@@ -102,7 +102,7 @@ private:
   std::vector<unsigned int> _pp_index;
 
   /// Vector of pointers to PP values
-  std::vector<const Real *> _pp_vals;
+  std::vector<const Number *> _pp_vals;
 
   /// Stores the relative location of variables (in _vars) that are connected to Scalar Variables
   std::vector<unsigned int> _scalar_index;

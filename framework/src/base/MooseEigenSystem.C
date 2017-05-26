@@ -104,7 +104,7 @@ MooseEigenSystem::scaleSystemSolution(SYSTEMTAG tag, Real scaling_factor)
 }
 
 void
-MooseEigenSystem::combineSystemSolution(SYSTEMTAG tag, const std::vector<Real> & coefficients)
+MooseEigenSystem::combineSystemSolution(SYSTEMTAG tag, const std::vector<Number> & coefficients)
 {
   mooseAssert(coefficients.size() > 0 && coefficients.size() <= 3, "Size error on coefficients");
   if (tag == ALL)

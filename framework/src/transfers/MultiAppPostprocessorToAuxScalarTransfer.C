@@ -61,7 +61,7 @@ MultiAppPostprocessorToAuxScalarTransfer::execute()
     {
       // Extract the postprocessor that is being transferd
       FEProblemBase & from_problem = _multi_app->problemBase();
-      Real pp_value = from_problem.getPostprocessorValue(_from_pp_name);
+      Number pp_value = from_problem.getPostprocessorValue(_from_pp_name);
 
       // Loop through each of the sub apps
       for (unsigned int i = 0; i < _multi_app->numGlobalApps(); i++)

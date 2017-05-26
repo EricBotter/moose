@@ -40,10 +40,10 @@ ElementalVariableValue::ElementalVariableValue(const InputParameters & parameter
   _mesh.errorIfDistributedMesh("ElementalVariableValue");
 }
 
-Real
+Number
 ElementalVariableValue::getValue()
 {
-  Real value = 0;
+  Number value = 0;
 
   if (_element && (_element->processor_id() == processor_id()))
   {
@@ -51,7 +51,7 @@ ElementalVariableValue::getValue()
     _subproblem.reinitElem(_element, _tid);
 
     MooseVariable & var = _subproblem.getVariable(_tid, _var_name);
-    const VariableValue & u = var.sln();
+    const VariableNumber & u = var.sln();
     unsigned int n = u.size();
     for (unsigned int i = 0; i < n; i++)
       value += u[i];

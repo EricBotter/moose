@@ -434,7 +434,7 @@ MultiApp::appUserObjectBase(unsigned int app, const std::string & name)
   return appProblemBase(app).getUserObjectBase(name);
 }
 
-Real
+Number
 MultiApp::appPostprocessorValue(unsigned int app, const std::string & name)
 {
   if (!_has_an_app)

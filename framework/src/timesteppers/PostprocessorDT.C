@@ -50,5 +50,5 @@ PostprocessorDT::computeInitialDT()
 Real
 PostprocessorDT::computeDT()
 {
-  return _scale * _pps_value + _factor;
+  return _scale * _pps_value.real() + _factor;
 }

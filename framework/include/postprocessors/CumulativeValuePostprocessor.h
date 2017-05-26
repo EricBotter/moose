@@ -35,11 +35,11 @@ public:
 
   virtual void initialize() override;
   virtual void execute() override;
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   /// cumulative sum of the post-processor value
-  Real _sum;
+  Number _sum;
 
   /// cumulative sum of the post-processor value from the old time step */
   const PostprocessorValue & _sum_old;

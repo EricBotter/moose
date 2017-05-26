@@ -39,10 +39,10 @@ NodalMaxValue::initialize()
 void
 NodalMaxValue::execute()
 {
-  _value = std::max(_value, _u[_qp]);
+  _value = std::max(_value, _u[_qp].real());
 }
 
-Real
+Number
 NodalMaxValue::getValue()
 {
   gatherMax(_value);

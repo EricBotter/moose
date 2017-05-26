@@ -31,13 +31,13 @@ class ElementL2Difference : public ElementIntegralVariablePostprocessor
 public:
   ElementL2Difference(const InputParameters & parameters);
 
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 
   /// The variable to compare to
-  const VariableValue & _other_var;
+  const VariableNumber & _other_var;
 };
 
 #endif // ELEMENTL2DIFFERENCE_H

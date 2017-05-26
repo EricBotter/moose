@@ -63,7 +63,7 @@ protected:
    * A pointer to the eigenvalue that is stored in a postprocessor
    * This is a pointer so that the method for retrieval (old vs current) may be changed.
    */
-  const Real * _eigenvalue;
+  const Number * _eigenvalue;
 };
 
 #endif // EIGENKERNEL_H

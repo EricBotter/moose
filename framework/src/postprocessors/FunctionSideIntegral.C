@@ -39,7 +39,7 @@ FunctionSideIntegral::threadJoin(const UserObject & y)
   _integral_value += pps._integral_value;
 }
 
-Real
+Number
 FunctionSideIntegral::computeQpIntegral()
 {
   return _func.value(_t, _q_point[_qp]);

@@ -30,7 +30,7 @@ RelativeSolutionDifferenceNorm::RelativeSolutionDifferenceNorm(const InputParame
     mooseError("RelativeSolutionDifferenceNorm postprocessor is only for transient calculations");
 }
 
-Real
+Number
 RelativeSolutionDifferenceNorm::getValue()
 {
   return _trex->relativeSolutionDifferenceNorm();

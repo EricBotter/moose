@@ -58,12 +58,12 @@ public:
   /**
    * Method for adding data to the output table.  The dependent variable is named "time"
    */
-  void addData(const std::string & name, Real value, Real time);
+  void addData(const std::string & name, Number value, Real time);
 
   /**
    * Retrieve Data for last value of given name
    */
-  Real & getLastData(const std::string & name);
+  Number & getLastData(const std::string & name);
 
   void clear();
 
@@ -72,7 +72,7 @@ public:
    */
   void outputTimeColumn(bool output_time) { _output_time = output_time; }
 
-  const std::map<Real, std::map<std::string, Real>> & getData() const { return _data; }
+  const std::map<Real, std::map<std::string, Number>> & getData() const { return _data; }
 
   /**
    * Methods for dumping the table to the stream - either by filename or by stream handle.  If
@@ -149,7 +149,7 @@ protected:
    * The first map creates an association from the independent variable (normally time)
    * to a map of dependent variables and their associated values if they exist
    */
-  std::map<Real, std::map<std::string, Real>> _data;
+  std::map<Real, std::map<std::string, Number>> _data;
 
   /// The set of column names updated when data is inserted through the setter methods
   std::vector<std::string> _column_names;

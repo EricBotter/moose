@@ -29,7 +29,7 @@ FunctionDirichletBC::FunctionDirichletBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 FunctionDirichletBC::f()
 {
   return _func.value(_t, *_current_node);

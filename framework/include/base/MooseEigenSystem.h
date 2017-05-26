@@ -66,7 +66,7 @@ public:
    * @param tag System tag.
    * @param coefficients Coefficients for current, old and older solutions.
    */
-  void combineSystemSolution(SYSTEMTAG tag, const std::vector<Real> & coefficients);
+  void combineSystemSolution(SYSTEMTAG tag, const std::vector<Number> & coefficients);
 
   /**
    * Initialize the solution vector with a constant value

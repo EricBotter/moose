@@ -187,14 +187,14 @@ Executioner::lastSolveConverged()
 
 void
 Executioner::addAttributeReporter(const std::string & name,
-                                  Real & attribute,
+								  Number & attribute,
                                   const std::string execute_on)
 {
   FEProblemBase * problem = parameters().getCheckedPointerParam<FEProblemBase *>(
       "_fe_problem_base",
       "Failed to retrieve FEProblemBase when adding a attribute reporter in Executioner");
   InputParameters params = _app.getFactory().getValidParams("ExecutionerAttributeReporter");
-  params.set<Real *>("value") = &attribute;
+  params.set<Number *>("value") = &attribute;
   if (!execute_on.empty())
     params.set<MultiMooseEnum>("execute_on") = execute_on;
   problem->addPostprocessor("ExecutionerAttributeReporter", name, params);

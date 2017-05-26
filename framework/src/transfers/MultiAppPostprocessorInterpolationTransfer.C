@@ -120,7 +120,7 @@ MultiAppPostprocessorInterpolationTransfer::execute()
         unsigned int sys_num = to_sys->number();
         unsigned int var_num = to_sys->variable_number(_to_var_name);
 
-        NumericVector<Real> & solution = *to_sys->solution;
+        NumericVector<Number> & solution = *to_sys->solution;
 
         MooseMesh & mesh = _multi_app->problemBase().mesh();
 
@@ -145,7 +145,7 @@ MultiAppPostprocessorInterpolationTransfer::execute()
 
             idi->interpolate_field_data(vars, pts, vals);
 
-            Real value = vals.front();
+            Number value = vals.front();
 
             // The zero only works for LAGRANGE!
             dof_id_type dof = node->dof_number(sys_num, var_num, 0);

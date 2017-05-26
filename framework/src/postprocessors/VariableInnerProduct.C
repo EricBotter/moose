@@ -30,7 +30,7 @@ VariableInnerProduct::VariableInnerProduct(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 VariableInnerProduct::computeQpIntegral()
 {
   return _u[_qp] * _v[_qp];

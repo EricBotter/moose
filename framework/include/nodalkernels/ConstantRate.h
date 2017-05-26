@@ -35,9 +35,9 @@ public:
   ConstantRate(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
+  virtual Number computeQpResidual() override;
 
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpJacobian() override;
 
   /// The rate
   Real _rate;

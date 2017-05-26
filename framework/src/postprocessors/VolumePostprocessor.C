@@ -34,7 +34,7 @@ VolumePostprocessor::threadJoin(const UserObject & y)
   _integral_value += pps._integral_value;
 }
 
-Real
+Number
 VolumePostprocessor::computeQpIntegral()
 {
   return 1.0;

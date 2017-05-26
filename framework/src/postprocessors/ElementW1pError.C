@@ -32,17 +32,17 @@ ElementW1pError::ElementW1pError(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ElementW1pError::getValue()
 {
   return std::pow(ElementIntegralPostprocessor::getValue(), 1. / _p);
 }
 
-Real
+Number
 ElementW1pError::computeQpIntegral()
 {
-  RealGradient graddiff = _grad_u[_qp] - _func.gradient(_t, _q_point[_qp]);
-  Real funcdiff = _u[_qp] - _func.value(_t, _q_point[_qp]);
+  Gradient graddiff = _grad_u[_qp] - _func.gradient(_t, _q_point[_qp]);
+  Number funcdiff = _u[_qp] - _func.value(_t, _q_point[_qp]);
 
   // Raise the absolute function value difference to the pth power
   Real val = std::pow(std::abs(funcdiff), _p);

@@ -39,7 +39,7 @@ SideIntegralUserObject::initialize()
 void
 SideIntegralUserObject::execute()
 {
-  _integral_value += computeIntegral();
+  _integral_value += computeIntegral().real();
 }
 
 Real
@@ -56,10 +56,10 @@ SideIntegralUserObject::threadJoin(const UserObject & y)
   _integral_value += pps._integral_value;
 }
 
-Real
+Number
 SideIntegralUserObject::computeIntegral()
 {
-  Real sum = 0;
+  Number sum = 0;
   for (_qp = 0; _qp < _qrule->n_points(); _qp++)
     sum += _JxW[_qp] * _coord[_qp] * computeQpIntegral();
   return sum;

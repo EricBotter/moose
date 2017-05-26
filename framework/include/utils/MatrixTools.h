@@ -21,7 +21,7 @@ namespace MatrixTools
  * @ return if zero then the inversion was successful.  Otherwise m was not square, contained
  * illegal entries or was singular
  */
-void inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Real>> & m_inv);
+void inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Number>> & m_inv);
 
 /**
  * Inverts the dense "matrix" A using LAPACK routines

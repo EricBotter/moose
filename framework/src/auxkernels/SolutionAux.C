@@ -81,7 +81,7 @@ Number
 SolutionAux::computeValue()
 {
   // The value to output
-  Real output;
+  Number output;
 
   // _direct=true, extract the values using the dof
   if (_direct)

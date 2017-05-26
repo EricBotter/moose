@@ -28,7 +28,7 @@ ElementIntegralMaterialProperty::ElementIntegralMaterialProperty(const InputPara
 {
 }
 
-Real
+Number
 ElementIntegralMaterialProperty::computeQpIntegral()
 {
   return _scalar[_qp];

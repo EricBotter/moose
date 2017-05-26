@@ -33,7 +33,7 @@ RunTime::RunTime(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 RunTime::getValue()
 {
   switch (_time_type)

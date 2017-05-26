@@ -34,7 +34,7 @@ public:
   /**
    * This will return the number of nodes in the system
    */
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 };
 
 #endif // NUMNODES_H

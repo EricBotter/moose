@@ -218,7 +218,7 @@ MultiAppTransfer::getFromsPerProc()
   return froms_per_proc;
 }
 
-NumericVector<Real> &
+NumericVector<Number> &
 MultiAppTransfer::getTransferVector(unsigned int i_local, std::string var_name)
 {
   mooseAssert(_direction == TO_MULTIAPP, "getTransferVector only works for transfers to multiapps");

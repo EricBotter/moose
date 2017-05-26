@@ -68,9 +68,9 @@ FindValueOnLine::execute()
 {
   Real s;
   Real s_left = 0.0;
-  Real left = getValueAtPoint(_start_point);
+  Real left = getValueAtPoint(_start_point).real();
   Real s_right = 1.0;
-  Real right = getValueAtPoint(_end_point);
+  Real right = getValueAtPoint(_end_point).real();
 
   /**
    * Here we determine the direction of the solution. i.e. the left might be the high value
@@ -100,7 +100,7 @@ FindValueOnLine::execute()
     Point p = s * (_end_point - _start_point) + _start_point;
 
     // sample value
-    value = getValueAtPoint(p);
+    value = getValueAtPoint(p).real();
 
     // have we hit the target value yet?
     if (MooseUtils::absoluteFuzzyEqual(value, _target, _tol))
@@ -129,7 +129,7 @@ FindValueOnLine::execute()
   _position = s * _length;
 }
 
-Real
+Number
 FindValueOnLine::getValueAtPoint(const Point & p)
 {
   const Elem * elem = (*_pl)(p);
@@ -144,7 +144,7 @@ FindValueOnLine::getValueAtPoint(const Point & p)
                "stays inside the mesh completely.");
   }
 
-  Real value = 0;
+  Number value = 0;
 
   if (elem)
   {

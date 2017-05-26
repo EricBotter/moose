@@ -42,7 +42,7 @@ public:
   ElementExtremeValue(const InputParameters & parameters);
 
   virtual void initialize() override;
-  virtual Real getValue() override;
+  virtual Number getValue() override;
   virtual void threadJoin(const UserObject & y) override;
 
 protected:

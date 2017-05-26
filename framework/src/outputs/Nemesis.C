@@ -105,7 +105,7 @@ Nemesis::outputScalarVariables()
   // Append the scalar to the global output lists
   for (const auto & out_name : out)
   {
-    VariableValue & variable = _problem_ptr->getScalarVariable(0, out_name).sln();
+    VariableNumber & variable = _problem_ptr->getScalarVariable(0, out_name).sln();
     unsigned int n = variable.size();
 
     // If the scalar has a single component, output the name directly

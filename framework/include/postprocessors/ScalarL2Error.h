@@ -41,7 +41,7 @@ public:
   /**
    * Get the L2 Error.
    */
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   MooseVariableScalar & _var;

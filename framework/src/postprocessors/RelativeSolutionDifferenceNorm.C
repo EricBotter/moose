@@ -28,7 +28,7 @@ RelativeSolutionDifferenceNorm::RelativeSolutionDifferenceNorm(const InputParame
 {
 }
 
-Real
+Number
 RelativeSolutionDifferenceNorm::getValue()
 {
   return _fe_problem.relativeSolutionDifferenceNorm();

@@ -34,18 +34,18 @@ public:
 
   virtual void initialize() override;
   virtual void execute() override;
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
   /**
    * The method called to compute the value that will be returned
    * by the proxy value.
    */
-  virtual Real computeValue();
+  virtual Number computeValue();
 
   void threadJoin(const UserObject & y) override;
 
 protected:
-  Real _value;
+  Number _value;
   dof_id_type _node_id;
 };
 

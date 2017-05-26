@@ -32,7 +32,7 @@ public:
   ElementAverageTimeDerivative(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 };
 
 #endif

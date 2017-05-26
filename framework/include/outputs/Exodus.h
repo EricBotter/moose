@@ -115,7 +115,7 @@ protected:
   std::unique_ptr<ExodusII_IO> _exodus_io_ptr;
 
   /// Storage for scalar values (postprocessors and scalar AuxVariables)
-  std::vector<Real> _global_values;
+  std::vector<Number> _global_values;
 
   /// Storage for names of the above scalar values
   std::vector<std::string> _global_names;

@@ -1360,7 +1360,7 @@ Assembly::cacheResidual()
 }
 
 void
-Assembly::cacheResidualContribution(dof_id_type dof, Real value, Moose::KernelType type)
+Assembly::cacheResidualContribution(dof_id_type dof, Number value, Moose::KernelType type)
 {
   _cached_residual_values[type].push_back(value);
   _cached_residual_rows[type].push_back(dof);
@@ -1864,7 +1864,7 @@ Assembly::addJacobianOffDiagScalar(SparseMatrix<Number> & jacobian, unsigned int
 }
 
 void
-Assembly::cacheJacobianContribution(numeric_index_type i, numeric_index_type j, Real value)
+Assembly::cacheJacobianContribution(numeric_index_type i, numeric_index_type j, Number value)
 {
   _cached_jacobian_contribution_rows.push_back(i);
   _cached_jacobian_contribution_cols.push_back(j);

@@ -81,11 +81,11 @@ TimeExtremeValue::execute()
   switch (_type)
   {
     case MAX:
-      _value = std::max(_value, _postprocessor);
+      _value = std::max(_value, _postprocessor.real());
       break;
 
     case MIN:
-      _value = std::min(_value, _postprocessor);
+      _value = std::min(_value, _postprocessor.real());
       break;
 
     case ABS_MAX:
@@ -101,7 +101,7 @@ TimeExtremeValue::execute()
   }
 }
 
-Real
+Number
 TimeExtremeValue::getValue()
 {
   return _value;

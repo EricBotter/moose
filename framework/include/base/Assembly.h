@@ -419,7 +419,7 @@ public:
    * @param value The value of the residual contribution.
    * @param type Whether the contribution should go to the Time or Non-Time residual
    */
-  void cacheResidualContribution(dof_id_type dof, Real value, Moose::KernelType type);
+  void cacheResidualContribution(dof_id_type dof, Number value, Moose::KernelType type);
 
   /**
    * Lets an external class cache residual at a set of nodes
@@ -567,7 +567,7 @@ public:
    * dof_id_type) since that is what the SparseMatrix interface uses,
    * but at the time of this writing, those two types are equivalent.
    */
-  void cacheJacobianContribution(numeric_index_type i, numeric_index_type j, Real value);
+  void cacheJacobianContribution(numeric_index_type i, numeric_index_type j, Number value);
 
   /**
    * Sets previously-cached Jacobian values via SparseMatrix::set() calls.
@@ -912,7 +912,7 @@ protected:
   /**
    * Storage for cached Jacobian entries
    */
-  std::vector<Real> _cached_jacobian_contribution_vals;
+  std::vector<Number> _cached_jacobian_contribution_vals;
   std::vector<numeric_index_type> _cached_jacobian_contribution_rows;
   std::vector<numeric_index_type> _cached_jacobian_contribution_cols;
 };

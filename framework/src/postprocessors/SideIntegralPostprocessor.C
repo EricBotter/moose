@@ -42,7 +42,7 @@ SideIntegralPostprocessor::execute()
   _integral_value += computeIntegral();
 }
 
-Real
+Number
 SideIntegralPostprocessor::getValue()
 {
   gatherSum(_integral_value);
@@ -56,10 +56,10 @@ SideIntegralPostprocessor::threadJoin(const UserObject & y)
   _integral_value += pps._integral_value;
 }
 
-Real
+Number
 SideIntegralPostprocessor::computeIntegral()
 {
-  Real sum = 0;
+  Number sum = 0;
   for (_qp = 0; _qp < _qrule->n_points(); _qp++)
     sum += _JxW[_qp] * _coord[_qp] * computeQpIntegral();
   return sum;

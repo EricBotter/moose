@@ -41,7 +41,7 @@ public:
   virtual PostprocessorValue getValue() override;
 
 protected:
-  Real getValueAtPoint(const Point & p);
+  Number getValueAtPoint(const Point & p);
 
   ///@{ line to sample along
   const Point _start_point;

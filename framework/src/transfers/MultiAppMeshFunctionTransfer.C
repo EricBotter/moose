@@ -227,7 +227,7 @@ MultiAppMeshFunctionTransfer::execute()
   }
 
   // Send points to other processors.
-  std::vector<std::vector<Real>> incoming_evals(n_processors());
+  std::vector<std::vector<Number>> incoming_evals(n_processors());
   std::vector<std::vector<unsigned int>> incoming_app_ids(n_processors());
   std::vector<Parallel::Request> send_points(n_processors());
   for (processor_id_type i_proc = 0; i_proc < n_processors(); i_proc++)
@@ -249,7 +249,7 @@ MultiAppMeshFunctionTransfer::execute()
     else
       _communicator.receive(i_proc, incoming_points);
 
-    std::vector<Real> outgoing_evals(incoming_points.size(), OutOfMeshValue);
+    std::vector<Number> outgoing_evals(incoming_points.size(), OutOfMeshValue);
     std::vector<unsigned int> outgoing_ids(incoming_points.size(), -1); // -1 = largest unsigned int
     for (unsigned int i_pt = 0; i_pt < incoming_points.size(); i_pt++)
     {
@@ -308,7 +308,7 @@ MultiAppMeshFunctionTransfer::execute()
     unsigned int sys_num = to_sys->number();
     unsigned int var_num = to_sys->variable_number(_to_var_name);
 
-    NumericVector<Real> * solution = nullptr;
+    NumericVector<Number> * solution = nullptr;
     switch (_direction)
     {
       case TO_MULTIAPP:
@@ -337,7 +337,7 @@ MultiAppMeshFunctionTransfer::execute()
           continue;
 
         unsigned int lowest_app_rank = libMesh::invalid_uint;
-        Real best_val = 0.;
+        Number best_val = 0.;
         bool point_found = false;
         for (unsigned int i_proc = 0; i_proc < incoming_evals.size(); i_proc++)
         {
@@ -384,7 +384,7 @@ MultiAppMeshFunctionTransfer::execute()
           continue;
 
         unsigned int lowest_app_rank = libMesh::invalid_uint;
-        Real best_val = 0;
+        Number best_val = 0;
         bool point_found = false;
         for (unsigned int i_proc = 0; i_proc < incoming_evals.size(); i_proc++)
         {

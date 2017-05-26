@@ -34,7 +34,7 @@ public:
   /**
    * This will return the elapsed wall time.
    */
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
   enum PerfLogCols
   {

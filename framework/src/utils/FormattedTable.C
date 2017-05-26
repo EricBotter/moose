@@ -110,7 +110,7 @@ FormattedTable::empty() const
 }
 
 void
-FormattedTable::addData(const std::string & name, Real value, Real time)
+FormattedTable::addData(const std::string & name, Number value, Real time)
 {
   _data[time][name] = value;
   if (std::find(_column_names.begin(), _column_names.end(), name) == _column_names.end())
@@ -119,12 +119,12 @@ FormattedTable::addData(const std::string & name, Real value, Real time)
   _column_names_unsorted = true;
 }
 
-Real &
+Number &
 FormattedTable::getLastData(const std::string & name)
 {
   mooseAssert(_last_key != -1, "No Data stored in the FormattedTable");
 
-  std::map<std::string, Real>::iterator it = (_data[_last_key]).find(name);
+  std::map<std::string, Number>::iterator it = (_data[_last_key]).find(name);
   if (it == (_data[_last_key]).end())
     mooseError("No Data found for name: " + name);
 
@@ -237,7 +237,7 @@ FormattedTable::printTablePiece(std::ostream & out,
                                 std::vector<std::string>::iterator & col_begin,
                                 std::vector<std::string>::iterator & col_end)
 {
-  std::map<Real, std::map<std::string, Real>>::iterator i;
+  std::map<Real, std::map<std::string, Number>>::iterator i;
   std::vector<std::string>::iterator header;
 
   /**
@@ -272,7 +272,7 @@ FormattedTable::printTablePiece(std::ostream & out,
     out << "|" << std::right << std::setw(_column_width) << std::scientific << i->first << " |";
     for (header = col_begin; header != col_end; ++header)
     {
-      std::map<std::string, Real> & tmp = i->second;
+      std::map<std::string, Number> & tmp = i->second;
       out << std::setw(col_widths[*header]) << tmp[*header] << " |";
     }
     out << "\n";
@@ -368,7 +368,7 @@ FormattedTable::printCSV(const std::string & file_name, int interval, bool align
 
       for (const auto & col_name : _column_names)
       {
-        std::map<std::string, Real> & tmp = i.second;
+        std::map<std::string, Number> & tmp = i.second;
 
         if (!first)
           _output_file << _csv_delimiter;
@@ -442,7 +442,7 @@ FormattedTable::makeGnuplot(const std::string & base_file, const std::string & f
     datfile << i.first;
     for (const auto & col_name : _column_names)
     {
-      std::map<std::string, Real> & tmp = i.second;
+      std::map<std::string, Number> & tmp = i.second;
       datfile << '\t' << tmp[col_name];
     }
     datfile << '\n';

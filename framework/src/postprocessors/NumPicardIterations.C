@@ -41,7 +41,7 @@ NumPicardIterations::initialize()
   }
 }
 
-Real
+Number
 NumPicardIterations::getValue()
 {
   return _transient_executioner->numPicardIts();

@@ -34,7 +34,7 @@ ElementIntegralVariablePostprocessor::ElementIntegralVariablePostprocessor(
   addMooseVariableDependency(mooseVariable());
 }
 
-Real
+Number
 ElementIntegralVariablePostprocessor::computeQpIntegral()
 {
   return _u[_qp];

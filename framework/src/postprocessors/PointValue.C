@@ -95,7 +95,7 @@ PointValue::finalize()
   _communicator.broadcast(_value, _root_id);
 }
 
-Real
+Number
 PointValue::getValue()
 {
   return _value;

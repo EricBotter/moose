@@ -44,12 +44,12 @@ public:
   /**
    * The old eigenvalue used by inverse power iterations
    */
-  const Real & eigenvalueOld();
+  const Number & eigenvalueOld();
 
   /**
    * Normalize solution so that |Bx| = k
    */
-  virtual void makeBXConsistent(Real k);
+  virtual void makeBXConsistent(Number k);
 
   /**
    * Make sure time kernel is not presented
@@ -79,7 +79,7 @@ public:
                                      bool echo,
                                      PostprocessorName xdiff,
                                      Real tol_x,
-                                     Real & k,
+									 Number & k,
                                      Real & initial_res);
 
   /**
@@ -105,7 +105,7 @@ public:
    * @param force Force the re-evaluation of the postprocessor for normalization.
    * Returns the scaling factor just applied.
    */
-  virtual Real normalizeSolution(bool force = true);
+  virtual Number normalizeSolution(bool force = true);
 
   /**
    * Perform nonlinear solve with the initial guess of the solution
@@ -115,13 +115,13 @@ public:
    * @param pfactor The factor on reducing the residual norm of each linear iteration.
    * @param k Eigenvalue, input as the initial guess.
    */
-  virtual void nonlinearSolve(Real rel_tol, Real abs_tol, Real pfactor, Real & k);
+  virtual void nonlinearSolve(Real rel_tol, Real abs_tol, Real pfactor, Number & k);
 
   /**
    * A method for returning the eigenvalue computed by the executioner
    * @return A reference to the eigenvalue stored withing the executioner
    */
-  Real & eigenValue() { return _eigenvalue; }
+  Number & eigenValue() { return _eigenvalue; }
 
 protected:
   /**
@@ -134,14 +134,14 @@ protected:
   MooseEigenSystem & _eigen_sys;
 
   /// Storage for the eigenvalue computed by the executioner
-  Real & _eigenvalue;
+  Number & _eigenvalue;
 
   // postprocessor for eigenvalue
-  const Real & _source_integral;
-  Real _source_integral_old;
+  const Number & _source_integral;
+  Number _source_integral_old;
 
   /// Postprocessor for normalization
-  const Real & _normalization;
+  const Number & _normalization;
   ExecFlagType _norm_execflag;
 
   // Chebyshev acceleration
@@ -158,10 +158,10 @@ protected:
     unsigned int lgac;          // doing acceleration or not
     unsigned int icheb;         // number of acceleration in current cycle
     unsigned int iter_begin;    // starting number of current acceleration cycle
-    double error_begin;         // starting flux error of current acceleration cycle
-    double flux_error_norm_old; // flux error of previous power iteration
-    double ratio;               // estimation of dominant ratio
-    double ratio_new;           // new estimated dominant ratio
+    Number error_begin;         // starting flux error of current acceleration cycle
+    Number flux_error_norm_old; // flux error of previous power iteration
+    Number ratio;               // estimation of dominant ratio
+    Number ratio_new;           // new estimated dominant ratio
     unsigned int icho;          // improved ratio estimation
   };
   void chebyshev(Chebyshev_Parameters & params,

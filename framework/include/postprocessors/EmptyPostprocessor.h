@@ -30,7 +30,7 @@ public:
 
   virtual void initialize() override {}
   virtual void execute() override {}
-  virtual Real getValue() override { return 0; }
+  virtual Number getValue() override { return 0; }
 };
 
 #endif

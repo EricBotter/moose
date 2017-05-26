@@ -28,13 +28,13 @@ ConstantRate::ConstantRate(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ConstantRate::computeQpResidual()
 {
   return -_rate;
 }
 
-Real
+Number
 ConstantRate::computeQpJacobian()
 {
   return 0;

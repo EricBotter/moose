@@ -64,16 +64,16 @@ ElementExtremeValue::computeQpValue()
   switch (_type)
   {
     case MAX:
-      _value = std::max(_value, _u[_qp]);
+      _value = std::max(_value, _u[_qp].real());
       break;
 
     case MIN:
-      _value = std::min(_value, _u[_qp]);
+      _value = std::min(_value, _u[_qp].real());
       break;
   }
 }
 
-Real
+Number
 ElementExtremeValue::getValue()
 {
   switch (_type)

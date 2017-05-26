@@ -37,7 +37,7 @@ Residual::Residual(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 Residual::getValue()
 {
   Real residual = 0.0;

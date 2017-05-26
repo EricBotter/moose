@@ -49,7 +49,7 @@ PerformanceData::PerformanceData(const InputParameters & parameters)
   _app.getOutputWarehouse().setLoggingRequested();
 }
 
-Real
+Number
 PerformanceData::getValue()
 {
   if (_event == "ALIVE")

@@ -48,7 +48,7 @@ public:
    * Returns the value stored in _my_value
    * @return A const reference to the value of the postprocessor
    */
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
   /**
    * Initial setup function for applying the default value

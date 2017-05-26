@@ -42,7 +42,7 @@ CumulativeValuePostprocessor::execute()
   _sum = _sum_old + _pps_value;
 }
 
-Real
+Number
 CumulativeValuePostprocessor::getValue()
 {
   return _sum;

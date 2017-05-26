@@ -43,12 +43,12 @@ ChangeOverTimestepPostprocessor::execute()
 {
 }
 
-Real
+Number
 ChangeOverTimestepPostprocessor::getValue()
 {
   if (_compute_relative_change)
-    return std::fabs((std::fabs(_pps_value) - std::fabs(_pps_value_old)) *
-                     std::pow(std::fabs(_pps_value), -1));
+    return std::fabs((std::fabs(_pps_value.real()) - std::fabs(_pps_value_old.real())) *
+                     std::pow(std::fabs(_pps_value.real()), -1));
   else
     return _pps_value - _pps_value_old;
 }

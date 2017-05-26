@@ -30,10 +30,10 @@ class ElementL2Error : public ElementIntegralVariablePostprocessor
 public:
   ElementL2Error(const InputParameters & parameters);
 
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 
   Function & _func;
 };

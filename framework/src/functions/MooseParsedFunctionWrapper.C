@@ -115,7 +115,7 @@ MooseParsedFunctionWrapper::initialize()
     if (_feproblem.hasPostprocessor(_vals_input[i]))
     {
       // The PP value
-      Real & pp_val = _feproblem.getPostprocessorValue(_vals_input[i]);
+      Number & pp_val = _feproblem.getPostprocessorValue(_vals_input[i]);
 
       // Store a pointer to the Postprocessor value
       _pp_vals.push_back(&pp_val);

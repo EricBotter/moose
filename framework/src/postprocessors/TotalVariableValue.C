@@ -43,7 +43,7 @@ TotalVariableValue::execute()
   _value = _value_old + 0.5 * (_pps_value + _pps_value_old) * _dt;
 }
 
-Real
+Number
 TotalVariableValue::getValue()
 {
   return _value;

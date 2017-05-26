@@ -66,7 +66,7 @@ MultiAppPostprocessorTransfer::execute()
     {
       FEProblemBase & from_problem = _multi_app->problemBase();
 
-      Real pp_value = from_problem.getPostprocessorValue(_from_pp_name);
+      Number pp_value = from_problem.getPostprocessorValue(_from_pp_name);
 
       for (unsigned int i = 0; i < _multi_app->numGlobalApps(); i++)
         if (_multi_app->hasLocalApp(i))
@@ -99,7 +99,7 @@ MultiAppPostprocessorTransfer::execute()
       {
         if (_multi_app->hasLocalApp(i) && _multi_app->isRootProcessor())
         {
-          Real curr_pp_value = _multi_app->appProblemBase(i).getPostprocessorValue(_from_pp_name);
+          Real curr_pp_value = _multi_app->appProblemBase(i).getPostprocessorValue(_from_pp_name).real();
           switch (_reduction_type)
           {
             case AVERAGE:

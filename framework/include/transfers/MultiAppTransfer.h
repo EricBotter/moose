@@ -107,7 +107,7 @@ protected:
    * If we are transferring to a multiapp, return the appropriate solution
    * vector
    */
-  NumericVector<Real> & getTransferVector(unsigned int i_local, std::string var_name);
+  NumericVector<Number> & getTransferVector(unsigned int i_local, std::string var_name);
 
   // Given local app index, returns global app index.
   std::vector<unsigned int> _local2global_map;

@@ -162,7 +162,7 @@ public:
    * @param app The global app number you want to get a Postprocessor from.
    * @param name The name of the Postprocessor.
    */
-  Real appPostprocessorValue(unsigned int app, const std::string & name);
+  Number appPostprocessorValue(unsigned int app, const std::string & name);
 
   /**
    * Get the vector to transfer to for this MultiApp.

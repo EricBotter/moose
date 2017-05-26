@@ -42,7 +42,7 @@ BodyForce::BodyForce(const InputParameters & parameters)
 Number
 BodyForce::computeQpResidual()
 {
-  Real factor = _value * _function.value(_t, _q_point[_qp]);
+  Number factor = _value * _function.value(_t, _q_point[_qp]);
   if (_postprocessor)
     factor *= *_postprocessor;
   return _test[_i][_qp] * -factor;

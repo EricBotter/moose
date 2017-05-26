@@ -32,11 +32,11 @@ public:
 
   virtual void initialize() override;
   virtual void execute() override;
-  virtual Real getValue() override;
+  virtual Number getValue() override;
 
 protected:
   /// The total value of the variable
-  Real _value;
+  Number _value;
 
   /// My old value
   const PostprocessorValue & _value_old;

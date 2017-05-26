@@ -53,12 +53,12 @@ NodalNormalsEvaluator::execute()
           _aux.number(), _fe_problem.getVariable(_tid, "nodal_normal_z").number(), 0);
 
       NumericVector<Number> & sln = _aux.solution();
-      Real nx = sln(dof_x);
-      Real ny = sln(dof_y);
-      Real nz = sln(dof_z);
+      Number nx = sln(dof_x);
+      Number ny = sln(dof_y);
+      Number nz = sln(dof_z);
 
-      Real n = std::sqrt((nx * nx) + (ny * ny) + (nz * nz));
-      if (std::abs(n) >= 1e-13)
+      Number n = std::sqrt((nx * nx) + (ny * ny) + (nz * nz));
+      if (std::abs(n.real()) >= 1e-13)
       {
         // divide by n only if it is not close to zero to avoid NaNs
         sln.set(dof_x, nx / n);

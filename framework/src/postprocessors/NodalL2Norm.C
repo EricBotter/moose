@@ -37,11 +37,11 @@ NodalL2Norm::initialize()
 void
 NodalL2Norm::execute()
 {
-  Real val = _u[_qp];
+  Number val = _u[_qp];
   _sum_of_squares += val * val;
 }
 
-Real
+Number
 NodalL2Norm::getValue()
 {
   gatherSum(_sum_of_squares);

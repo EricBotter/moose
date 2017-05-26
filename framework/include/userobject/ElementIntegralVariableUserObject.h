@@ -37,12 +37,12 @@ public:
   ElementIntegralVariableUserObject(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 
   /// Holds the solution at current quadrature points
-  const VariableValue & _u;
+  const VariableNumber & _u;
   /// Holds the solution gradient at the current quadrature points
-  const VariableGradient & _grad_u;
+  const VariableNumberGradient & _grad_u;
 };
 
 #endif

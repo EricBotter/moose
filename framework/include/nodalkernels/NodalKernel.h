@@ -109,20 +109,20 @@ protected:
   /**
    * The user can override this function to compute the residual at a node.
    */
-  virtual Real computeQpResidual() = 0;
+  virtual Number computeQpResidual() = 0;
 
   /**
    * The user can override this function to compute the "on-diagonal"
    * Jacobian contribution.  If not overriden,
    * returns 1.
    */
-  virtual Real computeQpJacobian();
+  virtual Number computeQpJacobian();
 
   /**
    * This is the virtual that derived classes should override for
    * computing an off-diagonal jacobian component.
    */
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  virtual Number computeQpOffDiagJacobian(unsigned int jvar);
 
   /// Reference to SubProblem
   SubProblem & _subproblem;
@@ -152,13 +152,13 @@ protected:
   unsigned int _qp;
 
   /// Value of the unknown variable this is acting on
-  const VariableValue & _u;
+  const VariableNumber & _u;
 
   /// Time derivative of the variable this is acting on
-  const VariableValue & _u_dot;
+  const VariableNumber & _u_dot;
 
   /// Derivative of u_dot with respect to u
-  const VariableValue & _du_dot_du;
+  const VariableNumber & _du_dot_du;
 
   /// The aux variables to save the residual contributions to
   bool _has_save_in;

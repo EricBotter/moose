@@ -29,10 +29,10 @@ public:
   VariableInnerProduct(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 
   /// Holds the values of second_variable at current quadrature points
-  const VariableValue & _v;
+  const VariableNumber & _v;
 };
 
 #endif // VariableInnerProduct_H

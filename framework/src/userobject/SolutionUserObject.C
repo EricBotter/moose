@@ -354,7 +354,7 @@ SolutionUserObject::readExodusII()
   }
 }
 
-Real
+Number
 SolutionUserObject::directValue(const Node * node, const std::string & var_name) const
 {
   // Get the libmesh variable and system numbers
@@ -369,7 +369,7 @@ SolutionUserObject::directValue(const Node * node, const std::string & var_name)
   return directValue(dof_id);
 }
 
-Real
+Number
 SolutionUserObject::directValue(const Elem * elem, const std::string & var_name) const
 {
   // Get the libmesh variable and system numbers
@@ -625,7 +625,7 @@ SolutionUserObject::getLocalVarIndex(const std::string & var_name) const
   return it->second;
 }
 
-Real
+Number
 SolutionUserObject::pointValueWrapper(Real t,
                                       const Point & p,
                                       const std::string & var_name,
@@ -682,14 +682,14 @@ SolutionUserObject::pointValueWrapper(Real t,
   return 0.0;
 }
 
-Real
+Number
 SolutionUserObject::pointValue(Real t, const Point & p, const std::string & var_name) const
 {
   const unsigned int local_var_index = getLocalVarIndex(var_name);
   return pointValue(t, p, local_var_index);
 }
 
-Real
+Number
 SolutionUserObject::pointValue(Real libmesh_dbg_var(t),
                                const Point & p,
                                const unsigned int local_var_index) const
@@ -716,14 +716,14 @@ SolutionUserObject::pointValue(Real libmesh_dbg_var(t),
   }
 
   // Extract the value at the current point
-  Real val = evalMeshFunction(pt, local_var_index, 1);
+  Number val = evalMeshFunction(pt, local_var_index, 1);
 
   // Interpolate
   if (_file_type == 1 && _interpolate_times)
   {
     mooseAssert(t == _interpolation_time,
                 "Time passed into value() must match time at last call to timestepSetup()");
-    Real val2 = evalMeshFunction(pt, local_var_index, 2);
+    Number val2 = evalMeshFunction(pt, local_var_index, 2);
     val = val + (val2 - val) * _interpolation_factor;
   }
 
@@ -949,19 +949,19 @@ SolutionUserObject::discontinuousPointValueGradient(Real libmesh_dbg_var(t),
   return map;
 }
 
-Real
+Number
 SolutionUserObject::directValue(dof_id_type dof_index) const
 {
-  Real val = (*_serialized_solution)(dof_index);
+  Number val = (*_serialized_solution)(dof_index);
   if (_file_type == 1 && _interpolate_times)
   {
-    Real val2 = (*_serialized_solution2)(dof_index);
+	Number val2 = (*_serialized_solution2)(dof_index);
     val = val + (val2 - val) * _interpolation_factor;
   }
   return val;
 }
 
-Real
+Number
 SolutionUserObject::evalMeshFunction(const Point & p,
                                      const unsigned int local_var_index,
                                      unsigned int func_num) const
@@ -1045,13 +1045,13 @@ SolutionUserObject::evalMultiValuedMeshFunction(const Point & p,
                 "In SolutionUserObject::evalMultiValuedMeshFunction variable with local_var_index "
                     << local_var_index
                     << " does not exist");
-    output[k.first] = k.second(local_var_index);
+    output[k.first] = k.second(local_var_index).real();
   }
 
   return output;
 }
 
-RealGradient
+Gradient
 SolutionUserObject::evalMeshFunctionGradient(const Point & p,
                                              const unsigned int local_var_index,
                                              unsigned int func_num) const

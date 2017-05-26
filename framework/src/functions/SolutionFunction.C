@@ -88,7 +88,7 @@ SolutionFunction::initialSetup()
 Real
 SolutionFunction::value(Real t, const Point & p)
 {
-  return _scale_factor * (_solution_object_ptr->pointValue(t, p, _solution_object_var_index)) +
+  return _scale_factor * (_solution_object_ptr->pointValue(t, p, _solution_object_var_index)).real() +
          _add_factor;
 }
 

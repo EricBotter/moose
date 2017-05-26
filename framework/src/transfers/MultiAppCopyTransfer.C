@@ -67,7 +67,7 @@ MultiAppCopyTransfer::transferDofObject(libMesh::DofObject * to_object,
       dof_id_type dof = to_object->dof_number(to_var.sys().number(), to_var.number(), comp);
       dof_id_type from_dof =
           from_object->dof_number(from_var.sys().number(), from_var.number(), comp);
-      Real from_value = from_var.sys().solution()(from_dof);
+      Number from_value = from_var.sys().solution()(from_dof);
       to_var.sys().solution().set(dof, from_value);
     }
 }

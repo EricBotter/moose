@@ -36,7 +36,7 @@ TimeNodalKernel::computeResidual()
   {
     dof_id_type & dof_idx = _var.nodalDofIndex();
     _qp = 0;
-    Real res = computeQpResidual();
+    Number res = computeQpResidual();
     _assembly.cacheResidualContribution(dof_idx, res, Moose::KT_TIME);
 
     if (_has_save_in)

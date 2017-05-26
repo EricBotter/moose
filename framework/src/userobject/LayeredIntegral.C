@@ -41,7 +41,7 @@ LayeredIntegral::initialize()
 void
 LayeredIntegral::execute()
 {
-  Real integral_value = computeIntegral();
+  Real integral_value = computeIntegral().real();
 
   unsigned int layer = getLayer(_current_elem->centroid());
 

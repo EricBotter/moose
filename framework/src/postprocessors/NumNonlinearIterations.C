@@ -50,7 +50,7 @@ NumNonlinearIterations::timestepSetup()
   }
 }
 
-Real
+Number
 NumNonlinearIterations::getValue()
 {
   if (_accumulate_over_step)

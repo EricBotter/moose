@@ -42,7 +42,7 @@ NodalSum::execute()
   _sum += _u[_qp];
 }
 
-Real
+Number
 NodalSum::getValue()
 {
   gatherSum(_sum);

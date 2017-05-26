@@ -46,7 +46,7 @@ validParams<EigenExecutionerBase>()
   return params;
 }
 
-const Real &
+const Number &
 EigenExecutionerBase::eigenvalueOld()
 {
   return _source_integral_old;
@@ -56,7 +56,7 @@ EigenExecutionerBase::EigenExecutionerBase(const InputParameters & parameters)
   : Executioner(parameters),
     _problem(_fe_problem),
     _eigen_sys(static_cast<MooseEigenSystem &>(_problem.getNonlinearSystemBase())),
-    _eigenvalue(declareRestartableData("eigenvalue", 1.0)),
+    _eigenvalue(declareRestartableData("eigenvalue", Number(1.0))),
     _source_integral(getPostprocessorValue("bx_norm")),
     _source_integral_old(1),
     _normalization(isParamValid("normalization")
@@ -143,7 +143,7 @@ EigenExecutionerBase::init()
 }
 
 void
-EigenExecutionerBase::makeBXConsistent(Real k)
+EigenExecutionerBase::makeBXConsistent(Number k)
 {
   Real consistency_tolerance = 1e-10;
 
@@ -152,11 +152,11 @@ EigenExecutionerBase::makeBXConsistent(Real k)
   // We have a fix point loop here, in case the postprocessor is a nonlinear function of the scaling
   // factor.
   // FIXME: We have assumed this loop always converges.
-  while (std::fabs(k - _source_integral) > consistency_tolerance * std::fabs(k))
+  while (std::fabs(k.real() - _source_integral.real()) > consistency_tolerance * std::fabs(k.real()))
   {
     // On the first time entering, the _source_integral has been updated properly in
     // FEProblemBase::initialSetup()
-    _eigen_sys.scaleSystemSolution(MooseEigenSystem::EIGEN, k / _source_integral);
+    _eigen_sys.scaleSystemSolution(MooseEigenSystem::EIGEN, k.real() / _source_integral.real());
     _problem.execute(EXEC_LINEAR);
     std::stringstream ss;
     ss << std::fixed << std::setprecision(10) << _source_integral;
@@ -183,7 +183,7 @@ EigenExecutionerBase::inversePowerIteration(unsigned int min_iter,
                                             bool echo,
                                             PostprocessorName xdiff,
                                             Real tol_x,
-                                            Real & k,
+											Number & k,
                                             Real & initial_res)
 {
   mooseAssert(max_iter >= min_iter,
@@ -238,8 +238,8 @@ EigenExecutionerBase::inversePowerIteration(unsigned int min_iter,
   // some iteration variables
   Chebyshev_Parameters chebyshev_parameters;
 
-  std::vector<Real> keff_history;
-  std::vector<Real> diff_history;
+  std::vector<Number> keff_history;
+  std::vector<Number> diff_history;
 
   unsigned int iter = 0;
 
@@ -262,7 +262,7 @@ EigenExecutionerBase::inversePowerIteration(unsigned int min_iter,
       _problem.getDisplacedProblem()->auxSys().copyOldSolutions();
     }
 
-    Real k_old = k;
+    Number k_old = k;
     _source_integral_old = _source_integral;
 
     preIteration();
@@ -347,11 +347,11 @@ EigenExecutionerBase::inversePowerIteration(unsigned int min_iter,
       if (iter != max_iter)
       {
         bool converged = true;
-        Real keff_error = fabs(k_old - k) / k;
+        Real keff_error = fabs(k_old.real() - k.real()) / k.real();
         if (keff_error > tol_eig)
           converged = false;
         if (solution_diff)
-          if (*solution_diff > tol_x)
+          if (solution_diff->real() > tol_x)
             converged = false;
         if (converged)
           break;
@@ -394,7 +394,7 @@ EigenExecutionerBase::postExecute()
     _problem.time() = t;
   }
 
-  Real s = 1.0;
+  Number s = 1.0;
   if (_norm_execflag & EXEC_CUSTOM)
   {
     _console << " Cannot let the normalization postprocessor on custom.\n";
@@ -403,11 +403,11 @@ EigenExecutionerBase::postExecute()
   else
   {
     s = normalizeSolution(_norm_execflag & (EXEC_TIMESTEP_END | EXEC_LINEAR));
-    if (!MooseUtils::absoluteFuzzyEqual(s, 1.0))
+    if (!MooseUtils::absoluteFuzzyEqual(s.real(), 1.0))
       _console << " Solution is rescaled with factor " << s << " for normalization!" << std::endl;
   }
 
-  if ((!getParam<bool>("output_before_normalization")) || !MooseUtils::absoluteFuzzyEqual(s, 1.0))
+  if ((!getParam<bool>("output_before_normalization")) || !MooseUtils::absoluteFuzzyEqual(s.real(), 1.0))
   {
     _problem.timeStep()++;
     Real t = _problem.time();
@@ -417,23 +417,23 @@ EigenExecutionerBase::postExecute()
   }
 }
 
-Real
+Number
 EigenExecutionerBase::normalizeSolution(bool force)
 {
   if (force)
     _problem.execute(EXEC_INITIAL);
 
-  Real factor;
+  Number factor;
   if (isParamValid("normal_factor"))
     factor = getParam<Real>("normal_factor");
   else
     factor = _eigenvalue;
-  Real scaling = factor / _normalization;
+  Number scaling = factor / _normalization;
 
-  if (!MooseUtils::absoluteFuzzyEqual(scaling, 1.0))
+  if (!MooseUtils::absoluteFuzzyEqual(scaling.real(), 1.0))
   {
     // FIXME: we assume linear scaling here!
-    _eigen_sys.scaleSystemSolution(MooseEigenSystem::EIGEN, scaling);
+    _eigen_sys.scaleSystemSolution(MooseEigenSystem::EIGEN, scaling.real());
     // update all aux variables and user objects
     for (unsigned int i = 0; i < Moose::exec_types.size(); i++)
     {
@@ -492,17 +492,17 @@ EigenExecutionerBase::chebyshev(Chebyshev_Parameters & chebyshev_parameters,
       chebyshev_parameters.icho = 0;
     }
 
-    if (iter > chebyshev_parameters.finit && chebyshev_parameters.ratio >= 0.4 &&
-        chebyshev_parameters.ratio <= 1)
+    if (iter > chebyshev_parameters.finit && chebyshev_parameters.ratio.real() >= 0.4 &&
+        chebyshev_parameters.ratio.real() <= 1)
     {
       chebyshev_parameters.lgac = 1;
       chebyshev_parameters.icheb = 1;
       chebyshev_parameters.error_begin = *solution_diff;
       chebyshev_parameters.iter_begin = iter;
-      double alp = 2 / (2 - chebyshev_parameters.ratio);
-      std::vector<double> coef(2);
+      Number alp = 2. / (2. - chebyshev_parameters.ratio);
+      std::vector<Number> coef(2);
       coef[0] = alp;
-      coef[1] = 1 - alp;
+      coef[1] = 1. - alp;
       _eigen_sys.combineSystemSolution(MooseEigenSystem::EIGEN, coef);
       _problem.execute(EXEC_LINEAR);
       _eigenvalue = _source_integral;
@@ -511,11 +511,11 @@ EigenExecutionerBase::chebyshev(Chebyshev_Parameters & chebyshev_parameters,
   else
   {
     chebyshev_parameters.icheb++;
-    double gamma = acosh(2 / chebyshev_parameters.ratio - 1);
-    double alp = 4 / chebyshev_parameters.ratio *
-                 std::cosh((chebyshev_parameters.icheb - 1) * gamma) /
-                 std::cosh(chebyshev_parameters.icheb * gamma);
-    double beta = (1 - chebyshev_parameters.ratio / 2) * alp - 1;
+    Number gamma = acosh(2. / chebyshev_parameters.ratio - 1.);
+    Number alp = 4. / chebyshev_parameters.ratio *
+                 std::cosh((chebyshev_parameters.icheb - 1.) * gamma) /
+                 std::cosh((double)chebyshev_parameters.icheb * gamma);
+    Number beta = (1. - chebyshev_parameters.ratio / 2.) * alp - 1.;
     /*  if (iter<int(chebyshev_parameters.iter_begin+chebyshev_parameters.n_iter))
         {
           std::vector<double> coef(3);
@@ -526,16 +526,16 @@ EigenExecutionerBase::chebyshev(Chebyshev_Parameters & chebyshev_parameters,
         }
         else
         {*/
-    double gamma_new =
+    Number gamma_new =
         (*solution_diff / chebyshev_parameters.error_begin) *
-        (std::cosh((chebyshev_parameters.icheb - 1) * acosh(2 / chebyshev_parameters.ratio - 1)));
-    if (gamma_new < 1.0)
+        (std::cosh((chebyshev_parameters.icheb - 1.) * acosh(2. / chebyshev_parameters.ratio - 1.)));
+    if (gamma_new.real() < 1.0)
       gamma_new = 1.0;
 
     chebyshev_parameters.ratio_new =
-        chebyshev_parameters.ratio / 2 *
-        (std::cosh(acosh(gamma_new) / (chebyshev_parameters.icheb - 1)) + 1);
-    if (gamma_new > 1.01)
+        chebyshev_parameters.ratio / 2. *
+        (std::cosh(acosh(gamma_new) / (chebyshev_parameters.icheb - 1.)) + 1.);
+    if (gamma_new.real() > 1.01)
     {
       chebyshev_parameters.lgac = 0;
       //      chebyshev_parameters.icheb = 0;
@@ -554,9 +554,9 @@ EigenExecutionerBase::chebyshev(Chebyshev_Parameters & chebyshev_parameters,
     }
     else
     {
-      std::vector<double> coef(3);
+      std::vector<Number> coef(3);
       coef[0] = alp;
-      coef[1] = 1 - alp + beta;
+      coef[1] = 1. - alp + beta;
       coef[2] = -beta;
       _eigen_sys.combineSystemSolution(MooseEigenSystem::EIGEN, coef);
       _problem.execute(EXEC_LINEAR);
@@ -568,7 +568,7 @@ EigenExecutionerBase::chebyshev(Chebyshev_Parameters & chebyshev_parameters,
 }
 
 void
-EigenExecutionerBase::nonlinearSolve(Real rel_tol, Real abs_tol, Real pfactor, Real & k)
+EigenExecutionerBase::nonlinearSolve(Real rel_tol, Real abs_tol, Real pfactor, Number & k)
 {
   makeBXConsistent(k);
 

@@ -33,7 +33,7 @@ ElementIntegralVariableUserObject::ElementIntegralVariableUserObject(
   addMooseVariableDependency(mooseVariable());
 }
 
-Real
+Number
 ElementIntegralVariableUserObject::computeQpIntegral()
 {
   return _u[_qp];

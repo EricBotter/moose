@@ -28,7 +28,7 @@ public:
   ElementIntegralMaterialProperty(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpIntegral() override;
+  virtual Number computeQpIntegral() override;
 
   const MaterialProperty<Real> & _scalar;
 };

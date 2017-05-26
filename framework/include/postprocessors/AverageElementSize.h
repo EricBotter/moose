@@ -34,9 +34,9 @@ public:
   virtual void initialize() override;
   virtual void execute() override;
 
-  virtual Real computeIntegral() override;
+  virtual Number computeIntegral() override;
 
-  virtual Real getValue() override;
+  virtual Number getValue() override;
   virtual void threadJoin(const UserObject & y) override;
 
 protected:

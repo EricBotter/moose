@@ -29,15 +29,15 @@ ElementL2Difference::ElementL2Difference(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ElementL2Difference::getValue()
 {
   return std::sqrt(ElementIntegralPostprocessor::getValue());
 }
 
-Real
+Number
 ElementL2Difference::computeQpIntegral()
 {
-  Real diff = _u[_qp] - _other_var[_qp];
+  Number diff = _u[_qp] - _other_var[_qp];
   return diff * diff;
 }

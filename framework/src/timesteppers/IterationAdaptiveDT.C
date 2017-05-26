@@ -262,9 +262,9 @@ IterationAdaptiveDT::limitDTToPostprocessorValue(Real & limitedDT)
 {
   if (_pps_value)
   {
-    if (*_pps_value > _dt_min && limitedDT > *_pps_value)
+    if (_pps_value->real() > _dt_min && limitedDT > _pps_value->real())
     {
-      limitedDT = *_pps_value;
+      limitedDT = _pps_value->real();
 
       if (_verbose)
         _console << "Limiting dt to postprocessor value. dt = " << limitedDT << '\n';

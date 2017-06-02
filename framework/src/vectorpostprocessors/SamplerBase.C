@@ -58,7 +58,7 @@ SamplerBase::setupVariables(const std::vector<std::string> & variable_names)
 }
 
 void
-SamplerBase::addSample(const Point & p, const Real & id, const std::vector<Real> & values)
+SamplerBase::addSample(const Point & p, const Real & id, const std::vector<Number> & values)
 {
   _x.push_back(p(0));
   _y.push_back(p(1));
@@ -80,7 +80,7 @@ SamplerBase::initialize()
   _id.clear();
 
   std::for_each(
-      _values.begin(), _values.end(), [](VectorPostprocessorValue * vec) { vec->clear(); });
+      _values.begin(), _values.end(), [](std::vector<Number> * vec) { vec->clear(); });
 }
 
 void
@@ -118,7 +118,7 @@ SamplerBase::finalize()
   // This vector is used as temp storage to sort each of the remaining vectors according to the
   // first
   auto vector_length = sorted_indices.size();
-  VectorPostprocessorValue tmp_vector(vector_length);
+  std::vector<Number> tmp_vector(vector_length);
 
 #ifndef NDEBUG
   for (const auto vec_ptr : vec_ptrs)

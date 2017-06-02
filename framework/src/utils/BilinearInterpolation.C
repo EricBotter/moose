@@ -60,7 +60,7 @@ BilinearInterpolation::getNeighborIndices(const std::vector<Real> & inArr,
   }
 }
 
-Real
+Number
 BilinearInterpolation::sample(Real xcoord, Real ycoord)
 {
   // first find 4 neighboring points
@@ -72,10 +72,10 @@ BilinearInterpolation::sample(Real xcoord, Real ycoord)
   int uy = 0; // index of y coordinate of adjacent grid point above P
   getNeighborIndices(_yAxis, ycoord, ly, uy);
 
-  Real fQ11 = _zSurface(ly, lx);
-  Real fQ21 = _zSurface(ly, ux);
-  Real fQ12 = _zSurface(uy, lx);
-  Real fQ22 = _zSurface(uy, ux);
+  Number fQ11 = _zSurface(ly, lx);
+  Number fQ21 = _zSurface(ly, ux);
+  Number fQ12 = _zSurface(uy, lx);
+  Number fQ22 = _zSurface(uy, ux);
 
   // if point exactly found on a node do not interpolate
   if ((lx == ux) && (ly == uy))
@@ -97,7 +97,7 @@ BilinearInterpolation::sample(Real xcoord, Real ycoord)
   if (ly == uy)
     return fQ11 + (fQ21 - fQ11) * (x - x1) / (x2 - x1);
 
-  Real fxy = fQ11 * (x2 - x) * (y2 - y);
+  Number fxy = fQ11 * (x2 - x) * (y2 - y);
   fxy += fQ21 * (x - x1) * (y2 - y);
   fxy += fQ12 * (x2 - x) * (y - y1);
   fxy += fQ22 * (x - x1) * (y - y1);

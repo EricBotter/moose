@@ -60,16 +60,16 @@ public:
   RankThreeTensor(const InitMethod);
 
   /// Fill from vector
-  RankThreeTensor(const std::vector<Real> &, FillMethod);
+  RankThreeTensor(const std::vector<Number> &, FillMethod);
 
   /// Gets the value for the index specified.  Takes index = 0,1,2
-  Real & operator()(unsigned int i, unsigned int j, unsigned int k);
+  Number & operator()(unsigned int i, unsigned int j, unsigned int k);
 
   /**
    * Gets the value for the index specified.  Takes index = 0,1,2
    * used for const
    */
-  Real operator()(unsigned int i, unsigned int j, unsigned int k) const;
+  Number operator()(unsigned int i, unsigned int j, unsigned int k) const;
 
   /// Zeros out the tensor.
   void zero();
@@ -87,16 +87,16 @@ public:
   // RealTensorValue operator*(const RealTensorValue & a) const;
 
   /// r_ijk*a
-  RankThreeTensor operator*(const Real a) const;
+  RankThreeTensor operator*(const Number a) const;
 
   /// r_ijk *= a
-  RankThreeTensor & operator*=(const Real a);
+  RankThreeTensor & operator*=(const Number a);
 
   /// r_ijk/a
-  RankThreeTensor operator/(const Real a) const;
+  RankThreeTensor operator/(const Number a) const;
 
   /// r_ijk /= a  for all i, j, k
-  RankThreeTensor & operator/=(const Real a);
+  RankThreeTensor & operator/=(const Number a);
 
   /// r_ijk += a_ijk  for all i, j, k
   RankThreeTensor & operator+=(const RankThreeTensor & a);
@@ -114,7 +114,7 @@ public:
   RankThreeTensor operator-() const;
 
   /// \sqrt(r_ijk*r_ijk)
-  Real L2norm() const;
+  Number L2norm() const;
 
   /**
    * Rotate the tensor using
@@ -127,7 +127,7 @@ public:
    * Rotate the tensor using
    * r_ijk = R_im R_in R_ko r_mno
    */
-  void rotate(const RealTensorValue & R);
+  void rotate(const NumberTensorValue & R);
 
   /**
    * Rotate the tensor using
@@ -146,16 +146,16 @@ public:
    *             general (use fillGeneralFromInputVector)
    *             more fill_methods to be implemented soon!
    */
-  void fillFromInputVector(const std::vector<Real> & input, FillMethod fill_method);
+  void fillFromInputVector(const std::vector<Number> & input, FillMethod fill_method);
 
 protected:
   /// Dimensionality of rank-three tensor
   static const unsigned int N = LIBMESH_DIM;
 
   /// The values of the rank-three tensor
-  Real _vals[N][N][N];
+  Number _vals[N][N][N];
 
-  void fillGeneralFromInputVector(const std::vector<Real> & input);
+  void fillGeneralFromInputVector(const std::vector<Number> & input);
 
   template <class T>
   friend void dataStore(std::ostream &, T &, void *);
@@ -170,7 +170,7 @@ void dataStore(std::ostream &, RankThreeTensor &, void *);
 template <>
 void dataLoad(std::istream &, RankThreeTensor &, void *);
 
-inline RankThreeTensor operator*(Real a, const RankThreeTensor & b) { return b * a; }
+inline RankThreeTensor operator*(Number a, const RankThreeTensor & b) { return b * a; }
 
 template <class T>
 void
@@ -182,7 +182,7 @@ RankThreeTensor::rotate(const T & R)
     for (unsigned int j = 0; j < N; ++j)
       for (unsigned int k = 0; k < N; ++k)
       {
-        Real sum = 0.0;
+        Number sum = 0.0;
         for (unsigned int m = 0; m < N; ++m)
           for (unsigned int n = 0; n < N; ++n)
             for (unsigned int o = 0; o < N; ++o)

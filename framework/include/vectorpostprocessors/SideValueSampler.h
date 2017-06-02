@@ -42,7 +42,7 @@ public:
 
 protected:
   /// So we don't have to create and destroy this vector over and over again
-  std::vector<Real> _values;
+  std::vector<Number> _values;
 
   unsigned int _qp;
 };

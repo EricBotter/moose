@@ -130,7 +130,7 @@ public:
    * @param var_name The variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  RealGradient pointValueGradientWrapper(Real t,
+  Gradient pointValueGradientWrapper(Real t,
                                          const Point & p,
                                          const std::string & var_name,
                                          const MooseEnum & weighting_type = weightingType()) const;
@@ -143,7 +143,7 @@ public:
    * @param var_name The variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  RealGradient pointValueGradient(Real t, const Point & p, const std::string & var_name) const;
+  Gradient pointValueGradient(Real t, const Point & p, const std::string & var_name) const;
 
   /**
    * Returns the gradient at a specific location and variable (see SolutionFunction)
@@ -153,7 +153,7 @@ public:
    * @param local_var_index The local index of the variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  RealGradient pointValueGradient(Real t, Point pt, const unsigned int local_var_index) const;
+  Gradient pointValueGradient(Real t, Point pt, const unsigned int local_var_index) const;
 
   /**
    * Returns the gradient at a specific location and variable for cases where the gradient is
@@ -166,7 +166,7 @@ public:
    * @param var_name The variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  std::map<const Elem *, RealGradient>
+  std::map<const Elem *, Gradient>
   discontinuousPointValueGradient(Real t, const Point & p, const std::string & var_name) const;
 
   /**
@@ -180,7 +180,7 @@ public:
    * @param local_var_index The local index of the variable to be evaluated
    * @return The desired value for the given variable at a location
    */
-  std::map<const Elem *, RealGradient>
+  std::map<const Elem *, Gradient>
   discontinuousPointValueGradient(Real t, Point pt, const unsigned int local_var_index) const;
 
   /**
@@ -301,7 +301,7 @@ protected:
    * @param local_var_index The local index of the variable to extract data from
    * @param func_num The MeshFunction index to use (1 = _mesh_function; 2 = _mesh_function2)
    */
-  std::map<const Elem *, RealGradient> evalMultiValuedMeshFunctionGradient(
+  std::map<const Elem *, Gradient> evalMultiValuedMeshFunctionGradient(
       const Point & p, const unsigned int local_var_index, unsigned int func_num) const;
 
   /// File type to read (0 = xda; 1 = ExodusII)

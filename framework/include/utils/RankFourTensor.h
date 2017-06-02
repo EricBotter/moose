@@ -77,20 +77,20 @@ public:
   RankFourTensor(const InitMethod);
 
   /// Fill from vector
-  RankFourTensor(const std::vector<Real> &, FillMethod);
+  RankFourTensor(const std::vector<Number> &, FillMethod);
 
   // Named constructors
   static RankFourTensor Identity() { return RankFourTensor(initIdentity); }
   static RankFourTensor IdentityFour() { return RankFourTensor(initIdentityFour); };
 
   /// Gets the value for the index specified.  Takes index = 0,1,2
-  Real & operator()(unsigned int i, unsigned int j, unsigned int k, unsigned int l);
+  Number & operator()(unsigned int i, unsigned int j, unsigned int k, unsigned int l);
 
   /**
    * Gets the value for the index specified.  Takes index = 0,1,2
    * used for const
    */
-  Real operator()(unsigned int i, unsigned int j, unsigned int k, unsigned int l) const;
+  Number operator()(unsigned int i, unsigned int j, unsigned int k, unsigned int l) const;
 
   /// Zeros out the tensor.
   void zero();
@@ -105,19 +105,19 @@ public:
   RankTwoTensor operator*(const RankTwoTensor & a) const;
 
   /// C_ijkl*a_kl
-  RealTensorValue operator*(const RealTensorValue & a) const;
+  NumberTensorValue operator*(const NumberTensorValue & a) const;
 
   /// C_ijkl*a
-  RankFourTensor operator*(const Real a) const;
+  RankFourTensor operator*(const Number a) const;
 
   /// C_ijkl *= a
-  RankFourTensor & operator*=(const Real a);
+  RankFourTensor & operator*=(const Number a);
 
   /// C_ijkl/a
-  RankFourTensor operator/(const Real a) const;
+  RankFourTensor operator/(const Number a) const;
 
   /// C_ijkl /= a  for all i, j, k, l
-  RankFourTensor & operator/=(const Real a);
+  RankFourTensor & operator/=(const Number a);
 
   /// C_ijkl += a_ijkl  for all i, j, k, l
   RankFourTensor & operator+=(const RankFourTensor & a);
@@ -138,7 +138,7 @@ public:
   RankFourTensor operator*(const RankFourTensor & a) const;
 
   /// sqrt(C_ijkl*C_ijkl)
-  Real L2norm() const;
+  Number L2norm() const;
 
   /**
    * This returns A_ijkl such that C_ijkl*A_klmn = 0.5*(de_im de_jn + de_in de_jm)
@@ -157,7 +157,7 @@ public:
    * Rotate the tensor using
    * C_ijkl = R_im R_in R_ko R_lp C_mnop
    */
-  void rotate(const RealTensorValue & R);
+  void rotate(const NumberTensorValue & R);
 
   /**
    * Rotate the tensor using
@@ -183,7 +183,7 @@ public:
    *                       C_2211 = input[7], C_2212 = input[8], C_2222 = input[9]
    *                       and C_ijkl = C_jikl = C_ijlk
    */
-  void surfaceFillFromInputVector(const std::vector<Real> & input);
+  void surfaceFillFromInputVector(const std::vector<Number> & input);
 
   /// Static method for use in validParams for getting the "fill_method"
   static MooseEnum fillMethodEnum();
@@ -203,16 +203,16 @@ public:
    *             general (use fillGeneralFromInputVector)
    *             principal (use fillPrincipalFromInputVector)
    */
-  void fillFromInputVector(const std::vector<Real> & input, FillMethod fill_method);
+  void fillFromInputVector(const std::vector<Number> & input, FillMethod fill_method);
 
   /// Inner product of the major transposed tensor with a rank two tensor
   RankTwoTensor innerProductTranspose(const RankTwoTensor &) const;
 
   /// Calculates the sum of Ciijj for i and j varying from 0 to 2
-  Real sum3x3() const;
+  Number sum3x3() const;
 
   /// Calculates the vector a[i] = sum over j Ciijj for i and j varying from 0 to 2
-  RealGradient sum3x1() const;
+  Gradient sum3x1() const;
 
   /// checks if the tensor is symmetric
   bool isSymmetric() const;
@@ -225,7 +225,7 @@ protected:
   static const unsigned int N = LIBMESH_DIM;
 
   /// The values of the rank-four tensor
-  Real _vals[N][N][N][N];
+  Number _vals[N][N][N][N];
 
   /**
   * fillSymmetricFromInputVector takes either 21 (all=true) or 9 (all=false) inputs to fill in
@@ -241,7 +241,7 @@ protected:
   * C3313 C3312 C2323 C2313 C2312 C1313 C1312 C1212
   * @param all Determines the compoinents passed in vis the input parameter
   */
-  void fillSymmetricFromInputVector(const std::vector<Real> & input, bool all);
+  void fillSymmetricFromInputVector(const std::vector<Number> & input, bool all);
 
   /**
    * fillAntisymmetricFromInputVector takes 6 inputs to fill the
@@ -249,7 +249,7 @@ protected:
    * I.e., B_ijkl = -B_jikl = -B_ijlk = B_klij
    * @param input this is B1212, B1213, B1223, B1313, B1323, B2323.
    */
-  void fillAntisymmetricFromInputVector(const std::vector<Real> & input);
+  void fillAntisymmetricFromInputVector(const std::vector<Number> & input);
 
   /**
    * fillGeneralIsotropicFromInputVector takes 3 inputs to fill the
@@ -259,7 +259,7 @@ protected:
    * and a is the antisymmetric shear modulus, and ep is the permutation tensor
    * @param input this is la, mu, a in the above formula
    */
-  void fillGeneralIsotropicFromInputVector(const std::vector<Real> & input);
+  void fillGeneralIsotropicFromInputVector(const std::vector<Number> & input);
 
   /**
    * fillAntisymmetricIsotropicFromInputVector takes 1 inputs to fill the
@@ -267,7 +267,7 @@ protected:
    * I.e., C_ijkl = a * ep_ijm * ep_klm, where epsilon is the permutation tensor (and sum on m)
    * @param input this is a in the above formula
    */
-  void fillAntisymmetricIsotropicFromInputVector(const std::vector<Real> & input);
+  void fillAntisymmetricIsotropicFromInputVector(const std::vector<Number> & input);
 
   /**
    * fillSymmetricIsotropicFromInputVector takes 2 inputs to fill the
@@ -276,14 +276,14 @@ protected:
    * where la is the first Lame modulus, mu is the second (shear) Lame modulus,
    * @param input this is la and mu in the above formula
    */
-  void fillSymmetricIsotropicFromInputVector(const std::vector<Real> & input);
+  void fillSymmetricIsotropicFromInputVector(const std::vector<Number> & input);
 
   /**
    * fillGeneralFromInputVector takes 81 inputs to fill the Rank-4 tensor
    * No symmetries are explicitly maintained
    * @param input  C[i][j][k][l] = input[i*N*N*N + j*N*N + k*N + l]
    */
-  void fillAxisymmetricRZFromInputVector(const std::vector<Real> & input);
+  void fillAxisymmetricRZFromInputVector(const std::vector<Number> & input);
 
   /**
    * fillAxisymmetricRZFromInputVector takes 5 inputs to fill the axisymmetric
@@ -292,7 +292,7 @@ protected:
    * I.e. C1111 = C2222, C1133 = C2233, C2323 = C3131 and C1212 = 0.5*(C1111-C1122)
    * @param input this is C1111, C1122, C1133, C3333, C2323.
    */
-  void fillGeneralFromInputVector(const std::vector<Real> & input);
+  void fillGeneralFromInputVector(const std::vector<Number> & input);
 
   /**
    * fillPrincipalFromInputVector takes 9 inputs to fill a Rank-4 tensor
@@ -308,7 +308,7 @@ protected:
    * with all other components being zero
    */
 
-  void fillPrincipalFromInputVector(const std::vector<Real> & input);
+  void fillPrincipalFromInputVector(const std::vector<Number> & input);
   template <class T>
   friend void dataStore(std::ostream &, T &, void *);
 
@@ -322,7 +322,7 @@ void dataStore(std::ostream &, RankFourTensor &, void *);
 template <>
 void dataLoad(std::istream &, RankFourTensor &, void *);
 
-inline RankFourTensor operator*(Real a, const RankFourTensor & b) { return b * a; }
+inline RankFourTensor operator*(Number a, const RankFourTensor & b) { return b * a; }
 
 template <class T>
 void
@@ -335,7 +335,7 @@ RankFourTensor::rotate(const T & R)
       for (unsigned int k = 0; k < N; ++k)
         for (unsigned int l = 0; l < N; ++l)
         {
-          Real sum = 0.0;
+          Number sum = 0.0;
           for (unsigned int m = 0; m < N; ++m)
             for (unsigned int n = 0; n < N; ++n)
               for (unsigned int o = 0; o < N; ++o)

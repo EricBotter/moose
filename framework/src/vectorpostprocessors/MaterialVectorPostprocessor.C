@@ -156,9 +156,9 @@ MaterialVectorPostprocessor::sortVecs()
   std::sort(ind.begin(), ind.end(), [&](size_t a, size_t b) -> bool {
     if (_elem_ids[a] == _elem_ids[b])
     {
-      return _qp_ids[a] < _qp_ids[b];
+      return _qp_ids[a].real() < _qp_ids[b].real();
     }
-    return _elem_ids[a] < _elem_ids[b];
+    return _elem_ids[a].real() < _elem_ids[b].real();
   });
 
   Moose::applyIndices(_elem_ids, ind);

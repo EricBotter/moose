@@ -76,31 +76,31 @@ public:
    * Constructor that takes in 3 vectors and uses them to create rows
    * _vals[0][i] = row1(i), _vals[1][i] = row2(i), _vals[2][i] = row3(i)
    */
-  RankTwoTensor(const TypeVector<Real> & row1,
-                const TypeVector<Real> & row2,
-                const TypeVector<Real> & row3);
+  RankTwoTensor(const TypeVector<Number> & row1,
+                const TypeVector<Number> & row2,
+                const TypeVector<Number> & row3);
 
   /// Constructor that proxies the fillFromInputVector method
-  RankTwoTensor(const std::vector<Real> & input) { this->fillFromInputVector(input); };
+  RankTwoTensor(const std::vector<Number> & input) { this->fillFromInputVector(input); };
 
   /// Initialization list replacement constructors, 6 arguments
-  RankTwoTensor(Real S11, Real S22, Real S33, Real S23, Real S13, Real S12);
+  RankTwoTensor(Number S11, Number S22, Number S33, Number S23, Number S13, Number S12);
 
   /// Initialization list replacement constructors, 9 arguments
   RankTwoTensor(
-      Real S11, Real S21, Real S31, Real S12, Real S22, Real S32, Real S13, Real S23, Real S33);
+      Number S11, Number S21, Number S31, Number S12, Number S22, Number S32, Number S13, Number S23, Number S33);
 
-  /// Copy constructor from RealTensorValue
-  RankTwoTensor(const TypeTensor<Real> & a);
+  /// Copy constructor from NumberTensorValue
+  RankTwoTensor(const TypeTensor<Number> & a);
 
   // Named constructors
   static RankTwoTensor Identity() { return RankTwoTensor(initIdentity); }
 
   /// Gets the value for the index specified.  Takes index = 0,1,2
-  Real & operator()(unsigned int i, unsigned int j);
+  Number & operator()(unsigned int i, unsigned int j);
 
   /// Gets the value for the index specified.  Takes index = 0,1,2, used for const
-  Real operator()(unsigned int i, unsigned int j) const;
+  Number operator()(unsigned int i, unsigned int j) const;
 
   /// zeroes all _vals components
   void zero();
@@ -119,21 +119,21 @@ public:
   *   _vals[0][1] = input[5]
   * If 9 inputs then input order is [0][0], [1][0], [2][0], [0][1], [1][1], ..., [2][2]
   */
-  void fillFromInputVector(const std::vector<Real> & input, FillMethod fill_method = autodetect);
+  void fillFromInputVector(const std::vector<Number> & input, FillMethod fill_method = autodetect);
 
 public:
   /// returns _vals[r][i], ie, row r, with r = 0, 1, 2
-  TypeVector<Real> row(const unsigned int r) const;
+  TypeVector<Number> row(const unsigned int r) const;
 
   /// returns _vals[i][c], ie, column c, with c = 0, 1, 2
-  TypeVector<Real> column(const unsigned int c) const;
+  TypeVector<Number> column(const unsigned int c) const;
 
   /**
    * rotates the tensor data given a rank two tensor rotation tensor
    * _vals[i][j] = R_ij * R_jl * _vals[k][l]
-   * @param R rotation matrix as a RealTensorValue
+   * @param R rotation matrix as a NumberTensorValue
    */
-  void rotate(const RealTensorValue & R);
+  void rotate(const NumberTensorValue & R);
 
   /**
    * rotates the tensor data given a rank two tensor rotation tensor
@@ -146,7 +146,7 @@ public:
    * rotates the tensor data anticlockwise around the z-axis
    * @param a angle in radians
    */
-  RankTwoTensor rotateXyPlane(Real a);
+  RankTwoTensor rotateXyPlane(Number a);
 
   /**
    * Returns a matrix that is the transpose of the matrix this
@@ -173,19 +173,19 @@ public:
   RankTwoTensor operator-() const;
 
   /// performs _vals *= a
-  RankTwoTensor & operator*=(const Real a);
+  RankTwoTensor & operator*=(const Number a);
 
   /// returns _vals*a
-  RankTwoTensor operator*(const Real a) const;
+  RankTwoTensor operator*(const Number a) const;
 
   /// performs _vals /= a
-  RankTwoTensor & operator/=(const Real a);
+  RankTwoTensor & operator/=(const Number a);
 
   /// returns _vals/a
-  RankTwoTensor operator/(const Real a) const;
+  RankTwoTensor operator/(const Number a) const;
 
   /// Defines multiplication with a vector to get a vector
-  TypeVector<Real> operator*(const TypeVector<Real> & a) const;
+  TypeVector<Number> operator*(const TypeVector<Number> & a) const;
 
   /// performs _vals *= a (component by component) and returns the result
   RankTwoTensor & operator*=(const RankTwoTensor & a);
@@ -193,14 +193,14 @@ public:
   /// Defines multiplication with another RankTwoTensor
   RankTwoTensor operator*(const RankTwoTensor & a) const;
 
-  /// Defines multiplication with a TypeTensor<Real>
-  RankTwoTensor operator*(const TypeTensor<Real> & a) const;
+  /// Defines multiplication with a TypeTensor<Number>
+  RankTwoTensor operator*(const TypeTensor<Number> & a) const;
 
   /// Defines logical equality with another RankTwoTensor
   bool operator==(const RankTwoTensor & a) const;
 
   /// returns _vals_ij * a_ij (sum on i, j)
-  Real doubleContraction(const RankTwoTensor & a) const;
+  Number doubleContraction(const RankTwoTensor & a) const;
 
   /// returns C_ijkl = a_ij * b_kl
   RankFourTensor outerProduct(const RankTwoTensor & a) const;
@@ -215,7 +215,7 @@ public:
   RankTwoTensor deviatoric() const;
 
   /// returns the trace of the tensor, ie _vals[i][i] (sum i = 0, 1, 2)
-  Real trace() const;
+  Number trace() const;
 
   /**
    * Denote the _vals[i][j] by A_ij, then this returns
@@ -229,12 +229,12 @@ public:
    * Then this returns (S_ij + S_ji)*(S_ij + S_ji)/8
    * Note the explicit symmeterisation
    */
-  Real generalSecondInvariant() const;
+  Number generalSecondInvariant() const;
 
   /**
    * Calculates the second invariant (I2) of a tensor
    */
-  Real secondInvariant() const;
+  Number secondInvariant() const;
 
   /**
    * Denote the _vals[i][j] by A_ij, then this returns
@@ -254,7 +254,7 @@ public:
    * This is to gaurd against precision-loss errors.
    * Note that sin(3*Lode_angle) is not defined for secondInvariant() = 0
    */
-  Real sin3Lode(const Real r0, const Real r0_value) const;
+  Number sin3Lode(const Number r0, const Number r0_value) const;
 
   /**
    * d(sin3Lode)/dA_ij
@@ -262,7 +262,7 @@ public:
    * This is to gaurd against precision-loss errors.
    * Note that sin(3*Lode_angle) is not defined for secondInvariant() = 0
    */
-  RankTwoTensor dsin3Lode(const Real r0) const;
+  RankTwoTensor dsin3Lode(const Number r0) const;
 
   /**
    * d^2(sin3Lode)/dA_ij/dA_kl
@@ -270,7 +270,7 @@ public:
    * This is to gaurd against precision-loss errors.
    * Note that sin(3*Lode_angle) is not defined for secondInvariant() = 0
    */
-  RankFourTensor d2sin3Lode(const Real r0) const;
+  RankFourTensor d2sin3Lode(const Number r0) const;
 
   /**
    * Denote the _vals[i][j] by A_ij, then
@@ -278,7 +278,7 @@ public:
    * Then this returns det(S + S.transpose())/2
    * Note the explicit symmeterisation
    */
-  Real thirdInvariant() const;
+  Number thirdInvariant() const;
 
   /**
    * Denote the _vals[i][j] by A_ij, then
@@ -293,7 +293,7 @@ public:
   RankFourTensor d2thirdInvariant() const;
 
   /// Calculate the determinant of the tensor
-  Real det() const;
+  Number det() const;
 
   /**
    * Denote the _vals[i][j] by A_ij, then this returns
@@ -308,29 +308,29 @@ public:
   void print(std::ostream & stm = Moose::out) const;
 
   /// Add identity times a to _vals
-  void addIa(const Real a);
+  void addIa(const Number a);
 
   /// Sqrt(_vals[i][j]*_vals[i][j])
-  Real L2norm() const;
+  Number L2norm() const;
 
   /**
    * sets _vals[0][0], _vals[0][1], _vals[1][0], _vals[1][1] to input,
    * and the remainder to zero
    */
-  void surfaceFillFromInputVector(const std::vector<Real> & input);
+  void surfaceFillFromInputVector(const std::vector<Number> & input);
 
   /**
    * computes eigenvalues, assuming tens is symmetric, and places them
    * in ascending order in eigvals
    */
-  void symmetricEigenvalues(std::vector<Real> & eigvals) const;
+  void symmetricEigenvalues(std::vector<Number> & eigvals) const;
 
   /**
    * computes eigenvalues and eigenvectors, assuming tens is symmetric, and places them
    * in ascending order in eigvals.  eigvecs is a matrix with the first column
    * being the first eigenvector, the second column being the second, etc.
    */
-  void symmetricEigenvaluesEigenvectors(std::vector<Real> & eigvals, RankTwoTensor & eigvecs) const;
+  void symmetricEigenvaluesEigenvectors(std::vector<Number> & eigvals, RankTwoTensor & eigvecs) const;
 
   /**
    * computes eigenvalues, and their symmetric derivatives wrt vals,
@@ -343,7 +343,7 @@ public:
    * often defined by continuation from the un-equal case, and that is
    * too sophisticated for this routine.
    */
-  void dsymmetricEigenvalues(std::vector<Real> & eigvals,
+  void dsymmetricEigenvalues(std::vector<Number> & eigvals,
                              std::vector<RankTwoTensor> & deigvals) const;
 
   /**
@@ -381,33 +381,33 @@ public:
    * The first real scales the random number.
    * The second real offsets the uniform random number
    */
-  static RankTwoTensor genRandomTensor(Real, Real);
+  static RankTwoTensor genRandomTensor(Number, Number);
 
   /**
    * This function generates a random symmetric rank two tensor.
    * The first real scales the random number.
    * The second real offsets the uniform random number
    */
-  static RankTwoTensor genRandomSymmTensor(Real, Real);
+  static RankTwoTensor genRandomSymmTensor(Number, Number);
 
   /// RankTwoTensor from outer product of vectors
-  void vectorOuterProduct(const TypeVector<Real> &, const TypeVector<Real> &);
+  void vectorOuterProduct(const TypeVector<Number> &, const TypeVector<Number> &);
 
   /// Return real tensor of a rank two tensor
-  void fillRealTensor(RealTensorValue &);
+  void fillRealTensor(NumberTensorValue &);
 
   ///Assigns value to the columns of a specified row
-  void fillRow(unsigned int, const TypeVector<Real> &);
+  void fillRow(unsigned int, const TypeVector<Number> &);
 
   ///Assigns value to the rows of a specified column
-  void fillColumn(unsigned int, const TypeVector<Real> &);
+  void fillColumn(unsigned int, const TypeVector<Number> &);
 
   /// returns this_ij * b_ijkl
   RankTwoTensor initialContraction(const RankFourTensor & b) const;
 
 private:
   static const unsigned int N = LIBMESH_DIM;
-  Real _vals[N][N];
+  Number _vals[N][N];
 
   template <class T>
   friend void dataStore(std::ostream &, T &, void *);
@@ -416,7 +416,7 @@ private:
   friend void dataLoad(std::istream &, T &, void *);
 };
 
-inline RankTwoTensor operator*(Real a, const RankTwoTensor & b) { return b * a; }
+inline RankTwoTensor operator*(Number a, const RankTwoTensor & b) { return b * a; }
 
 template <>
 void dataStore(std::ostream & stream, RankTwoTensor &, void *);

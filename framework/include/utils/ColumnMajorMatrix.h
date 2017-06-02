@@ -50,18 +50,18 @@ public:
   /**
    * Constructor that fills in the ColumnMajorMatrix with values from a libMesh TypeTensor
    */
-  explicit ColumnMajorMatrix(const TypeTensor<Real> & tensor);
+  explicit ColumnMajorMatrix(const TypeTensor<Number> & tensor);
 
-  explicit ColumnMajorMatrix(const DenseMatrix<Real> & rhs);
+  explicit ColumnMajorMatrix(const DenseMatrix<Number> & rhs);
 
-  explicit ColumnMajorMatrix(const DenseVector<Real> & rhs);
+  explicit ColumnMajorMatrix(const DenseVector<Number> & rhs);
 
   /**
    * Constructor that takes in 3 vectors and uses them to create columns
    */
-  ColumnMajorMatrix(const TypeVector<Real> & col1,
-                    const TypeVector<Real> & col2,
-                    const TypeVector<Real> & col3);
+  ColumnMajorMatrix(const TypeVector<Number> & col1,
+                    const TypeVector<Number> & col2,
+                    const TypeVector<Number> & col3);
 
   /**
    * The total number of entries in the Tensor.
@@ -79,7 +79,7 @@ public:
    * Get the i,j entry
    * j defaults to zero so you can use it as a column vector.
    */
-  Real & operator()(const unsigned int i, const unsigned int j = 0);
+  Number & operator()(const unsigned int i, const unsigned int j = 0);
 
   /**
    * Get the i,j entry
@@ -87,7 +87,7 @@ public:
    * j defaults to zero so you can use it as a column vector.
    * This is the version used for a const ColumnMajorMatrix.
    */
-  Real operator()(const unsigned int i, const unsigned int j = 0) const;
+  Number operator()(const unsigned int i, const unsigned int j = 0) const;
 
   /**
    * Print the tensor
@@ -102,17 +102,17 @@ public:
   /**
    * Fills the passed in tensor with the values from this tensor.
    */
-  void fill(TypeTensor<Real> & tensor);
+  void fill(TypeTensor<Number> & tensor);
 
   /**
    * Fills the passed in dense matrix with the values from this tensor.
    */
-  void fill(DenseMatrix<Real> & rhs);
+  void fill(DenseMatrix<Number> & rhs);
 
   /**
    * Fills the passed in dense vector with the values from this tensor.
    */
-  void fill(DenseVector<Real> & rhs);
+  void fill(DenseVector<Number> & rhs);
 
   /**
    * Returns a matrix that is the transpose of the matrix this
@@ -135,17 +135,17 @@ public:
   /**
    * Set the value of each of the diagonals to the passed in value.
    */
-  void setDiag(Real value);
+  void setDiag(Number value);
 
   /**
    * Add to each of the diagonals the passsed in value.
    */
-  void addDiag(Real value);
+  void addDiag(Number value);
 
   /**
    * The trace of the CMM.
    */
-  Real tr() const;
+  Number tr() const;
 
   /**
    * Zero the matrix.
@@ -160,12 +160,12 @@ public:
   /**
    * Double contraction of two matrices ie A : B = Sum(A_ab * B_ba)
    */
-  Real doubleContraction(const ColumnMajorMatrix & rhs) const;
+  Number doubleContraction(const ColumnMajorMatrix & rhs) const;
 
   /**
    * The Euclidean norm of the matrix.
    */
-  Real norm();
+  Number norm();
 
   /**
    * Returns the number of rows
@@ -203,8 +203,8 @@ public:
   /**
    * Returns a reference to the raw data pointer
    */
-  Real * rawData();
-  const Real * rawData() const;
+  Number * rawData();
+  const Number * rawData() const;
 
   /**
    * Kronecker Product
@@ -215,19 +215,19 @@ public:
    * Sets the values in _this_ tensor to the values on the RHS.
    * Will also reshape this tensor if necessary.
    */
-  ColumnMajorMatrix & operator=(const TypeTensor<Real> & rhs);
+  ColumnMajorMatrix & operator=(const TypeTensor<Number> & rhs);
 
   /**
  * Sets the values in _this_ dense matrix to the values on the RHS.
  * Will also reshape this tensor if necessary.
  */
-  ColumnMajorMatrix & operator=(const DenseMatrix<Real> & rhs);
+  ColumnMajorMatrix & operator=(const DenseMatrix<Number> & rhs);
 
   /**
  * Sets the values in _this_ dense vector to the values on the RHS.
  * Will also reshape this tensor if necessary.
  */
-  ColumnMajorMatrix & operator=(const DenseVector<Real> & rhs);
+  ColumnMajorMatrix & operator=(const DenseVector<Number> & rhs);
 
   /**
    * Sets the values in _this_ tensor to the values on the RHS
@@ -238,18 +238,18 @@ public:
   /**
    * Scalar multiplication of the ColumnMajorMatrix
    */
-  ColumnMajorMatrix operator*(Real scalar) const;
+  ColumnMajorMatrix operator*(Number scalar) const;
 
   /**
    * Matrix Vector Multiplication of the libMesh TypeVector Type
    */
-  ColumnMajorMatrix operator*(const TypeVector<Real> & rhs) const;
+  ColumnMajorMatrix operator*(const TypeVector<Number> & rhs) const;
 
   //   /**
   //    * Matrix Vector Multiplication of the TypeTensor Product.  Note that the
   //    * Tensor type is treated as a single dimension Vector for this operation
   //    */
-  //   ColumnMajorMatrix operator*(const TypeTensor<Real> & rhs) const;
+  //   ColumnMajorMatrix operator*(const TypeTensor<Number> & rhs) const;
 
   /**
    * Matrix Matrix Multiplication
@@ -277,7 +277,7 @@ public:
   /**
    * Matrix Tensor Addition Plus Assignment
    */
-  ColumnMajorMatrix & operator+=(const TypeTensor<Real> & rhs);
+  ColumnMajorMatrix & operator+=(const TypeTensor<Number> & rhs);
 
   /**
    * Matrix Matrix Subtraction plus assignment
@@ -290,22 +290,22 @@ public:
   /**
    * Scalar addition
    */
-  ColumnMajorMatrix operator+(Real scalar) const;
+  ColumnMajorMatrix operator+(Number scalar) const;
 
   /**
    * Scalar Multiplication plus assignment
    */
-  ColumnMajorMatrix & operator*=(Real scalar);
+  ColumnMajorMatrix & operator*=(Number scalar);
 
   /**
    * Scalar Division plus assignment
    */
-  ColumnMajorMatrix & operator/=(Real scalar);
+  ColumnMajorMatrix & operator/=(Number scalar);
 
   /**
    * Scalar Addition plus assignment
    */
-  ColumnMajorMatrix & operator+=(Real scalar);
+  ColumnMajorMatrix & operator+=(Number scalar);
 
   /**
    * Equality operators
@@ -315,7 +315,7 @@ public:
 
 protected:
   unsigned int _n_rows, _n_cols, _n_entries;
-  std::vector<Real> _values;
+  std::vector<Number> _values;
 };
 
 inline unsigned int
@@ -341,7 +341,7 @@ ColumnMajorMatrix::reshape(unsigned int rows, unsigned int cols)
   }
 }
 
-inline Real &
+inline Number &
 ColumnMajorMatrix::operator()(const unsigned int i, const unsigned int j)
 {
   mooseAssert((i * j) < _n_entries, "Reference outside of ColumnMajorMatrix bounds!");
@@ -350,7 +350,7 @@ ColumnMajorMatrix::operator()(const unsigned int i, const unsigned int j)
   return _values[(j * _n_rows) + i];
 }
 
-inline Real
+inline Number
 ColumnMajorMatrix::operator()(const unsigned int i, const unsigned int j) const
 {
   mooseAssert((i * j) < _n_entries, "Reference outside of ColumnMajorMatrix bounds!");
@@ -388,7 +388,7 @@ ColumnMajorMatrix::print_scientific(std::ostream & os)
 }
 
 inline void
-ColumnMajorMatrix::fill(TypeTensor<Real> & tensor)
+ColumnMajorMatrix::fill(TypeTensor<Number> & tensor)
 {
   mooseAssert(
       LIBMESH_DIM * LIBMESH_DIM == _n_entries,
@@ -400,7 +400,7 @@ ColumnMajorMatrix::fill(TypeTensor<Real> & tensor)
 }
 
 inline void
-ColumnMajorMatrix::fill(DenseMatrix<Real> & rhs)
+ColumnMajorMatrix::fill(DenseMatrix<Number> & rhs)
 {
   mooseAssert(
       rhs.n() * rhs.m() == _n_entries,
@@ -412,7 +412,7 @@ ColumnMajorMatrix::fill(DenseMatrix<Real> & rhs)
 }
 
 inline void
-ColumnMajorMatrix::fill(DenseVector<Real> & rhs)
+ColumnMajorMatrix::fill(DenseVector<Number> & rhs)
 {
   mooseAssert(_n_rows == rhs.size(), "Vectors must be the same shape for a fill!");
 
@@ -465,7 +465,7 @@ ColumnMajorMatrix::abs()
 }
 
 inline void
-ColumnMajorMatrix::setDiag(Real value)
+ColumnMajorMatrix::setDiag(Number value)
 {
   mooseAssert(_n_rows == _n_cols, "Cannot set the diagonal of a non-square matrix!");
 
@@ -474,7 +474,7 @@ ColumnMajorMatrix::setDiag(Real value)
 }
 
 inline void
-ColumnMajorMatrix::addDiag(Real value)
+ColumnMajorMatrix::addDiag(Number value)
 {
   mooseAssert(_n_rows == _n_cols, "Cannot add to the diagonal of a non-square matrix!");
 
@@ -482,12 +482,12 @@ ColumnMajorMatrix::addDiag(Real value)
     (*this)(i, i) += value;
 }
 
-inline Real
+inline Number
 ColumnMajorMatrix::tr() const
 {
   mooseAssert(_n_rows == _n_cols, "Cannot find the trace of a non-square matrix!");
 
-  Real trace = 0;
+  Number trace = 0;
 
   for (unsigned int i = 0; i < _n_rows; i++)
     trace += (*this)(i, i);
@@ -513,13 +513,13 @@ ColumnMajorMatrix::identity()
     (*this)(i, i) = 1;
 }
 
-inline Real
+inline Number
 ColumnMajorMatrix::doubleContraction(const ColumnMajorMatrix & rhs) const
 {
   mooseAssert(_n_rows == rhs._n_cols && _n_cols == rhs._n_rows,
               "Matrices must be the same shape for a double contraction!");
 
-  Real value = 0;
+  Number value = 0;
 
   for (unsigned int j = 0; j < _n_cols; j++)
     for (unsigned int i = 0; i < _n_rows; i++)
@@ -528,7 +528,7 @@ ColumnMajorMatrix::doubleContraction(const ColumnMajorMatrix & rhs) const
   return value;
 }
 
-inline Real
+inline Number
 ColumnMajorMatrix::norm()
 {
   return std::sqrt(doubleContraction(*this));
@@ -546,20 +546,20 @@ ColumnMajorMatrix::m() const
   return _n_cols;
 }
 
-inline Real *
+inline Number *
 ColumnMajorMatrix::rawData()
 {
   return &_values[0];
 }
 
-inline const Real *
+inline const Number *
 ColumnMajorMatrix::rawData() const
 {
   return &_values[0];
 }
 
 inline ColumnMajorMatrix &
-ColumnMajorMatrix::operator=(const TypeTensor<Real> & rhs)
+ColumnMajorMatrix::operator=(const TypeTensor<Number> & rhs)
 {
   // Resize the tensor if necessary
   if ((LIBMESH_DIM * LIBMESH_DIM) != _n_entries)
@@ -596,7 +596,7 @@ ColumnMajorMatrix::operator=(const ColumnMajorMatrix & rhs)
   return *this;
 }
 
-inline ColumnMajorMatrix ColumnMajorMatrix::operator*(Real scalar) const
+inline ColumnMajorMatrix ColumnMajorMatrix::operator*(Number scalar) const
 {
   ColumnMajorMatrix ret_matrix(_n_rows, _n_cols);
 
@@ -606,7 +606,7 @@ inline ColumnMajorMatrix ColumnMajorMatrix::operator*(Real scalar) const
   return ret_matrix;
 }
 
-inline ColumnMajorMatrix ColumnMajorMatrix::operator*(const TypeVector<Real> & rhs) const
+inline ColumnMajorMatrix ColumnMajorMatrix::operator*(const TypeVector<Number> & rhs) const
 {
   mooseAssert(_n_cols == LIBMESH_DIM,
               "Cannot perform matvec operation! The column dimension of "
@@ -622,7 +622,7 @@ inline ColumnMajorMatrix ColumnMajorMatrix::operator*(const TypeVector<Real> & r
 }
 
 // inline ColumnMajorMatrix
-// ColumnMajorMatrix::operator*(const TypeTensor<Real> & rhs) const
+// ColumnMajorMatrix::operator*(const TypeTensor<Number> & rhs) const
 // {
 //   mooseAssert(_n_cols == LIBMESH_DIM*LIBMESH_DIM, "Cannot perform matvec operation!  The
 //   ColumnMajorMatrix doesn't have the correct shape!");
@@ -697,7 +697,7 @@ ColumnMajorMatrix::operator+=(const ColumnMajorMatrix & rhs)
 }
 
 inline ColumnMajorMatrix &
-ColumnMajorMatrix::operator+=(const TypeTensor<Real> & rhs)
+ColumnMajorMatrix::operator+=(const TypeTensor<Number> & rhs)
 {
   mooseAssert((_n_rows == LIBMESH_DIM) && (_n_cols == LIBMESH_DIM),
               "Cannot perform matrix addition and assignment!  The shapes of the two operands are "
@@ -724,7 +724,7 @@ ColumnMajorMatrix::operator-=(const ColumnMajorMatrix & rhs)
 }
 
 inline ColumnMajorMatrix
-ColumnMajorMatrix::operator+(Real scalar) const
+ColumnMajorMatrix::operator+(Number scalar) const
 {
   ColumnMajorMatrix ret_matrix(_n_rows, _n_cols);
 
@@ -735,7 +735,7 @@ ColumnMajorMatrix::operator+(Real scalar) const
 }
 
 inline ColumnMajorMatrix &
-ColumnMajorMatrix::operator*=(Real scalar)
+ColumnMajorMatrix::operator*=(Number scalar)
 {
   for (unsigned int i = 0; i < _n_entries; i++)
     _values[i] *= scalar;
@@ -743,7 +743,7 @@ ColumnMajorMatrix::operator*=(Real scalar)
 }
 
 inline ColumnMajorMatrix &
-ColumnMajorMatrix::operator/=(Real scalar)
+ColumnMajorMatrix::operator/=(Number scalar)
 {
   for (unsigned int i = 0; i < _n_entries; i++)
     _values[i] /= scalar;
@@ -751,7 +751,7 @@ ColumnMajorMatrix::operator/=(Real scalar)
 }
 
 inline ColumnMajorMatrix &
-ColumnMajorMatrix::operator+=(Real scalar)
+ColumnMajorMatrix::operator+=(Number scalar)
 {
   for (unsigned int i = 0; i < _n_entries; i++)
     _values[i] += scalar;

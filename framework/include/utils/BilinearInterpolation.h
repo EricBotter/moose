@@ -58,7 +58,7 @@ public:
    * This function will take an independent variable input and will
    * return the dependent variable based on the generated fit.
    */
-  Real sample(Real xcoord, Real ycoord);
+  Number sample(Real xcoord, Real ycoord);
 
   void getNeighborIndices(const std::vector<Real> & inArr, Real x, int & lowerX, int & upperX);
 

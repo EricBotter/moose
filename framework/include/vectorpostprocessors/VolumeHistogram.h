@@ -54,7 +54,7 @@ protected:
   const Real _deltaV;
 
   /// coupled variable that is being binned
-  const VariableValue & _value;
+  const VariableNumber & _value;
 
   /// current quadrature point - used in computeVolume()
   unsigned int _qp;

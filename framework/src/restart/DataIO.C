@@ -106,7 +106,7 @@ dataStore(std::ostream & stream, ColumnMajorMatrix & v, void * /*context*/)
   for (unsigned int i = 0; i < v.m(); i++)
     for (unsigned int j = 0; j < v.n(); j++)
     {
-      Real r = v(i, j);
+      Number r = v(i, j);
       stream.write((char *)&r, sizeof(r));
     }
 }

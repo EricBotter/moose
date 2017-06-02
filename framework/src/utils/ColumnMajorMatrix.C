@@ -43,7 +43,7 @@ ColumnMajorMatrix::ColumnMajorMatrix(const ColumnMajorMatrix & rhs)
   *this = rhs;
 }
 
-ColumnMajorMatrix::ColumnMajorMatrix(const TypeTensor<Real> & rhs)
+ColumnMajorMatrix::ColumnMajorMatrix(const TypeTensor<Number> & rhs)
   : _n_rows(LIBMESH_DIM),
     _n_cols(LIBMESH_DIM),
     _n_entries(LIBMESH_DIM * LIBMESH_DIM),
@@ -54,21 +54,21 @@ ColumnMajorMatrix::ColumnMajorMatrix(const TypeTensor<Real> & rhs)
       (*this)(i, j) = rhs(i, j);
 }
 
-ColumnMajorMatrix::ColumnMajorMatrix(const DenseMatrix<Real> & rhs)
+ColumnMajorMatrix::ColumnMajorMatrix(const DenseMatrix<Number> & rhs)
   : _n_rows(LIBMESH_DIM), _n_cols(LIBMESH_DIM), _n_entries(_n_cols * _n_cols)
 {
   *this = rhs;
 }
 
-ColumnMajorMatrix::ColumnMajorMatrix(const DenseVector<Real> & rhs)
+ColumnMajorMatrix::ColumnMajorMatrix(const DenseVector<Number> & rhs)
   : _n_rows(LIBMESH_DIM), _n_cols(LIBMESH_DIM), _n_entries(_n_cols * _n_cols)
 {
   *this = rhs;
 }
 
-ColumnMajorMatrix::ColumnMajorMatrix(const TypeVector<Real> & col1,
-                                     const TypeVector<Real> & col2,
-                                     const TypeVector<Real> & col3)
+ColumnMajorMatrix::ColumnMajorMatrix(const TypeVector<Number> & col1,
+                                     const TypeVector<Number> & col2,
+                                     const TypeVector<Number> & col3)
   : _n_rows(LIBMESH_DIM),
     _n_cols(LIBMESH_DIM),
     _n_entries(LIBMESH_DIM * LIBMESH_DIM),
@@ -103,7 +103,7 @@ ColumnMajorMatrix::kronecker(const ColumnMajorMatrix & rhs) const
 }
 
 ColumnMajorMatrix &
-ColumnMajorMatrix::operator=(const DenseMatrix<Real> & rhs)
+ColumnMajorMatrix::operator=(const DenseMatrix<Number> & rhs)
 {
   mooseAssert(_n_rows == rhs.m(), "different number of rows");
   mooseAssert(_n_cols == rhs.n(), "different number of cols");
@@ -121,7 +121,7 @@ ColumnMajorMatrix::operator=(const DenseMatrix<Real> & rhs)
 }
 
 ColumnMajorMatrix &
-ColumnMajorMatrix::operator=(const DenseVector<Real> & rhs)
+ColumnMajorMatrix::operator=(const DenseVector<Number> & rhs)
 {
   mooseAssert(_n_rows == rhs.size(), "different number of rows");
   mooseAssert(_n_cols == 1, "different number of cols");
@@ -154,11 +154,11 @@ ColumnMajorMatrix::eigen(ColumnMajorMatrix & eval, ColumnMajorMatrix & evec) con
 
   evec = *this;
 
-  Real * eval_data = eval.rawData();
-  Real * evec_data = evec.rawData();
+  Number * eval_data = eval.rawData();
+  Number * evec_data = evec.rawData();
 
   int buffer_size = n * 64;
-  std::vector<Real> buffer(buffer_size);
+  std::vector<Number> buffer(buffer_size);
 
 #if !defined(LIBMESH_HAVE_PETSC)
   FORTRAN_CALL(dsyev)
@@ -196,14 +196,14 @@ ColumnMajorMatrix::eigenNonsym(ColumnMajorMatrix & eval_real,
   eval_img._n_entries = _n_rows;
   eval_img._values.resize(_n_rows);
 
-  Real * a_data = a.rawData();
-  Real * eval_r = eval_real.rawData();
-  Real * eval_i = eval_img.rawData();
-  Real * evec_ri = evec_right.rawData();
-  Real * evec_le = evec_left.rawData();
+  Number * a_data = a.rawData();
+  Number * eval_r = eval_real.rawData();
+  Number * eval_i = eval_img.rawData();
+  Number * evec_ri = evec_right.rawData();
+  Number * evec_le = evec_left.rawData();
 
   int buffer_size = n * 64;
-  std::vector<Real> buffer(buffer_size);
+  std::vector<Number> buffer(buffer_size);
 
 #if !defined(LIBMESH_HAVE_PETSC)
   FORTRAN_CALL(dgeev)
@@ -274,10 +274,10 @@ ColumnMajorMatrix::inverse(ColumnMajorMatrix & invA) const
   invA = *this;
 
   std::vector<PetscBLASInt> ipiv(n);
-  Real * invA_data = invA.rawData();
+  Number * invA_data = invA.rawData();
 
   int buffer_size = n * 64;
-  std::vector<Real> buffer(buffer_size);
+  std::vector<Number> buffer(buffer_size);
 
 #if !defined(LIBMESH_HAVE_PETSC)
   FORTRAN_CALL(dgetrf)(&n, &n, invA_data, &n, &ipiv[0], &return_value);

@@ -23,7 +23,7 @@ GenericConstantRankTwoTensor::GenericConstantRankTwoTensor(const InputParameters
   : Material(parameters),
     _prop(declareProperty<RankTwoTensor>(getParam<MaterialPropertyName>("tensor_name")))
 {
-  _tensor.fillFromInputVector(getParam<std::vector<Real>>("tensor_values"));
+  _tensor.fillFromInputVector(getParam<std::vector<Number>>("tensor_values"));
 }
 
 void

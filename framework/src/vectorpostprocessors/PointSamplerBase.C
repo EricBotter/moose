@@ -67,7 +67,7 @@ PointSamplerBase::initialize()
 
   _point_values.resize(_points.size());
   std::for_each(
-      _point_values.begin(), _point_values.end(), [](std::vector<Real> & vec) { vec.clear(); });
+      _point_values.begin(), _point_values.end(), [](std::vector<Number> & vec) { vec.clear(); });
 }
 
 void

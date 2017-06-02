@@ -72,18 +72,18 @@ RankThreeTensor::RankThreeTensor(const InitMethod init)
   }
 }
 
-RankThreeTensor::RankThreeTensor(const std::vector<Real> & input, FillMethod fill_method)
+RankThreeTensor::RankThreeTensor(const std::vector<Number> & input, FillMethod fill_method)
 {
   fillFromInputVector(input, fill_method);
 }
 
-Real &
+Number &
 RankThreeTensor::operator()(unsigned int i, unsigned int j, unsigned int k)
 {
   return _vals[i][j][k];
 }
 
-Real
+Number
 RankThreeTensor::operator()(unsigned int i, unsigned int j, unsigned int k) const
 {
   return _vals[i][j][k];
@@ -109,7 +109,7 @@ RankThreeTensor::operator=(const RankThreeTensor & a)
   return *this;
 }
 
-RankThreeTensor RankThreeTensor::operator*(const Real b) const
+RankThreeTensor RankThreeTensor::operator*(const Number b) const
 {
   RankThreeTensor result;
   const RankThreeTensor & a = *this;
@@ -123,7 +123,7 @@ RankThreeTensor RankThreeTensor::operator*(const Real b) const
 }
 
 RankThreeTensor &
-RankThreeTensor::operator*=(const Real a)
+RankThreeTensor::operator*=(const Number a)
 {
   for (unsigned int i = 0; i < N; ++i)
     for (unsigned int j = 0; j < N; ++j)
@@ -134,7 +134,7 @@ RankThreeTensor::operator*=(const Real a)
 }
 
 RankThreeTensor
-RankThreeTensor::operator/(const Real b) const
+RankThreeTensor::operator/(const Number b) const
 {
   RankThreeTensor result;
   const RankThreeTensor & a = *this;
@@ -148,7 +148,7 @@ RankThreeTensor::operator/(const Real b) const
 }
 
 RankThreeTensor &
-RankThreeTensor::operator/=(const Real a)
+RankThreeTensor::operator/=(const Number a)
 {
   for (unsigned int i = 0; i < N; ++i)
     for (unsigned int j = 0; j < N; ++j)
@@ -222,10 +222,10 @@ RankThreeTensor::operator-() const
   return result;
 }
 
-Real
+Number
 RankThreeTensor::L2norm() const
 {
-  Real l2 = 0;
+  Number l2 = 0;
   const RankThreeTensor & a = *this;
 
   for (unsigned int i = 0; i < N; ++i)
@@ -237,7 +237,7 @@ RankThreeTensor::L2norm() const
 }
 
 void
-RankThreeTensor::fillFromInputVector(const std::vector<Real> & input, FillMethod fill_method)
+RankThreeTensor::fillFromInputVector(const std::vector<Number> & input, FillMethod fill_method)
 {
   zero();
 
@@ -252,7 +252,7 @@ RankThreeTensor::fillFromInputVector(const std::vector<Real> & input, FillMethod
 }
 
 void
-RankThreeTensor::rotate(const RealTensorValue & R)
+RankThreeTensor::rotate(const NumberTensorValue & R)
 {
   RankThreeTensor old = *this;
 
@@ -260,7 +260,7 @@ RankThreeTensor::rotate(const RealTensorValue & R)
     for (unsigned int j = 0; j < N; ++j)
       for (unsigned int k = 0; k < N; ++k)
       {
-        Real sum = 0.0;
+        Number sum = 0.0;
         for (unsigned int m = 0; m < N; ++m)
           for (unsigned int n = 0; n < N; ++n)
             for (unsigned int o = 0; o < N; ++o)
@@ -279,7 +279,7 @@ RankThreeTensor::rotate(const RankTwoTensor & R)
     for (unsigned int j = 0; j < N; ++j)
       for (unsigned int k = 0; k < N; ++k)
       {
-        Real sum = 0.0;
+        Number sum = 0.0;
         for (unsigned int m = 0; m < N; ++m)
           for (unsigned int n = 0; n < N; ++n)
             for (unsigned int o = 0; o < N; ++o)
@@ -290,7 +290,7 @@ RankThreeTensor::rotate(const RankTwoTensor & R)
 }
 
 void
-RankThreeTensor::fillGeneralFromInputVector(const std::vector<Real> & input)
+RankThreeTensor::fillGeneralFromInputVector(const std::vector<Number> & input)
 {
   if (input.size() != 27)
     mooseError("To use fillGeneralFromInputVector, your input must have size 27. Yours has size ",

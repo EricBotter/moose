@@ -790,7 +790,7 @@ SolutionUserObject::discontinuousPointValue(Real libmesh_dbg_var(t),
   return map;
 }
 
-RealGradient
+Gradient
 SolutionUserObject::pointValueGradientWrapper(Real t,
                                               const Point & p,
                                               const std::string & var_name,
@@ -801,19 +801,19 @@ SolutionUserObject::pointValueGradientWrapper(Real t,
     return pointValueGradient(t, p, var_name);
 
   // the shape function is discontinuous so we need to compute a suitable unique value
-  std::map<const Elem *, RealGradient> values = discontinuousPointValueGradient(t, p, var_name);
+  std::map<const Elem *, Gradient> values = discontinuousPointValueGradient(t, p, var_name);
   switch (weighting_type)
   {
     case 2:
     {
-      RealGradient average = RealGradient(0.0, 0.0, 0.0);
+      Gradient average = RealGradient(0.0, 0.0, 0.0);
       for (auto & v : values)
         average += v.second;
       return average / Real(values.size());
     }
     case 4:
     {
-      RealGradient smallest_elem_id_value;
+      Gradient smallest_elem_id_value;
       dof_id_type smallest_elem_id = _fe_problem.mesh().maxElemId();
       for (auto & v : values)
         if (v.first->id() < smallest_elem_id)
@@ -825,7 +825,7 @@ SolutionUserObject::pointValueGradientWrapper(Real t,
     }
     case 8:
     {
-      RealGradient largest_elem_id_value;
+      Gradient largest_elem_id_value;
       dof_id_type largest_elem_id = 0;
       for (auto & v : values)
         if (v.first->id() > largest_elem_id)
@@ -839,17 +839,17 @@ SolutionUserObject::pointValueGradientWrapper(Real t,
 
   mooseError("SolutionUserObject::pointValueGradientWrapper reaches line that it should not be "
              "able to reach.");
-  return RealGradient(0.0, 0.0, 0.0);
+  return Gradient(0.0, 0.0, 0.0);
 }
 
-RealGradient
+Gradient
 SolutionUserObject::pointValueGradient(Real t, const Point & p, const std::string & var_name) const
 {
   const unsigned int local_var_index = getLocalVarIndex(var_name);
   return pointValueGradient(t, p, local_var_index);
 }
 
-RealGradient
+Gradient
 SolutionUserObject::pointValueGradient(Real libmesh_dbg_var(t),
                                        Point pt,
                                        const unsigned int local_var_index) const
@@ -873,21 +873,21 @@ SolutionUserObject::pointValueGradient(Real libmesh_dbg_var(t),
   }
 
   // Extract the value at the current point
-  RealGradient val = evalMeshFunctionGradient(pt, local_var_index, 1);
+  Gradient val = evalMeshFunctionGradient(pt, local_var_index, 1);
 
   // Interpolate
   if (_file_type == 1 && _interpolate_times)
   {
     mooseAssert(t == _interpolation_time,
                 "Time passed into value() must match time at last call to timestepSetup()");
-    RealGradient val2 = evalMeshFunctionGradient(pt, local_var_index, 2);
+    Gradient val2 = evalMeshFunctionGradient(pt, local_var_index, 2);
     val = val + (val2 - val) * _interpolation_factor;
   }
 
   return val;
 }
 
-std::map<const Elem *, RealGradient>
+std::map<const Elem *, Gradient>
 SolutionUserObject::discontinuousPointValueGradient(Real t,
                                                     const Point & p,
                                                     const std::string & var_name) const
@@ -896,7 +896,7 @@ SolutionUserObject::discontinuousPointValueGradient(Real t,
   return discontinuousPointValueGradient(t, p, local_var_index);
 }
 
-std::map<const Elem *, RealGradient>
+std::map<const Elem *, Gradient>
 SolutionUserObject::discontinuousPointValueGradient(Real libmesh_dbg_var(t),
                                                     Point pt,
                                                     const unsigned int local_var_index) const
@@ -920,7 +920,7 @@ SolutionUserObject::discontinuousPointValueGradient(Real libmesh_dbg_var(t),
   }
 
   // Extract the value at the current point
-  std::map<const Elem *, RealGradient> map =
+  std::map<const Elem *, Gradient> map =
       evalMultiValuedMeshFunctionGradient(pt, local_var_index, 1);
 
   // Interpolate
@@ -928,7 +928,7 @@ SolutionUserObject::discontinuousPointValueGradient(Real libmesh_dbg_var(t),
   {
     mooseAssert(t == _interpolation_time,
                 "Time passed into value() must match time at last call to timestepSetup()");
-    std::map<const Elem *, RealGradient> map2 =
+    std::map<const Elem *, Gradient> map2 =
         evalMultiValuedMeshFunctionGradient(pt, local_var_index, 1);
 
     if (map.size() != map2.size())
@@ -940,8 +940,8 @@ SolutionUserObject::discontinuousPointValueGradient(Real libmesh_dbg_var(t),
       if (map2.find(k.first) == map2.end())
         mooseError(
             "In SolutionUserObject::discontinuousPointValue map and map2 have differing keys");
-      RealGradient val = k.second;
-      RealGradient val2 = map2[k.first];
+      Gradient val = k.second;
+      Gradient val2 = map2[k.first];
       map[k.first] = val + (val2 - val) * _interpolation_factor;
     }
   }
@@ -1090,7 +1090,7 @@ SolutionUserObject::evalMeshFunctionGradient(const Point & p,
   return output[local_var_index];
 }
 
-std::map<const Elem *, RealGradient>
+std::map<const Elem *, Gradient>
 SolutionUserObject::evalMultiValuedMeshFunctionGradient(const Point & p,
                                                         const unsigned int local_var_index,
                                                         unsigned int func_num) const
@@ -1128,7 +1128,7 @@ SolutionUserObject::evalMultiValuedMeshFunctionGradient(const Point & p,
   }
 
   // Fill the actual map that is returned
-  std::map<const Elem *, RealGradient> output;
+  std::map<const Elem *, Gradient> output;
   for (auto & k : temporary_output)
   {
     mooseAssert(k.second.size() > local_var_index,

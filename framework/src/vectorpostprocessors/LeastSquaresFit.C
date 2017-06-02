@@ -120,8 +120,8 @@ LeastSquaresFit::execute()
     mooseError("In LeastSquresFit size of data in x_values and y_values must be > 0");
 
   // Create a copy of _x_values that we can modify.
-  std::vector<Real> x_values(_x_values.begin(), _x_values.end());
-  std::vector<Real> y_values(_y_values.begin(), _y_values.end());
+  std::vector<Number> x_values(_x_values.begin(), _x_values.end());
+  std::vector<Number> y_values(_y_values.begin(), _y_values.end());
 
   for (auto i = beginIndex(_x_values); i < _x_values.size(); ++i)
   {
@@ -129,32 +129,40 @@ LeastSquaresFit::execute()
     y_values[i] = (y_values[i] + _y_shift) * _y_scale;
   }
 
-  PolynomialFit pf(x_values, y_values, _order, true);
+  std::vector<Real> xpf(x_values.size());
+  std::transform(x_values.begin(), x_values.end(), std::back_inserter(xpf), [](const Number &x){return x.real();});
+  std::vector<Real> ypf(x_values.size());
+  std::transform(y_values.begin(), y_values.end(), std::back_inserter(ypf), [](const Number &x){return x.real();});
+  PolynomialFit pf(xpf, ypf, _order, true);
   pf.generate();
 
   if (_output_type == "Samples")
   {
-    Real x_min;
+    Number x_min;
     if (_have_sample_x_min)
       x_min = _sample_x_min;
     else
-      x_min = *(std::min_element(x_values.begin(), x_values.end()));
+      x_min = *(std::min_element(xpf.begin(), xpf.end()));
 
-    Real x_max;
+    Number x_max;
     if (_have_sample_x_max)
       x_max = _sample_x_max;
     else
-      x_max = *(std::max_element(x_values.begin(), x_values.end()));
+      x_max = *(std::max_element(xpf.begin(), xpf.end()));
 
-    Real x_span = x_max - x_min;
+    Number x_span = x_max - x_min;
 
     for (unsigned int i = 0; i < _num_samples; ++i)
     {
-      Real x = x_min + static_cast<Real>(i) / _num_samples * x_span;
+      Real x = x_min.real() + static_cast<Real>(i) / _num_samples * x_span.real();
       _sample_x->push_back(x);
       _sample_y->push_back(pf.sample(x));
     }
   }
-  else
-    *_coeffs = pf.getCoefficients();
+  else {
+	std::vector<Real> coeff = pf.getCoefficients();
+	std::vector<Number> out(coeff.size());
+	std::transform(coeff.begin(), coeff.end(), std::back_inserter(out), [](const Real &x){return (Number)x;});
+    *_coeffs = out;
+  }
 }

@@ -46,7 +46,11 @@ VectorPostprocessorFunction::VectorPostprocessorFunction(const InputParameters &
 {
   try
   {
-    _linear_interp = libmesh_make_unique<LinearInterpolation>(_argument_column, _value_column);
+	std::vector<Real> arg_column(_argument_column.size());
+	std::vector<Real> val_column(_value_column.size());
+	std::transform(_argument_column.begin(), _argument_column.end(), std::back_inserter(arg_column), [](const Number &x){return x.real();});
+	std::transform(_value_column.begin(), _value_column.end(), std::back_inserter(val_column), [](const Number &x){return x.real();});
+    _linear_interp = libmesh_make_unique<LinearInterpolation>(arg_column, val_column);
   }
   catch (std::domain_error & e)
   {
@@ -66,7 +70,11 @@ VectorPostprocessorFunction::value(Real /*t*/, const Point & p)
   {
     // TODO: figure out a way to only reinitialize the interpolation only once per ...linear
     // iteration?
-    _linear_interp->setData(_argument_column, _value_column);
+	std::vector<Real> arg_column(_argument_column.size());
+	std::vector<Real> val_column(_value_column.size());
+	std::transform(_argument_column.begin(), _argument_column.end(), std::back_inserter(arg_column), [](const Number &x){return x.real();});
+	std::transform(_value_column.begin(), _value_column.end(), std::back_inserter(val_column), [](const Number &x){return x.real();});
+    _linear_interp->setData(arg_column, val_column);
   }
   return _linear_interp->sample(p(_component));
 }

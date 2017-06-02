@@ -20,6 +20,17 @@
 #include <algorithm>
 #include <iterator> // std::iterator_traits
 
+// dont know where to put this
+namespace std {
+	template<>
+	struct less<complex<double>> {
+		constexpr bool operator()(const std::complex<double> &lhs, const std::complex<double> &rhs) const
+		{
+			return lhs.real() < rhs.real();
+		}
+	};
+}
+
 namespace Moose
 {
 

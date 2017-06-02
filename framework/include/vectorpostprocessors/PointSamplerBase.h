@@ -60,7 +60,7 @@ protected:
   std::vector<Real> _ids;
 
   /// Vector of values per point
-  std::vector<std::vector<Real>> _point_values;
+  std::vector<std::vector<Number>> _point_values;
 
   /// Whether or not the Point was found on this processor (short because bool and char don't work with MPI wrappers)
   std::vector<short> _found_points;

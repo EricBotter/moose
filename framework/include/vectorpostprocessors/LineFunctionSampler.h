@@ -62,7 +62,7 @@ protected:
   std::vector<Function *> _functions;
 
   /// So we don't have to create and destroy this vector over and over again
-  std::vector<Real> _values;
+  std::vector<Number> _values;
 
   /// The points to evaluate at
   std::vector<Point> _points;

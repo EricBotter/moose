@@ -114,7 +114,7 @@ PiecewiseBilinear::~PiecewiseBilinear() {}
 Real
 PiecewiseBilinear::value(Real t, const Point & p)
 {
-  Real retVal(0);
+  Number retVal(0);
   if (_yaxisValid && _xaxisValid && _radial)
   {
     Real rx = p(_xaxis) * p(_xaxis);
@@ -134,7 +134,7 @@ PiecewiseBilinear::value(Real t, const Point & p)
   else
     retVal = _bilinear_interp->sample(p(_xaxis), t);
 
-  return retVal * _scale_factor;
+  return retVal.real() * _scale_factor;
 }
 
 void

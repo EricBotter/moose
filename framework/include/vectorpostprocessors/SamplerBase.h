@@ -72,7 +72,7 @@ protected:
    * @param id This can either be an actual ID or a distance or anything else you want
    * @param values The value of each variable
    */
-  virtual void addSample(const Point & p, const Real & id, const std::vector<Real> & values);
+  virtual void addSample(const Point & p, const Real & id, const std::vector<Number> & values);
 
   /**
    * Initialize the datastructures.
@@ -123,7 +123,7 @@ protected:
   /// The node ID of each point
   VectorPostprocessorValue & _id;
 
-  std::vector<VectorPostprocessorValue *> _values;
+  std::vector<std::vector<Number> *> _values;
 };
 
 #endif

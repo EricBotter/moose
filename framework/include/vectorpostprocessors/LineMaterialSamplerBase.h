@@ -147,7 +147,7 @@ LineMaterialSamplerBase<T>::execute()
   const RealVectorValue line_vec = _end - _start;
   const Real line_length(line_vec.norm());
   const RealVectorValue line_unit_vec = line_vec / line_length;
-  std::vector<Real> values(_material_properties.size());
+  std::vector<Number> values(_material_properties.size());
 
   std::set<unsigned int> needed_mat_props;
   const std::set<unsigned int> & mp_deps = getMatPropDependencies();

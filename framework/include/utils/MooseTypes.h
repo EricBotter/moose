@@ -72,7 +72,8 @@
  * MOOSE typedefs
  */
 typedef Number PostprocessorValue;
-typedef std::vector<Real> VectorPostprocessorValue;
+//typedef std::vector<Real> VectorPostprocessorValue;
+typedef std::vector<Number> VectorPostprocessorValue;
 typedef boundary_id_type BoundaryID;
 typedef unsigned int InterfaceID;
 typedef subdomain_id_type SubdomainID;

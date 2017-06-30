@@ -35,7 +35,7 @@ ScalarComponentIC::ScalarComponentIC(const InputParameters & parameters)
                "' has wrong size.");
 }
 
-Real
+Number
 ScalarComponentIC::value()
 {
   return _initial_values[_i];

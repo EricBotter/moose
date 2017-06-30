@@ -55,10 +55,10 @@ CompositeFunction::CompositeFunction(const InputParameters & parameters)
   }
 }
 
-Real
+Number
 CompositeFunction::value(Real t, const Point & p)
 {
-  Real val = _scale_factor;
+  Number val = _scale_factor;
 
   for (const auto & func : _f)
     val *= func->value(t, p);

@@ -38,7 +38,7 @@ protected:
   /**
    * Evaluate f at the current quadrature point.
    */
-  Real f();
+  Number f();
 
   /**
    * Computes test function * forcing function.

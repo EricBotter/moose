@@ -40,6 +40,6 @@ RealFunctionControl::RealFunctionControl(const InputParameters & parameters)
 void
 RealFunctionControl::execute()
 {
-  Real value = _function.value(_t, Point());
-  setControllableValue<Real>("parameter", value);
+  Number value = _function.value(_t, Point());
+  setControllableValue<Number>("parameter", value);
 }

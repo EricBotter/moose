@@ -38,7 +38,7 @@ public:
    */
   MooseParsedVectorFunction(const InputParameters & parameters);
 
-  virtual RealVectorValue vectorValue(Real t, const Point & p) override;
+  virtual NumberVectorValue vectorValue(Real t, const Point & p) override;
 
   virtual Gradient gradient(Real t, const Point & p) override;
 

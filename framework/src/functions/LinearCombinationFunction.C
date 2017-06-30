@@ -53,10 +53,10 @@ LinearCombinationFunction::LinearCombinationFunction(const InputParameters & par
   }
 }
 
-Real
+Number
 LinearCombinationFunction::value(Real t, const Point & p)
 {
-  Real val = 0;
+  Number val = 0;
   for (unsigned i = 0; i < _f.size(); ++i)
     val += _w[i] * _f[i]->value(t, p);
   return val;

@@ -31,7 +31,7 @@ public:
   ScalarComponentIC(const InputParameters & parameters);
 
 protected:
-  virtual Real value();
+  virtual Number value();
 
   std::vector<Real> _initial_values;
 };

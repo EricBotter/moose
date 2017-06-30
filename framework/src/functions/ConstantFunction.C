@@ -29,7 +29,7 @@ ConstantFunction::ConstantFunction(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ConstantFunction::value(Real, const Point &)
 {
   return _value;

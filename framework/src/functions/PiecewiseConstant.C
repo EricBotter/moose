@@ -49,7 +49,7 @@ PiecewiseConstant::PiecewiseConstant(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 PiecewiseConstant::value(Real t, const Point & p)
 {
   Real func_value(0);

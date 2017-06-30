@@ -55,7 +55,7 @@ ComputeBoundaryInitialConditionThread::onNode(ConstBndNodeRange::const_iterator 
         MooseVariable & var = ic->variable();
         var.reinitNode();
         var.computeNodalValues(); // has to call this to resize the internal array
-        Real value = ic->value(*node);
+        Number value = ic->value(*node);
 
         var.setNodalValue(value); // update variable data, which is referenced by others, so the
                                   // value is up-to-date

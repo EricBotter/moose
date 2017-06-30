@@ -43,7 +43,7 @@ public:
    * @param p Spatial location of desired data
    * @return The value at t and p
    */
-  virtual Real value(Real t, const Point & p) override;
+  virtual Number value(Real t, const Point & p) override;
 
   /**
    * Extract a gradient from the solution

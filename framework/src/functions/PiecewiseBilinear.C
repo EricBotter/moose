@@ -111,7 +111,7 @@ PiecewiseBilinear::PiecewiseBilinear(const InputParameters & parameters)
 
 PiecewiseBilinear::~PiecewiseBilinear() {}
 
-Real
+Number
 PiecewiseBilinear::value(Real t, const Point & p)
 {
   Real retVal(0);

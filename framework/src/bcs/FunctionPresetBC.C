@@ -29,7 +29,7 @@ FunctionPresetBC::FunctionPresetBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 FunctionPresetBC::computeQpValue()
 {
   return _func.value(_t, *_current_node);

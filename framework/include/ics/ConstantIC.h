@@ -48,10 +48,10 @@ public:
    */
   ConstantIC(const InputParameters & parameters);
 
-  virtual Real value(const Point & p) override;
+  virtual Number value(const Point & p) override;
 
 protected:
-  Real _value;
+  Number _value;
 };
 
 #endif // CONSTANTIC_H

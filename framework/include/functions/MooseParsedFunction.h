@@ -49,7 +49,7 @@ public:
    * @param pt The current point (x,y,z)
    * @return The result of evaluating the function
    */
-  virtual Real value(Real t, const Point & pt) override;
+  virtual Number value(Real t, const Point & pt) override;
 
   /**
    * Evaluate the gradient of the function. This is computed in libMesh
@@ -70,7 +70,7 @@ public:
    * Method invalid for ParsedGradFunction
    * @see ParsedVectorFunction
    */
-  virtual RealVectorValue vectorValue(Real t, const Point & p) override;
+  virtual NumberVectorValue vectorValue(Real t, const Point & p) override;
 
   /**
    * Creates the parsed function.

@@ -67,7 +67,7 @@ PiecewiseMultilinear::PiecewiseMultilinear(const InputParameters & parameters)
 
 PiecewiseMultilinear::~PiecewiseMultilinear() {}
 
-Real
+Number
 PiecewiseMultilinear::value(Real t, const Point & p)
 {
   // convert the inputs to an input to the sample function using _axes

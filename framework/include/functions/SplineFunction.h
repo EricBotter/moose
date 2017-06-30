@@ -31,7 +31,7 @@ class SplineFunction : public Function
 public:
   SplineFunction(const InputParameters & parameters);
 
-  virtual Real value(Real t, const Point & p) override;
+  virtual Number value(Real t, const Point & p) override;
   virtual Gradient gradient(Real t, const Point & p) override;
 
   virtual Real derivative(const Point & p);

@@ -31,7 +31,7 @@ public:
   PresetBC(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpValue() override;
+  virtual Number computeQpValue() override;
 
   const Real & _value;
 };

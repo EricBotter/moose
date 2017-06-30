@@ -57,16 +57,16 @@ FunctionPeriodicBoundary::get_corresponding_pos(const Point & pt) const
   switch (_dim)
   {
     case 1:
-      return Point(_tr_x->value(t, pt));
+      return Point(_tr_x->value(t, pt).real());
 
     case 2:
       mooseAssert(_tr_y, "Must provide a function to map y in 2D.");
-      return Point(_tr_x->value(t, pt), _tr_y->value(t, pt));
+      return Point(_tr_x->value(t, pt).real(), _tr_y->value(t, pt).real());
 
     case 3:
       mooseAssert(_tr_y, "Must provide a function to map y in 2D.");
       mooseAssert(_tr_z, "Must provide a function to map z in 3D.");
-      return Point(_tr_x->value(t, pt), _tr_y->value(t, pt), _tr_z->value(t, pt));
+      return Point(_tr_x->value(t, pt).real(), _tr_y->value(t, pt).real(), _tr_z->value(t, pt).real());
 
     default:
       mooseError("Unsupported dimension");

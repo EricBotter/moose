@@ -38,7 +38,7 @@ FunctionScalarIC::FunctionScalarIC(const InputParameters & parameters)
     _func.push_back(&getFunctionByName(func_name));
 }
 
-Real
+Number
 FunctionScalarIC::value()
 {
   return _func[_i]->value(_t, Point(0, 0, 0));

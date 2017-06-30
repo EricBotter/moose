@@ -41,7 +41,7 @@ ImageFunction::initialSetup()
   setupImageSampler(mesh);
 }
 
-Real
+Number
 ImageFunction::value(Real /*t*/, const Point & p)
 {
   return sample(p);

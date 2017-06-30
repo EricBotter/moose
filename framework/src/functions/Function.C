@@ -39,7 +39,7 @@ Function::Function(const InputParameters & parameters)
 
 Function::~Function() {}
 
-Real
+Number
 Function::value(Real /*t*/, const Point & /*p*/)
 {
   return 0.0;
@@ -58,7 +58,7 @@ Function::timeDerivative(Real /*t*/, const Point & /*p*/)
   return 0;
 }
 
-RealVectorValue
+NumberVectorValue
 Function::vectorValue(Real /*t*/, const Point & /*p*/)
 {
   return RealVectorValue(0, 0, 0);

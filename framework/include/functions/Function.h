@@ -71,7 +71,7 @@ public:
    * \param p The Point in space (x,y,z)
    * \return A scalar of the function evaluated at the time and location
    */
-  virtual Real value(Real t, const Point & p);
+  virtual Number value(Real t, const Point & p);
 
   /**
    * Override this to evaluate the vector function at a point (t,x,y,z), by default
@@ -80,7 +80,7 @@ public:
    * \param p The Point in space (x,y,z)
    * \return A vector of the function evaluated at the time and location
    */
-  virtual RealVectorValue vectorValue(Real t, const Point & p);
+  virtual NumberVectorValue vectorValue(Real t, const Point & p);
 
   /**
    * Function objects can optionally provide a gradient at a point. By default

@@ -75,7 +75,7 @@ public:
    *
    * This must be overridden by derived classes.
    */
-  virtual Real value(const Point & p) = 0;
+  virtual Number value(const Point & p) = 0;
 
   /**
    * The gradient of the variable at a point.

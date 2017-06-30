@@ -36,7 +36,7 @@ protected:
   virtual Number computeQpResidual() override;
 
   /// The value for this BC
-  const Number & _value;
+  const Number _value;
 };
 
 #endif /* DIRICHLETBC_H */

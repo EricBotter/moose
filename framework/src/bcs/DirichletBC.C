@@ -19,18 +19,21 @@ InputParameters
 validParams<DirichletBC>()
 {
   InputParameters p = validParams<NodalBC>();
-  p.addRequiredParam<Real>("value", "Value of the BC");
+  p.addParam<Real>("value_r", 0.0, "Value of the BC");
+  p.addParam<Real>("value_i", 0.0, "Value of the BC");
   p.declareControllable("value");
   return p;
 }
 
 DirichletBC::DirichletBC(const InputParameters & parameters)
-  : NodalBC(parameters), _value(getParam<Real>("value"))
+  : NodalBC(parameters), _value(getParam<Real>("value_r"), getParam<Real>("value_i"))
 {
 }
 
 Number
 DirichletBC::computeQpResidual()
 {
-  return _u[_qp] - _value;
+	std::cout << _value << " " << getParam<Real>("value_r") << " " << getParam<Real>("value_i") << std::endl;
+	  return _u[_qp] - _value;
+//  return _u[_qp] - 1.0;
 }

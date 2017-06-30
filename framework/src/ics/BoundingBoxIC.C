@@ -48,7 +48,7 @@ BoundingBoxIC::BoundingBoxIC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 BoundingBoxIC::value(const Point & p)
 {
   for (unsigned int i = 0; i < LIBMESH_DIM; i++)

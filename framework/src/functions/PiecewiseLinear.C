@@ -24,7 +24,7 @@ validParams<PiecewiseLinear>()
 
 PiecewiseLinear::PiecewiseLinear(const InputParameters & parameters) : Piecewise(parameters) {}
 
-Real
+Number
 PiecewiseLinear::value(Real t, const Point & p)
 {
   Real func_value;

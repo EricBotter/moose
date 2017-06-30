@@ -33,7 +33,7 @@ class VectorPostprocessorFunction : public Function, public VectorPostprocessorI
 {
 public:
   VectorPostprocessorFunction(const InputParameters & parameters);
-  virtual Real value(Real /*t*/, const Point & pt) override;
+  virtual Number value(Real /*t*/, const Point & pt) override;
 
 protected:
   std::unique_ptr<LinearInterpolation> _linear_interp;

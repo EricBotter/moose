@@ -29,7 +29,7 @@ ConstantIC::ConstantIC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ConstantIC::value(const Point & /*p*/)
 {
   return _value;

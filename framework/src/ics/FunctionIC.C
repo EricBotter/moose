@@ -29,7 +29,7 @@ FunctionIC::FunctionIC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 FunctionIC::value(const Point & p)
 {
   return _func.value(_t, p);

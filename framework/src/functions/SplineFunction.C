@@ -38,7 +38,7 @@ SplineFunction::SplineFunction(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 SplineFunction::value(Real /*t*/, const Point & p)
 {
   return _ipol.sample(p(0));

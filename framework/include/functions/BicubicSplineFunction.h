@@ -32,7 +32,7 @@ class BicubicSplineFunction : public Function, public FunctionInterface
 public:
   BicubicSplineFunction(const InputParameters & parameters);
 
-  virtual Real value(Real t, const Point & p) override;
+  virtual Number value(Real t, const Point & p) override;
 
   virtual Real derivative(const Point & p, unsigned int deriv_var);
   virtual Gradient gradient(Real t, const Point & p) override;

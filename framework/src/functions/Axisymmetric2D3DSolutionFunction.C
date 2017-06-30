@@ -137,7 +137,7 @@ Axisymmetric2D3DSolutionFunction::initialSetup()
     _solution_object_var_indices[i] = _solution_object_ptr->getLocalVarIndex(_var_names[i]);
 }
 
-Real
+Number
 Axisymmetric2D3DSolutionFunction::value(Real t, const Point & p)
 {
   Point xypoint;

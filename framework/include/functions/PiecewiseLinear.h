@@ -38,7 +38,7 @@ public:
    * \param pt The point in space (x,y,z) (unused)
    * \return The value of the function at the specified time
    */
-  virtual Real value(Real t, const Point & pt) override;
+  virtual Number value(Real t, const Point & pt) override;
 
   /**
    * Get the time derivative of the function (based on time only)

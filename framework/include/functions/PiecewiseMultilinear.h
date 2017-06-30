@@ -47,7 +47,7 @@ public:
   /**
    * Given t and p, return the interpolated value.
    */
-  virtual Real value(Real t, const Point & pt) override;
+  virtual Number value(Real t, const Point & pt) override;
 
 private:
   /// object to provide function evaluations at points on the grid

@@ -40,7 +40,7 @@ public:
    */
   Axisymmetric2D3DSolutionFunction(const InputParameters & parameters);
 
-  virtual Real value(Real t, const Point & p) override;
+  virtual Number value(Real t, const Point & p) override;
 
   /**
    * Setup the function for use

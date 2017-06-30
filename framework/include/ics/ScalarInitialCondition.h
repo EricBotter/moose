@@ -66,7 +66,7 @@ public:
    *
    * This must be overridden by derived classes.
    */
-  virtual Real value() = 0;
+  virtual Number value() = 0;
 
   virtual const std::set<std::string> & getRequestedItems();
 

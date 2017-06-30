@@ -28,7 +28,7 @@ PresetBC::PresetBC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 PresetBC::computeQpValue()
 {
   return _value;

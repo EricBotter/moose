@@ -38,7 +38,7 @@ RandomIC::RandomIC(const InputParameters & parameters)
   MooseRandom::seed(getParam<unsigned int>("seed"));
 }
 
-Real
+Number
 RandomIC::value(const Point & /*p*/)
 {
   // Random number between 0 and 1

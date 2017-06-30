@@ -85,10 +85,10 @@ SolutionFunction::initialSetup()
   _solution_object_var_index = _solution_object_ptr->getLocalVarIndex(var_name);
 }
 
-Real
+Number
 SolutionFunction::value(Real t, const Point & p)
 {
-  return _scale_factor * (_solution_object_ptr->pointValue(t, p, _solution_object_var_index)).real() +
+  return _scale_factor * (_solution_object_ptr->pointValue(t, p, _solution_object_var_index)) +
          _add_factor;
 }
 

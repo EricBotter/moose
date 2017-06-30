@@ -36,10 +36,10 @@ MooseParsedFunction::MooseParsedFunction(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 MooseParsedFunction::value(Real t, const Point & p)
 {
-  return _function_ptr->evaluate<Real>(t, p);
+  return _function_ptr->evaluate<Number>(t, p);
 }
 
 Gradient
@@ -54,7 +54,7 @@ MooseParsedFunction::timeDerivative(Real t, const Point & p)
   return _function_ptr->evaluateDot(t, p).real();
 }
 
-RealVectorValue
+NumberVectorValue
 MooseParsedFunction::vectorValue(Real /*t*/, const Point & /*p*/)
 {
   mooseError("The vectorValue method is not defined in ParsedFunction");

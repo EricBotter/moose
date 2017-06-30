@@ -37,7 +37,7 @@ protected:
   /**
    * Evaluate the function at the current quadrature point and timestep.
    */
-  virtual Real computeQpValue() override;
+  virtual Number computeQpValue() override;
 
   /// Function being used for evaluation of this BC
   Function & _func;

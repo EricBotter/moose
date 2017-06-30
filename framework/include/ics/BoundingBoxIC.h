@@ -63,7 +63,7 @@ public:
    *
    * This must be overridden by derived classes.
    */
-  virtual Real value(const Point & p);
+  virtual Number value(const Point & p);
 
 protected:
   Real _x1;

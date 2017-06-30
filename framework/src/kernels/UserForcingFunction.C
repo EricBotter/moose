@@ -29,7 +29,7 @@ UserForcingFunction::UserForcingFunction(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 UserForcingFunction::f()
 {
   return _func.value(_t, _q_point[_qp]);

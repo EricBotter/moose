@@ -94,13 +94,13 @@ BicubicSplineFunction::BicubicSplineFunction(const InputParameters & parameters)
   _ipol.setData(_x1, _x2, y, _yx11, _yx1n, _yx21, _yx2n);
 }
 
-Real
+Number
 BicubicSplineFunction::value(Real /*t*/, const Point & p)
 {
   Point x1(_x1[0], p(1), 0);
   Point xn(_x1.back(), p(1), 0);
-  Real yx11 = _yx1.value(0, x1);
-  Real yx1n = _yx1.value(0, xn);
+  Real yx11 = _yx1.value(0, x1).real();
+  Real yx1n = _yx1.value(0, xn).real();
 
   return _ipol.sample(p(0), p(1), yx11, yx1n);
 }
@@ -113,15 +113,15 @@ BicubicSplineFunction::derivative(const Point & p, unsigned int deriv_var)
   {
     Point x1(_x1[0], p(1), 0);
     Point xn(_x1.back(), p(1), 0);
-    yp1 = _yx1.value(0, x1);
-    ypn = _yx1.value(0, xn);
+    yp1 = _yx1.value(0, x1).real();
+    ypn = _yx1.value(0, xn).real();
   }
   else if (deriv_var == 2)
   {
     Point x1(p(0), _x2[0], 0);
     Point xn(p(0), _x2.back(), 0);
-    yp1 = _yx2.value(0, x1);
-    ypn = _yx2.value(0, xn);
+    yp1 = _yx2.value(0, x1).real();
+    ypn = _yx2.value(0, xn).real();
   }
   else
     mooseError("deriv_var must equal 1 or 2");
@@ -143,15 +143,15 @@ BicubicSplineFunction::secondDerivative(const Point & p, unsigned int deriv_var)
   {
     Point x1(_x1[0], p(1), 0);
     Point xn(_x1.back(), p(1), 0);
-    yp1 = _yx1.value(0, x1);
-    ypn = _yx1.value(0, xn);
+    yp1 = _yx1.value(0, x1).real();
+    ypn = _yx1.value(0, xn).real();
   }
   else if (deriv_var == 2)
   {
     Point x1(p(0), _x2[0], 0);
     Point xn(p(0), _x2.back(), 0);
-    yp1 = _yx2.value(0, x1);
-    ypn = _yx2.value(0, xn);
+    yp1 = _yx2.value(0, x1).real();
+    ypn = _yx2.value(0, xn).real();
   }
   else
     mooseError("deriv_var must equal 1 or 2");

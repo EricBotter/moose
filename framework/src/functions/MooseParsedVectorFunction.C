@@ -36,10 +36,10 @@ MooseParsedVectorFunction::MooseParsedVectorFunction(const InputParameters & par
 {
 }
 
-RealVectorValue
+NumberVectorValue
 MooseParsedVectorFunction::vectorValue(Real t, const Point & p)
 {
-  return _function_ptr->evaluate<RealVectorValue>(t, p);
+  return _function_ptr->evaluate<NumberVectorValue>(t, p);
 }
 
 Gradient

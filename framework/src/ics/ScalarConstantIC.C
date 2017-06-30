@@ -28,7 +28,7 @@ ScalarConstantIC::ScalarConstantIC(const InputParameters & parameters)
 {
 }
 
-Real
+Number
 ScalarConstantIC::value()
 {
   return _value;

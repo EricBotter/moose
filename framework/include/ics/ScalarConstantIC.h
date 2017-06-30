@@ -36,10 +36,10 @@ public:
    */
   ScalarConstantIC(const InputParameters & parameters);
 
-  virtual Real value() override;
+  virtual Number value() override;
 
 protected:
-  Real _value;
+  Number _value;
 };
 
 #endif // CONSTANTIC_H

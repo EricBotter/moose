@@ -32,7 +32,7 @@ class CompositeFunction : public Function, protected FunctionInterface
 public:
   CompositeFunction(const InputParameters & parameters);
 
-  virtual Real value(Real t, const Point & pt) override;
+  virtual Number value(Real t, const Point & pt) override;
 
 private:
   const Real _scale_factor;

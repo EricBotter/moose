@@ -65,7 +65,7 @@ public:
   /**
    * This function will return a value based on the first input argument only.
    */
-  virtual Real value(Real t, const Point & pt) override;
+  virtual Number value(Real t, const Point & pt) override;
 
 private:
   std::unique_ptr<BilinearInterpolation> _bilinear_interp;

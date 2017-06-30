@@ -34,7 +34,7 @@ public:
 
 protected:
   virtual Number computeQpResidual() override;
-  virtual Real computeQpValue() = 0;
+  virtual Number computeQpValue() = 0;
 };
 
 #endif /* PRESETBC_H */

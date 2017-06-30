@@ -50,7 +50,7 @@ Number
 ElementVectorL2Error::computeQpIntegral()
 {
   NumberVectorValue sol_val(0.0, 0.0, 0.0);
-  RealVectorValue func_val(0.0, 0.0, 0.0);
+  NumberVectorValue func_val(0.0, 0.0, 0.0);
 
   sol_val(0) = _u[_qp];                          // required variable
   func_val(0) = _funcx.value(_t, _q_point[_qp]); // required function

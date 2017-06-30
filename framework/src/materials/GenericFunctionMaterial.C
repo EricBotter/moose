@@ -81,5 +81,5 @@ void
 GenericFunctionMaterial::computeQpFunctions()
 {
   for (unsigned int i = 0; i < _num_props; i++)
-    (*_properties[i])[_qp] = (*_functions[i]).value(_t, _q_point[_qp]);
+    (*_properties[i])[_qp] = (*_functions[i]).value(_t, _q_point[_qp]).real();
 }

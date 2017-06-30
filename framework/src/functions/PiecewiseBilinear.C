@@ -111,7 +111,7 @@ PiecewiseBilinear::PiecewiseBilinear(const InputParameters & parameters)
 
 PiecewiseBilinear::~PiecewiseBilinear() {}
 
-Real
+Number
 PiecewiseBilinear::value(Real t, const Point & p)
 {
   Number retVal(0);
@@ -134,7 +134,7 @@ PiecewiseBilinear::value(Real t, const Point & p)
   else
     retVal = _bilinear_interp->sample(p(_xaxis), t);
 
-  return retVal.real() * _scale_factor;
+  return retVal * _scale_factor;
 }
 
 void

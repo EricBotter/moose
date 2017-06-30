@@ -976,6 +976,7 @@ RankTwoTensor::syev(const char * calculation_type,
   int lwork = 66 * nd;
   int info;
   std::vector<PetscScalar> work(lwork);
+  PetscReal w[N], rwork[3*N];
 
   for (unsigned int i = 0; i < N; ++i)
     for (unsigned int j = 0; j < N; ++j)
@@ -986,7 +987,11 @@ RankTwoTensor::syev(const char * calculation_type,
   // compute the eigenvalues only (if calculation_type == "N"),
   // or both the eigenvalues and eigenvectors (if calculation_type == "V")
   // assume upper triangle of a is stored (second "U")
-  LAPACKsyev_(calculation_type, "U", &nd, &a[0], &nd, &eigvals[0], &work[0], &lwork, &info);
+  LAPACKsyev_(calculation_type, "U", &nd, &a[0], &nd, w, &work[0], &lwork, &rwork[0], &info);
+
+  for (unsigned int i = 0; i < N; ++i) {
+	  eigvals[i] = w[i];
+  }
 
   if (info != 0)
     mooseError("In computing the eigenvalues and eigenvectors of a symmetric rank-2 tensor, the "
@@ -1000,7 +1005,7 @@ RankTwoTensor::getRUDecompositionRotation(RankTwoTensor & rot) const
   const RankTwoTensor & a = *this;
   RankTwoTensor c, diag, evec;
   PetscScalar cmat[N][N], work[10];
-  PetscReal w[N];
+  PetscReal w[N], rwork[3*N];
 
   // prepare data for the LAPACKsyev_ routine (which comes from petscblaslapack.h)
   PetscBLASInt nd = N, lwork = 10, info;
@@ -1011,7 +1016,7 @@ RankTwoTensor::getRUDecompositionRotation(RankTwoTensor & rot) const
     for (unsigned int j = 0; j < N; ++j)
       cmat[i][j] = c(i, j);
 
-  LAPACKsyev_("V", "U", &nd, &cmat[0][0], &nd, w, work, &lwork, &info);
+  LAPACKsyev_("V", "U", &nd, &cmat[0][0], &nd, w, work, &lwork, rwork, &info);
 
   if (info != 0)
     mooseError("In computing the eigenvalues and eigenvectors of a symmetric rank-2 tensor, the "

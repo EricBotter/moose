@@ -164,7 +164,7 @@ ColumnMajorMatrix::eigen(ColumnMajorMatrix & eval, ColumnMajorMatrix & evec) con
   FORTRAN_CALL(dsyev)
   (&jobz, &uplo, &n, evec_data, &n, eval_data, &buffer[0], &buffer_size, &return_value);
 #else
-  LAPACKsyev_(&jobz, &uplo, &n, evec_data, &n, eval_data, &buffer[0], &buffer_size, &return_value);
+  //LAPACKsyev_(&jobz, &uplo, &n, evec_data, &n, eval_data, &buffer[0], &buffer_size, &return_value);
 #endif
 
   if (return_value)
@@ -222,7 +222,7 @@ ColumnMajorMatrix::eigenNonsym(ColumnMajorMatrix & eval_real,
    &buffer_size,
    &return_value);
 #else
-  LAPACKgeev_(&jobvl,
+  /*LAPACKgeev_(&jobvl,
               &jobvr,
               &n,
               a_data,
@@ -235,7 +235,7 @@ ColumnMajorMatrix::eigenNonsym(ColumnMajorMatrix & eval_real,
               &n,
               &buffer[0],
               &buffer_size,
-              &return_value);
+              &return_value);*/
 #endif
 
   if (return_value)

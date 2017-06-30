@@ -43,6 +43,17 @@ MooseParsedFunctionWrapper::MooseParsedFunctionWrapper(FEProblemBase & feproblem
 MooseParsedFunctionWrapper::~MooseParsedFunctionWrapper() {}
 
 template <>
+Real
+MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
+{
+  // Update the postprocessor / libMesh::ParsedFunction references for the desired function
+  update();
+
+  // Evalute the function that returns a scalar
+  return (*_function_ptr)(p, t).real();
+}
+
+template <>
 Number
 MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
 {

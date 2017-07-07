@@ -271,7 +271,7 @@ RankFourTensor::invSymm() const
   int nskip = N - 1;
 
   RankFourTensor result;
-  std::vector<PetscScalar> mat;
+  std::vector<PetscReal> mat;
   mat.assign(ntens * ntens, 0);
 
   // We use the LAPACK matrix inversion routine here.  Form the matrix

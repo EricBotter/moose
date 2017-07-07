@@ -253,7 +253,7 @@ MultiAppNearestNodeTransfer::execute()
 
   // Create these here so that they live the entire life of this function
   // and are NOT reused per processor.
-  std::vector<std::vector<Real>> processor_outgoing_evals(n_processors());
+  std::vector<std::vector<Number>> processor_outgoing_evals(n_processors());
 
   if (!_neighbors_cached)
   {

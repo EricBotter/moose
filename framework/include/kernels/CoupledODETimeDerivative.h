@@ -29,11 +29,11 @@ public:
   CoupledODETimeDerivative(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual() override;
-  virtual Real computeQpJacobian() override;
+  virtual Number computeQpResidual() override;
+  virtual Number computeQpJacobian() override;
 
-  VariableValue & _v_dot;
-  VariableValue & _dv_dot_dv;
+  VariableNumber & _v_dot;
+  VariableNumber & _dv_dot_dv;
 };
 
 #endif // ODETIMEDERIVATIVE_H

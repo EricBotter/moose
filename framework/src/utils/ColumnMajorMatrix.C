@@ -275,21 +275,30 @@ ColumnMajorMatrix::inverse(ColumnMajorMatrix & invA) const
 
   std::vector<PetscBLASInt> ipiv(n);
   Real * invA_data = invA.rawData();
+  Number * invA_numdata = (Number *)malloc(sizeof(Number) * invA._n_entries);
+  for (int i = 0; i < invA._n_entries; ++i) {
+    invA_numdata[i] = invA_data[i];
+  }
 
   int buffer_size = n * 64;
-  std::vector<Real> buffer(buffer_size);
+  std::vector<Number> buffer(buffer_size);
 
 #if !defined(LIBMESH_HAVE_PETSC)
   FORTRAN_CALL(dgetrf)(&n, &n, invA_data, &n, &ipiv[0], &return_value);
 #else
-  LAPACKgetrf_(&n, &n, invA_data, &n, &ipiv[0], &return_value);
+  LAPACKgetrf_(&n, &n, invA_numdata, &n, &ipiv[0], &return_value);
 #endif
 
 #if !defined(LIBMESH_HAVE_PETSC) || PETSC_VERSION_LESS_THAN(3, 5, 0)
   FORTRAN_CALL(dgetri)(&n, invA_data, &n, &ipiv[0], &buffer[0], &buffer_size, &return_value);
 #else
-  LAPACKgetri_(&n, invA_data, &n, &ipiv[0], &buffer[0], &buffer_size, &return_value);
+  LAPACKgetri_(&n, invA_numdata, &n, &ipiv[0], &buffer[0], &buffer_size, &return_value);
 #endif
+
+  for (int i = 0; i < invA._n_entries; ++i) {
+    invA_data[i] = invA_numdata[i].real();
+  }
+  free(invA_numdata);
 
   if (return_value)
     mooseException("Error in LAPACK matrix-inverse calculation");

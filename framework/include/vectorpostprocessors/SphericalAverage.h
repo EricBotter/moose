@@ -53,7 +53,7 @@ protected:
   const unsigned int _nvals;
 
   /// coupled variable that is being binned
-  std::vector<const VariableValue *> _values;
+  std::vector<const VariableNumber *> _values;
 
   /// current quadrature point - used in computeVolume()
   unsigned int _qp;

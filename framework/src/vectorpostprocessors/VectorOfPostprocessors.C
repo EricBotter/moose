@@ -55,5 +55,5 @@ void
 VectorOfPostprocessors::execute()
 {
   for (const auto & ppv : _postprocessor_values)
-    _pp_vec.push_back(*ppv);
+    _pp_vec.push_back(ppv->real());
 }

@@ -79,14 +79,14 @@ ElementVariablesDifferenceMax::execute()
   for (unsigned int qp = 0; qp < _qrule->n_points(); ++qp)
   {
     // Get the difference
-    const Real difference = _furthest_from_zero ? std::abs(_a[qp] - _b[qp]) : _a[qp] - _b[qp];
+    const Real difference = _furthest_from_zero ? std::abs(_a[qp] - _b[qp]) : _a[qp].real() - _b[qp].real();
 
     // Assign the appropriate values if a new maximum is found
     if (difference > _all[MAXIMUM_DIFFERENCE])
     {
       _all[MAXIMUM_DIFFERENCE] = difference;
-      _all[MAXIMUM_DIFFERENCE_A_VALUE] = _a[qp];
-      _all[MAXIMUM_DIFFERENCE_B_VALUE] = _b[qp];
+      _all[MAXIMUM_DIFFERENCE_A_VALUE] = _a[qp].real();
+      _all[MAXIMUM_DIFFERENCE_B_VALUE] = _b[qp].real();
 
       _all[MAXIMUM_DIFFERENCE_X] = _q_point[qp](0);
       _all[MAXIMUM_DIFFERENCE_Y] = _q_point[qp](1);
@@ -121,6 +121,6 @@ ElementVariablesDifferenceMax::threadJoin(const UserObject & s)
   const ElementVariablesDifferenceMax & sibling =
       static_cast<const ElementVariablesDifferenceMax &>(s);
 
-  if (_all[MAXIMUM_DIFFERENCE] < sibling._all[MAXIMUM_DIFFERENCE])
+  if (std::abs(_all[MAXIMUM_DIFFERENCE]) < std::abs(sibling._all[MAXIMUM_DIFFERENCE]))
     _all = sibling._all;
 }

@@ -46,10 +46,10 @@ public:
 
 protected:
   /// The first variable, operated to produce a difference as: #_a - #_b
-  const VariableValue & _a;
+  const VariableNumber & _a;
 
   /// The second variable, operated to produce a difference as: #_a - #_b
-  const VariableValue & _b;
+  const VariableNumber & _b;
 
   /// The value of #_a that produced the maximum difference
   VectorPostprocessorValue & _a_value;

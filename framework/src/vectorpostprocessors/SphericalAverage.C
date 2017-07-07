@@ -87,7 +87,7 @@ SphericalAverage::execute()
     if (bin >= 0 && bin < static_cast<int>(_nbins))
     {
       for (auto j = decltype(_nvals)(0); j < _nvals; ++j)
-        (*_average[j])[bin] += (*_values[j])[_qp];
+        (*_average[j])[bin] += (*_values[j])[_qp].real();
 
       _counts[bin]++;
     }

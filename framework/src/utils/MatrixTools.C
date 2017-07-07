@@ -22,7 +22,7 @@ extern "C" void FORTRAN_CALL(dgetri)(...); // matrix inversion routine from LAPA
 namespace MatrixTools
 {
 void
-inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Number>> & m_inv)
+inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Real>> & m_inv)
 {
   unsigned int n = m.size();
 
@@ -33,7 +33,7 @@ inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Number
     throw MooseException("Input and output matrix are not same size square matrices.");
 
   // build the vectorial representation
-  std::vector<PetscScalar> A;
+  std::vector<PetscReal> A;
   for (const auto & rowvec : m)
     for (const auto & matrix_entry : rowvec)
       A.push_back(matrix_entry);
@@ -48,7 +48,7 @@ inverse(const std::vector<std::vector<Real>> & m, std::vector<std::vector<Number
 }
 
 void
-inverse(std::vector<PetscScalar> & A, unsigned int n)
+inverse(std::vector<PetscReal> & A, unsigned int n)
 {
   mooseAssert(n >= 1, "MatrixTools::inverse - n (leading dimension) needs to be positive");
   mooseAssert(n <= std::numeric_limits<int>::max(),
@@ -56,6 +56,10 @@ inverse(std::vector<PetscScalar> & A, unsigned int n)
 
   std::vector<PetscBLASInt> ipiv(n);
   std::vector<PetscScalar> buffer(n * 64);
+  std::vector<PetscScalar> nA(A.size());
+  for (int i = 0; i < A.size(); ++i) {
+    nA[i] = A[i];
+  }
 
   // Following does a LU decomposition of "square matrix A"
   // upon return "A = P*L*U" if return_value == 0
@@ -63,7 +67,7 @@ inverse(std::vector<PetscScalar> & A, unsigned int n)
   int return_value;
   LAPACKgetrf_(reinterpret_cast<int *>(&n),
                reinterpret_cast<int *>(&n),
-               &A[0],
+               &nA[0],
                reinterpret_cast<int *>(&n),
                &ipiv[0],
                &return_value);
@@ -89,13 +93,18 @@ inverse(std::vector<PetscScalar> & A, unsigned int n)
    &return_value);
 #else
   LAPACKgetri_(reinterpret_cast<int *>(&n),
-               &A[0],
+               &nA[0],
                reinterpret_cast<int *>(&n),
                &ipiv[0],
                &buffer[0],
                &buffer_size,
                &return_value);
 #endif
+
+  for (int i = 0; i < A.size(); ++i) {
+    A[i] = nA[i].real();
+  }
+
 
   if (return_value != 0)
     throw MooseException(return_value < 0

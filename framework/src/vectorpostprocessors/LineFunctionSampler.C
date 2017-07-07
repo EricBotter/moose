@@ -80,7 +80,7 @@ LineFunctionSampler::execute()
     for (unsigned int p = 0; p < _num_points; p++)
     {
       for (unsigned int i = 0; i < _num_funcs; i++)
-        _values[i] = _functions[i]->value(_t, _points[p]);
+        _values[i] = _functions[i]->value(_t, _points[p]).real();
 
       SamplerBase::addSample(_points[p], _ids[p], _values);
     }

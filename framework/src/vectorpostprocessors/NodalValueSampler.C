@@ -66,7 +66,7 @@ NodalValueSampler::execute()
   // separate NodalValueSampler objects to get their values.
   for (unsigned int i = 0; i < _coupled_moose_vars.size(); i++)
   {
-    const VariableValue & nodal_solution = _coupled_moose_vars[i]->nodalSln();
+    const VariableNumber & nodal_solution = _coupled_moose_vars[i]->nodalSln();
 
     if (nodal_solution.size() > 0)
     {
@@ -89,8 +89,13 @@ NodalValueSampler::execute()
   // available but less than the number requested, throw an error.
   // Otherwise, num_values==0, and we can skip adding the sample
   // entirely without error.
-  if (num_values == _has_values.size())
-    SamplerBase::addSample(*_current_node, _current_node->id(), _values);
+  if (num_values == _has_values.size()){
+    std::vector<Real> v;
+    for (int i = 0; i < _values.size(); ++i) {
+      v[i] = _values[i].real();
+    }
+    SamplerBase::addSample(*_current_node, _current_node->id(), v);
+  }
 
   else if (num_values != 0 && num_values < _has_values.size())
     mooseError("You must use separate NodalValueSampler objects for variables with different "

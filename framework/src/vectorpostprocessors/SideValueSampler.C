@@ -59,7 +59,7 @@ SideValueSampler::execute()
   for (unsigned int _qp = 0; _qp < _qrule->n_points(); _qp++)
   {
     for (unsigned int i = 0; i < _coupled_moose_vars.size(); i++)
-      _values[i] = _coupled_moose_vars[i]->sln()[_qp];
+      _values[i] = _coupled_moose_vars[i]->sln()[_qp].real();
 
     SamplerBase::addSample(_q_point[_qp], _current_elem->id(), _values);
   }

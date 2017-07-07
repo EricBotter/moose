@@ -28,13 +28,13 @@ CoupledODETimeDerivative::CoupledODETimeDerivative(const InputParameters & param
 {
 }
 
-Real
+Number
 CoupledODETimeDerivative::computeQpResidual()
 {
   return _v_dot[_i];
 }
 
-Real
+Number
 CoupledODETimeDerivative::computeQpJacobian()
 {
   if (_i == _j)

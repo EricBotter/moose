@@ -917,7 +917,11 @@ void
 RankTwoTensor::symmetricEigenvalues(std::vector<Real> & eigvals) const
 {
   std::vector<PetscScalar> a;
-  syev("N", eigvals, a);
+  std::vector<PetscScalar> n_eigvals(eigvals.size());
+  for (int i = 0; i < eigvals.size(); ++i) {
+    n_eigvals[i] = eigvals[i];
+  }
+  syev("N", n_eigvals, a);
 }
 
 void
@@ -925,11 +929,15 @@ RankTwoTensor::symmetricEigenvaluesEigenvectors(std::vector<Real> & eigvals,
                                                 RankTwoTensor & eigvecs) const
 {
   std::vector<PetscScalar> a;
-  syev("V", eigvals, a);
+  std::vector<PetscScalar> n_eigvals(eigvals.size());
+  for (int i = 0; i < eigvals.size(); ++i) {
+    n_eigvals[i] = eigvals[i];
+  }
+  syev("V", n_eigvals, a);
 
   for (unsigned int i = 0; i < N; ++i)
     for (unsigned int j = 0; j < N; ++j)
-      eigvecs(j, i) = a[i * N + j];
+      eigvecs(j, i) = a[i * N + j].real();
 }
 
 void
@@ -939,7 +947,11 @@ RankTwoTensor::dsymmetricEigenvalues(std::vector<Real> & eigvals,
   deigvals.resize(N);
 
   std::vector<PetscScalar> a;
-  syev("V", eigvals, a);
+  std::vector<PetscScalar> n_eigvals(eigvals.size());
+  for (int i = 0; i < eigvals.size(); ++i) {
+    n_eigvals[i] = eigvals[i];
+  }
+  syev("V", n_eigvals, a);
 
   // now a contains the eigenvetors
   // extract these and place appropriately in deigvals
@@ -949,7 +961,7 @@ RankTwoTensor::dsymmetricEigenvalues(std::vector<Real> & eigvals,
   for (unsigned int i = 0; i < N; ++i)
   {
     for (unsigned int j = 0; j < N; ++j)
-      eig_vec[j] = a[i * N + j];
+      eig_vec[j] = a[i * N + j].real();
     for (unsigned int j = 0; j < N; ++j)
       for (unsigned int k = 0; k < N; ++k)
         deigvals[i](j, k) = eig_vec[j] * eig_vec[k];
@@ -975,7 +987,7 @@ RankTwoTensor::d2symmetricEigenvalues(std::vector<RankFourTensor> & deriv) const
 {
   std::vector<PetscScalar> eigvec;
   std::vector<PetscScalar> eigvals;
-  Real ev[N][N];
+  Number ev[N][N];
 
   // reset rank four tensor
   deriv.assign(N, RankFourTensor());
@@ -998,10 +1010,10 @@ RankTwoTensor::d2symmetricEigenvalues(std::vector<RankFourTensor> & deriv) const
           for (unsigned int k = 0; k < N; ++k)
             for (unsigned int l = 0; l < N; ++l)
             {
-              deriv[alpha](i, j, k, l) +=
+              deriv[alpha](i, j, k, l) += (
                   0.5 * (ev[beta][i] * ev[alpha][j] + ev[alpha][i] * ev[beta][j]) *
                   (ev[beta][k] * ev[alpha][l] + ev[beta][l] * ev[alpha][k]) /
-                  (eigvals[alpha] - eigvals[beta]);
+                  (eigvals[alpha] - eigvals[beta])).real();
             }
     }
 }
@@ -1073,7 +1085,7 @@ RankTwoTensor::getRUDecompositionRotation(RankTwoTensor & rot) const
 
   for (unsigned int i = 0; i < N; ++i)
     for (unsigned int j = 0; j < N; ++j)
-      evec(i, j) = cmat[i][j];
+      evec(i, j) = cmat[i][j].real();
 
   rot = a * ((evec.transpose() * diag * evec).inverse());
 }

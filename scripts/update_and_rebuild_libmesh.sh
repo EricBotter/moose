@@ -89,6 +89,7 @@ if [ -z "$go_fast" ]; then
                --with-methods="${METHODS}" \
                --prefix=$LIBMESH_DIR \
                --enable-silent-rules \
+	       --enable-complex \
                --enable-complex \
                --enable-unique-id \
                --disable-warnings \
@@ -114,13 +115,7 @@ fi
 # with either JOBS if set, or LIBMESH_JOBS.
 LIBMESH_JOBS=${MOOSE_JOBS:-1}
 
-if [ -z "${MOOSE_MAKE}" ]; then
-  make -j ${JOBS:-$LIBMESH_JOBS} && \
-    make install
-else
-  ${MOOSE_MAKE} && \
-    ${MOOSE_MAKE} install
-fi
+make -j 4 && make install
 
 # Local Variables:
 # sh-basic-offset: 2

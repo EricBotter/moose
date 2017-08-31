@@ -48,9 +48,9 @@ typedef MooseArray<std::vector<Number>> VariablePhiNumber;
 typedef MooseArray<std::vector<NumberGradient>> VariablePhiNumberGradient;
 typedef MooseArray<std::vector<NumberTensor>> VariablePhiNumberSecond;
 
-typedef MooseArray<Real> VariableValue;
-typedef MooseArray<RealGradient> VariableGradient;
-typedef MooseArray<RealTensor> VariableSecond;
+typedef MooseArray<Number> VariableValue;
+typedef MooseArray<NumberGradient> VariableGradient;
+typedef MooseArray<NumberTensor> VariableSecond;
 
 typedef MooseArray<std::vector<Real>> VariableTestValue;
 typedef MooseArray<std::vector<RealGradient>> VariableTestGradient;

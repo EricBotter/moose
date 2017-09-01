@@ -65,6 +65,17 @@ MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
 }
 
 template <>
+DenseVector<Real>
+MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
+{
+  update();
+  assert(false);
+  DenseVector<Real> output(LIBMESH_DIM);
+  //(*_function_ptr)(p, t, output);
+  return output;
+}
+
+template <>
 DenseVector<Number>
 MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
 {
@@ -72,6 +83,24 @@ MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
   DenseVector<Number> output(LIBMESH_DIM);
   (*_function_ptr)(p, t, output);
   return output;
+}
+
+template <>
+NumberVectorValue
+MooseParsedFunctionWrapper::evaluate(Real t, const Point & p)
+{
+  DenseVector<Number> output = evaluate<DenseVector<Number>>(t, p);
+
+  return NumberVectorValue(output(0)
+#if LIBMESH_DIM > 1
+                             ,
+                         output(1)
+#endif
+#if LIBMESH_DIM > 2
+                             ,
+                         output(2)
+#endif
+                             );
 }
 
 template <>
